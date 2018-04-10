@@ -1,6 +1,6 @@
-# pwa-lavas
+# pwa-project
 
-> Lavas PWA 社区
+> 这是一个 Lavas PWA 项目
 
 ## npm 相关命令
 
