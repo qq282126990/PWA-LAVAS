@@ -26,7 +26,7 @@ export default {
     width 100%
 
     .skeleton-header
-        height 52px
+        height 104px
         background #1976d2
         box-shadow 0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px rgba(0,0,0,.14), 0 1px 10px rgba(0,0,0,.12)
 

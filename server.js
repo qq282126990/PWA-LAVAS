@@ -6,7 +6,6 @@ const LavasCore = require('lavas-core-vue');
 const port = 8080; // 对外端口
 
 function registerSPA(url, dirPath) {
-    console.log(url)
     if (url.endsWith('/')) {
         url = url.substring(0, url.length - 1);
     }

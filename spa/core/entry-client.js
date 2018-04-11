@@ -7,7 +7,7 @@ import Vue from 'vue';
 import {getMiddlewares, execSeries, getClientContext} from '@/.lavas/middleware';
 import lavasConfig from '@/.lavas/config';
 import {createApp} from './app';
-import ProgressBar from '../../common/ProgressBar.vue';
+import ProgressBar from 'commonComponents/ProgressBar.vue';
 import arrayFindShim from 'array.prototype.find';
 import arrayIncludesShim from 'array-includes';
 import {stringify} from 'querystring';

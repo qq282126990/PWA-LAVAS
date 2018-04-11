@@ -1,6 +1,6 @@
 <template>
     <sidebar v-model="sidebarStatus"
-        :enable="enableSidebar"
+             :enable="enableSidebar"
     >
         <!-- sidebar 内容部分 -->
         <div
@@ -22,14 +22,23 @@
 
             <!-- 用户信息 -->
             <div v-if="user" class="app-sidebar-user">
-                    <div class="user-avatar">
+                <div class="user-avatar">
                     <v-icon class="user-avatar-icon">face</v-icon>
+                </div>
+                <div class="user-info">
+                    <div class="user-name">
+                        <v-icon>person</v-icon>
+                        {{user.name}}
                     </div>
-                    <div class="user-info">
-                        <div class="user-name"><v-icon>person</v-icon>{{user.name}}</div>
-                        <div class="user-location"><v-icon>room</v-icon>{{user.location}}</div>
-                        <div class="user-email"><v-icon>email</v-icon>{{user.email}}</div>
+                    <div class="user-location">
+                        <v-icon>room</v-icon>
+                        {{user.location}}
                     </div>
+                    <div class="user-email">
+                        <v-icon>email</v-icon>
+                        {{user.email}}
+                    </div>
+                </div>
             </div>
 
             <!-- 导航列表分区块 -->
@@ -55,156 +64,170 @@
 </template>
 
 <script>
-import {mapState} from 'vuex';
-import Sidebar from './Sidebar';
+    import {mapState} from 'vuex';
+    import Sidebar from './Sidebar';
 
-export default {
-    components: {
-        Sidebar
-    },
-    computed: {
-        ...mapState('appShell/appSidebar', [
-            'show',
-            'title',
-            'user',
-            'blocks'
-        ]),
-        sidebarStatus: {
-            get() {
-                return this.show;
+    export default {
+        components: {
+            Sidebar
+        },
+        computed: {
+            ...mapState ('appShell/appSidebar', [
+                'show',
+                'title',
+                'user',
+                'blocks'
+            ]),
+            sidebarStatus: {
+                get () {
+                    return this.show;
+                },
+                set (val) {
+                    if (val) {
+                        this.$emit ('show-sidebar');
+                    }
+                    else {
+                        this.$emit ('hide-sidebar');
+                    }
+                }
             },
-            set(val) {
-                if (val) {
-                    this.$emit('show-sidebar');
-                }
-                else {
-                    this.$emit('hide-sidebar');
-                }
+            enableSidebar () {
+                return this.$store.state.appShell.appHeader.show
+                    && this.$store.state.appShell.appHeader.showMenu;
             }
         },
-        enableSidebar() {
-            return this.$store.state.appShell.appHeader.show
-                && this.$store.state.appShell.appHeader.showMenu;
+        methods: {
+            close () {
+                this.sidebarStatus = false;
+            },
+            closeAndGo (route) {
+                this.$router.push (route);
+                this.close ();
+            }
         }
-    },
-    methods: {
-        close() {
-            this.sidebarStatus = false;
-        },
-        closeAndGo(route) {
-            this.$router.push(route);
-            this.close();
-        }
-    }
-};
+    };
 </script>
 
 <style lang="stylus" scoped>
-@require '~@/assets/stylus/variable'
-// 左侧触发滑动宽度
-$swipe-width = 20px
+    @require '~@/assets/stylus/variable'
+    // 左侧触发滑动宽度
+    $swipe-width = 20px
 
-ul,li
-    padding 0
-    margin 0
-    list-style none
-a
-    text-decoration none
-    color #333
+    ul, li {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
 
-.app-sidebar-content
-    &.app-sidebar-content-right
-        box-shadow -3px 0 8px 1px rgba(0, 0, 0, 0.4)
+    a {
+        text-decoration: none;
+        color: #333;
+    }
 
-        &.app-sidebar-title,
-        &.app-sidebar-blocks
-            text-align right
+    .app-sidebar-content {
+        &.app-sidebar-content-right {
+            box-shadow: -3px 0 8px 1px rgba(0, 0, 0, 0.4);
 
-    .app-sidebar-title-left-icon,
-    .app-sidebar-block-left-icon
-        display inline-block
-        width ($app-sidebar-left-icon-size + 10)px
-        height 100%
+            &.app-sidebar-title,
+            &.app-sidebar-blocks {
+                text-align: right;
+            }
+        }
+        .app-sidebar-title-left-icon,
+        .app-sidebar-block-left-icon {
+            display: inline-block;
+            width: ($app-sidebar-left-icon-size + 20) px;
+            height: 100%;
 
-        img
-            vertical-align middle
-            width ($app-sidebar-left-icon-size)px
-            height ($app-sidebar-left-icon-size)px
+            img {
+                vertical-align: middle;
+                width: ($app-sidebar-left-icon-size) px;
+                height: ($app-sidebar-left-icon-size) px;
+            }
+            .material-icons {
+                font-size: ($app-sidebar-left-icon-size) px;
+            }
+        }
+        .app-sidebar-block-text {
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
+        }
+        .app-sidebar-title-right-logo,
+        .app-sidebar-block-right-logo {
+            float: right;
 
-        .material-icons
-            font-size ($app-sidebar-left-icon-size)px
+            img {
+                width: 40px;
+                height: 40px;
+                margin-right: 20px;
+            }
+        }
+        .app-sidebar-title {
+            color: #fff;
+            padding: 0 20px;
+            font-size: 32px;
+            font-weight: bold;
+            height: $app-sidebar-title-height;
+            line-height: $app-sidebar-title-height;
+            background: $colorPrimaryBlue;
+            text-align: left;
+        }
+        .app-sidebar-user {
+            padding: 0 20px;
+            font-size: 32px;
+            .user-avatar {
+                margin: 60px auto 0 auto;
+                height: 200px;
+                width: 200px;
+                i {
+                    font-size: 200px;
+                    line-height: 200px;
+                    color: #666;
+                }
+            }
+            .user-info {
+                padding: 40px 0;
+                text-align: center;
+                border-bottom: 1px solid #e0e0e0;
+                > div {
+                    margin: 10px 0;
+                    i {
+                        font-size: 36px;
+                        margin-right: 10px;
+                    }
+                }
+            }
+        }
+        .app-sidebar-blocks {
+            text-align: left;
 
-    .app-sidebar-block-text
-        display inline-block
-        height 100%
-        vertical-align middle
+            .app-sidebar-block {
+                padding: 20px 0;
+                border-bottom: 1px solid #e0e0e0;
+                color: #333;
 
-    .app-sidebar-title-right-logo,
-    .app-sidebar-block-right-logo
-        float right
+                .sub-list-title {
+                    height: $app-sidebar-nav-height;
+                    line-height: $app-sidebar-nav-height;
+                    text-indent: ($app-sidebar-left-icon-size) px;
+                    font-weight: bold;
+                    color: #888;
+                }
 
-        img
-            width 20px
-            height 20px
-            margin-right 10px
+                li {
+                    padding-left: 30px;
+                    height: $app-sidebar-nav-height;
+                    line-height: $app-sidebar-nav-height;
 
-
-    .app-sidebar-title
-        color #fff
-        padding 0 10px
-        font-size 16px
-        font-weight bold
-        height $app-sidebar-title-height
-        line-height $app-sidebar-title-height
-        background: $colorPrimaryBlue
-        text-align left
-
-    .app-sidebar-user
-        padding 0 10px
-        font-size 16px
-        .user-avatar
-            margin 30px auto 0 auto
-            height 100px
-            width 100px
-            i
-                font-size 100px
-                line-height 100px
-                color #666
-        .user-info
-            padding 20px 0
-            text-align center
-            border-bottom 1px solid #e0e0e0
-            >div
-                margin 5px 0
-                i
-                    font-size 18px
-                    margin-right 5px
-
-    .app-sidebar-blocks
-        text-align left
-
-        .app-sidebar-block
-            padding 10px 0
-            border-bottom 1px solid #e0e0e0
-            color #333
-
-            .sub-list-title
-                height $app-sidebar-nav-height
-                line-height $app-sidebar-nav-height
-                text-indent ($app-sidebar-left-icon-size)px
-                font-weight bold
-                color #888
-
-            li
-                padding-left 15px
-                height $app-sidebar-nav-height
-                line-height $app-sidebar-nav-height
-
-
-                &:last-child
-                    border none
-
-            &:last-child
-                border-bottom none
+                    &:last-child {
+                        border: none;
+                    }
+                }
+                &:last-child {
+                    border-bottom: none;
+                }
+            }
+        }
+    }
 </style>
-    

@@ -36,7 +36,7 @@ import Vue from 'vue';
 import {mapState, mapActions} from 'vuex';
 import AppHeader from '@/components/AppHeader';
 import AppSidebar from '@/components/AppSidebar';
-import UpdateToast from '@/components/UpdateToast';
+import UpdateToast from 'commonComponents/UpdateToast';
 import {keepAlivePages} from '@/.lavas/router';
 
 const ENABLE_SCROLL_CLASS = 'app-view-scroll-enabled';

@@ -9,6 +9,7 @@ const path = require('path');
 const BUILD_PATH = path.resolve(__dirname, 'dist');
 const isDev = process.env.NODE_ENV === 'development';
 const isProd = process.env.NODE_ENV === 'production';
+const TransformModulesPlugin = require('webpack-transform-modules-plugin');
 
 module.exports = {
     build: {
@@ -29,9 +30,18 @@ module.exports = {
          * @type {Object.<string, Object>}
          */
         alias: {
+            base: {
+                'commonComponents': '../../common_components',
+                'cube-ui': 'cube-ui/lib'
+            },
             server: {
                 'iscroll/build/iscroll-lite$': path.join(__dirname, 'core/iscroll-ssr.js')
             }
+        },
+        plugins: {
+            base: [
+                new TransformModulesPlugin()
+            ],
         },
         /**
          * node externals

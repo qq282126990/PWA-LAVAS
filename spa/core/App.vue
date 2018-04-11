@@ -21,7 +21,7 @@
 <script>
 import Vue from 'vue';
 import {mapState, mapActions} from 'vuex';
-import UpdateToast from '../../common/UpdateToast';
+import UpdateToast from 'commonComponents/UpdateToast';
 import {keepAlivePages} from '@/.lavas/router';
 
 const ENABLE_SCROLL_CLASS = 'app-view-scroll-enabled';
