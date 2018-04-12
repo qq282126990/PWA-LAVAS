@@ -2,13 +2,12 @@
     <transition
         name="slide-down">
         <header class="app-header-wrapper" v-show="show">
-            <cube-button>Button</cube-button>
             <div class="app-header-left">
                 <v-btn
                     icon
                     v-if="showMenu"
                     @click.native="handleClick('menu')">
-                    <v-icon color="white" class="app-header-icon">perm_identity</v-icon>
+                    <v-icon color="white" class="app-header-icon">menu</v-icon>
                 </v-btn>
                 <v-btn
                     icon
@@ -131,5 +130,5 @@ $btn-color = #fff
     .app-header-icon
         color $btn-color
         width 40px
-        height 40px
+        height 50px
 </style>

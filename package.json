@@ -22,7 +22,8 @@
     "normalize.css": "^7.0.0",
     "stoppable": "^1.0.4",
     "vuetify": "^0.17.5",
-    "iscroll": "5.1.0"
+    "iscroll": "5.1.0",
+    "postcss-px-to-viewport": "^0.0.3"
   },
   "transformModules": {
     "cube-ui": {
