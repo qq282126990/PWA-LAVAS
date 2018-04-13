@@ -31,6 +31,7 @@
             flex-direction: column;
             width: 100%;
             height: 100%;
+            background: $overall-search-warpper;
         }
     }
 
@@ -39,13 +40,12 @@
         padding: 0 80px;
         width: 100%
         height: 96px;
-        background: $overall-search-warpper;
         .search_input {
             width: 100%;
             height: 100%;
-            border-bottom: 2px solid #999999;
+            border-bottom: 2px solid rgba(149,149,149,.5);
         }
-        .search_input::-webkit-input-placeholder{
+        .search_input::-webkit-input-placeholder {
             color: #999999;
         }
     }
@@ -54,6 +54,5 @@
     .other_wrapper {
         width: 100%;
         height: 100%
-        background red
     }
 </style>

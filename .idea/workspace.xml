@@ -2,21 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5eab39ab-850a-4337-af2c-8ae0f09f6123" name="默认" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ssr/assets/img/AppHeader/app-header-bg.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ssr/components/overall-search.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ssr/assets/css/iconfont.css" afterPath="$PROJECT_DIR$/ssr/assets/css/iconfont.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ssr/assets/stylus/variable.styl" afterPath="$PROJECT_DIR$/ssr/assets/stylus/variable.styl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ssr/components/AppBottomNavigator.vue" afterPath="$PROJECT_DIR$/ssr/components/AppBottomNavigator.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ssr/components/AppHeader.vue" afterPath="$PROJECT_DIR$/ssr/components/AppHeader.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ssr/core/App.vue" afterPath="$PROJECT_DIR$/ssr/core/App.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ssr/core/app.js" afterPath="$PROJECT_DIR$/ssr/core/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ssr/lavas.config.js" afterPath="$PROJECT_DIR$/ssr/lavas.config.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ssr/package.json" afterPath="$PROJECT_DIR$/ssr/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ssr/pages/Index.vue" afterPath="$PROJECT_DIR$/ssr/pages/Index.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ssr/static/css/reset.css" afterPath="$PROJECT_DIR$/ssr/static/css/reset.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ssr/store/appShell/appBottomNavigator.js" afterPath="$PROJECT_DIR$/ssr/store/appShell/appBottomNavigator.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ssr/store/appShell/appHeader.js" afterPath="$PROJECT_DIR$/ssr/store/appShell/appHeader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ssr/components/overall-search.vue" afterPath="$PROJECT_DIR$/ssr/components/overall-search.vue" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -49,8 +35,8 @@
       <file leaf-file-name="overall-search.vue" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ssr/components/overall-search.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="47" column="48" lean-forward="false" selection-start-line="47" selection-start-column="48" selection-end-line="47" selection-end-column="48" />
+            <state relative-caret-position="495">
+              <caret line="46" column="9" lean-forward="true" selection-start-line="46" selection-start-column="9" selection-end-line="46" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -476,7 +462,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="65657000" />
+    <option name="totallyTimeSpent" value="65923000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="97" y="151" width="1299" height="903" extended-state="0" />
@@ -930,8 +916,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ssr/components/overall-search.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="47" column="48" lean-forward="false" selection-start-line="47" selection-start-column="48" selection-end-line="47" selection-end-column="48" />
+        <state relative-caret-position="495">
+          <caret line="46" column="9" lean-forward="true" selection-start-line="46" selection-start-column="9" selection-end-line="46" selection-end-column="9" />
           <folding />
         </state>
       </provider>
