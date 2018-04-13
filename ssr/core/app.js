@@ -10,13 +10,10 @@ import {createRouter} from '@/.lavas/router';
 import {createStore} from '@/.lavas/store';
 import AppComponent from './App.vue';
 import Vuetify from 'vuetify';
-import Cube from 'cube-ui'
 
 Vue.use(Meta);
 
 Vue.use(Vuetify);
-
-Vue.use(Cube);
 
 Vue.config.productionTip = false;
 

@@ -27,18 +27,6 @@
     "vuetify": "^0.17.5",
     "postcss-px-to-viewport": "^0.0.3"
   },
-  "transformModules": {
-    "cube-ui": {
-      "transform": "cube-ui/lib/${member}",
-      "kebabCase": true,
-      "style": {
-        "ignore": [
-          "create-api",
-          "better-scroll"
-        ]
-      }
-    }
-  },
   "devDependencies": {
     "express": "^4.16.2",
     "http-proxy-middleware": "^0.17.4",

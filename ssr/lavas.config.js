@@ -31,8 +31,7 @@ module.exports = {
          */
         alias: {
             base: {
-                'commonComponents': '../../common_components',
-                'cube-ui': 'cube-ui/lib'
+                'commonComponents': path.resolve(__dirname, '../common_components')
             },
             server: {
                 'iscroll/build/iscroll-lite$': path.join(__dirname, 'core/iscroll-ssr.js')

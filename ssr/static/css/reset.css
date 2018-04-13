@@ -134,6 +134,7 @@ body {
 }
 
 .btn__content {
+    height: 100% !important;
     padding: 0 !important;
 }
 
@@ -155,4 +156,8 @@ body {
 
 .input-group {
     flex-wrap: initial !important;
+}
+
+.btn--active .btn__content:before, .btn:focus .btn__content:before, .btn:hover .btn__content:before{
+    background: none !important;
 }

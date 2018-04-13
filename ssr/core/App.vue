@@ -193,6 +193,7 @@
             bottom 0
             left 0
             right 0
+            z-index 200
 
         .app-view
             position absolute
@@ -201,7 +202,7 @@
             bottom 0
             left 0
             -webkit-overflow-scrolling touch
-            background white
+            z-index 140
 
             &::-webkit-scrollbar
                 width 0

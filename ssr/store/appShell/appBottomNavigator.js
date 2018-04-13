@@ -26,7 +26,10 @@ export const state = () => {
                 name: 'home',
 
                 // 显示的 icon
-                icon: 'home',
+                icon: 'icon-home',
+
+                // 激活显示的icon
+                active_icon: 'icon-home-active',
 
                 // 显示的文字
                 text: '主页',
@@ -35,33 +38,23 @@ export const state = () => {
                 active: true,
 
                 // 路由
-                route: '/home'
+                route: '/'
             },
             {
                 // 按钮的名字
-                name: 'user',
+                name: 'personal',
 
                 // 显示的 icon
-                icon: 'person',
+                icon: 'icon-my',
+
+                // 激活显示的icon
+                active_icon: 'icon-my-active',
 
                 // 显示的文字
-                text: '发现',
+                text: '我的',
 
                 // 路由信息
-                route: '/home/find'
-            },
-            {
-                // 按钮的名字
-                name: 'user',
-
-                // 显示的 icon
-                icon: 'person',
-
-                // 显示的文字
-                text: '个人中心',
-
-                // 路由信息
-                route: '/home/user'
+                route: ''
             }
         ]
     };
