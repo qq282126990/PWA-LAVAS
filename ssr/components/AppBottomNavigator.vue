@@ -71,7 +71,7 @@
     @require '~@/assets/stylus/variable'
 
     .app-bottom-navigator-wrapper {
-        height: $app-footer-height;
+        height: 130px;
         transition: transform 0.3s ease-out;
         &.slide-up-enter,
         &.slide-up-leave-to {

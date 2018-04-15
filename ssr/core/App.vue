@@ -38,9 +38,9 @@
 <script>
     import Vue from 'vue';
     import {mapState, mapActions} from 'vuex';
-    import AppHeader from '@/components/AppHeader';
-    import AppSidebar from '@/components/AppSidebar';
-    import AppBottomNavigator from '@/components/AppBottomNavigator';
+    import AppHeader from 'components/AppHeader';
+    import AppSidebar from 'components/AppSidebar';
+    import AppBottomNavigator from 'components/AppBottomNavigator';
     import UpdateToast from 'commonComponents/UpdateToast';
     import {keepAlivePages} from '@/.lavas/router';
 
@@ -176,6 +176,7 @@
         -moz-osx-font-smoothing grayscale
         text-align center
         color #2c3e50
+        /*background #EBEBEB*/
         height 100%
 
         .application--wrap

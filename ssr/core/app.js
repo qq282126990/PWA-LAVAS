@@ -5,7 +5,6 @@
 
 import Vue from 'vue';
 import Meta from 'vue-meta';
-
 import {createRouter} from '@/.lavas/router';
 import {createStore} from '@/.lavas/store';
 import AppComponent from './App.vue';
@@ -17,7 +16,7 @@ Vue.use(Vuetify);
 
 Vue.config.productionTip = false;
 
-export function createApp() {
+export function createApp () {
     let router = createRouter();
     let store = createStore();
     let App = Vue.extend({

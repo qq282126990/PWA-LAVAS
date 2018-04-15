@@ -1,10 +1,27 @@
 <template>
     <div>
         <overall-search></overall-search>
-        <div class="content">
-            <div>
-                <h2>LAVAS</h2>
-                <h4>[ˈlɑ:vəz]</h4>
+        <div class="content_wrapper">
+            <!--横向滑动导航-->
+            <div class="content_header_scroll">
+                <horizontal-scroll :newData="contentHeaderItem">
+                    <div class="horizontal_item" v-for="(item, index) in contentHeaderItem" ref="horizontalItem">
+                        <v-btn flat
+                               :class="{'active': horizontalActive === index}"
+                               @click.native="selectHorizontal(index)">
+                            <h1 class="item_name" :class="{'active': horizontalActive === index}">{{item}}</h1>
+                        </v-btn>
+                        <div class="horizontal_slider_dots">
+                            <p  class="slider_dots" :style="{transform: `translate3d(${sliderDotsWidth}px, 0, 0)`}">
+                                <span class="dots"></span>
+                            </p>
+                        </div>
+                    </div>
+                </horizontal-scroll>
+            </div>
+            <!--文章内容-->
+            <div class="content">
+                <recommend-article></recommend-article>
             </div>
         </div>
     </div>
@@ -14,12 +31,17 @@
     // vuex
     import {mapActions} from 'vuex';
     // 综合查找组件
-    import overallSearch from '@/components/overall-search.vue';
+    import overallSearch from 'components/OverallSearch.vue';
+    // 横向滚动组件
+    import horizontalScroll from 'base/HorizontalScroll.vue';
+    // 推荐页文章
+    import RecommendArticle from 'components/RecommendArticle.vue';
 
     function setState (store) {
-        store.dispatch ('appShell/appHeader/setAppHeader', {
+        store.dispatch('appShell/appHeader/setAppHeader', {
             show: true,
             title: 'Lavas',
+            showDownArrow: true,
             showMenu: false,
             showBack: false,
             showLogo: false,
@@ -43,31 +65,122 @@
             ]
         },
         async asyncData ({store, route}) {
-            setState (store);
+            setState(store);
         },
         data () {
             return {
-                options: [2013, 2014, 2015, 2016, 2017, 2018],
-                value: 2016
+                /*
+                 * 设置内容头部导航数据
+                 * @type {Number}
+                 * */
+                contentHeaderItem: ['推荐', '关注', '热榜','文档','提问','书店'],
+                /*
+                 * 设置内容头部导航那个激活了
+                 * @type {Number}
+                 * */
+                horizontalActive: 0,
+                /*
+                * 内容头部 dot 滑动位置
+                * @type {Number}
+                * */
+                sliderDotsWidth: 0
+            }
+        },
+        methods: {
+            // 选择内容头部横向导航
+            selectHorizontal (index) {
+                // 需要激活的导航
+                this.horizontalActive = index;
+
+                // 内容头部 dot 滑动位置
+                this.sliderDotsWidth = index * this.$refs.horizontalItem[0].clientWidth;
             }
         },
         activated () {
-            setState (this.$store);
+            setState(this.$store);
         },
         components: {
-            overallSearch
+            overallSearch,
+            horizontalScroll,
+            RecommendArticle
         }
     };
 </script>
 
 <style lang="stylus" scoped>
-    .content
-        display flex
-        align-items center
-        justify-content center
-        height 100%
-        flex-wrap wrap
-        h2
-            font-size 46px
-            font-weight 500
+    @require '~@/assets/stylus/variable'
+
+    .content_wrapper {
+        padding-top: 200px;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    /*内容导航*/
+    .content_header_scroll {
+        overflow: hidden;
+        width: 100%;
+        height: 100px;
+        background: $bgContentHeaderScroll;
+    }
+
+    /*横向滚动数据*/
+    .horizontal_item {
+        flex: 0 0 136px;
+        line-height: 100px;
+        height: 100%
+        .item_name {
+            margin: 0;
+            font-size: 32px;
+            /*font-weight: bold;*/
+            color: $colorContentHeaderItem;
+            &.active {
+                color: $colorContentHeaderItemActive;
+            }
+        }
+        .btn{
+            margin : 0;
+            height : 100%;
+            min-width: 100%;
+        }
+        .btn__content{
+            margin :0 auto;
+        }
+    }
+
+    /*横向滚动 dots*/
+    .horizontal_slider_dots {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 0 10px;
+        text-align: center;
+        height: 6px;
+        .slider_dots {
+            position: absolute;
+            left: 0;
+            margin: 0;
+            width: 136px;
+            height: 6px;
+            transition: all .5s;
+            .dots{
+                display: block;
+                margin : 0 25px;
+                height: 6px;
+                background: #000;
+            }
+        }
+    }
+
+
+    /*文章内容*/
+    .content{
+        flex : 1;
+        overflow: hidden;
+        width: 100%;
+        height : 500px;
+        background: #EBEBEB;
+    }
 </style>

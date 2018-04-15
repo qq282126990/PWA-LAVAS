@@ -14,6 +14,7 @@ const TransformModulesPlugin = require('webpack-transform-modules-plugin');
 module.exports = {
     build: {
         ssr: true,
+        cssExtract: false,
         path: BUILD_PATH,
         publicPath: '/',
         ssrCopy: isDev ? [] : [
@@ -31,7 +32,9 @@ module.exports = {
          */
         alias: {
             base: {
-                'commonComponents': path.resolve(__dirname, '../common_components')
+                'commonComponents': path.resolve(__dirname, '../common_components'),
+                'components': '@/components',
+                'base': '@/base'
             },
             server: {
                 'iscroll/build/iscroll-lite$': path.join(__dirname, 'core/iscroll-ssr.js')

@@ -32,6 +32,13 @@ export const state = () => {
         },
 
         /**
+         * 是否展示下选菜单
+         *
+         * @type {boolean}
+         */
+        showDownArrow: true,
+
+        /**
          * 是否展示左侧菜单图标
          *
          * @type {boolean}

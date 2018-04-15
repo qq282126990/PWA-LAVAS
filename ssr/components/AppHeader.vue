@@ -4,8 +4,8 @@
         <header class="app-header-wrapper" v-show="show">
             <div class="app-header-left">
                 <!--下选-->
-                <div class="down_select">
-                    <span class="down_text">社区</span>
+                <div class="down_select" v-if="showDownArrow">
+                    <p class="down_text">社区</p>
                     <i class="iconfont icon-down-arrow"></i>
                 </div>
                 <!--菜单-->
@@ -59,6 +59,7 @@
         computed: {
             ...mapState ('appShell/appHeader', [
                 'show',
+                'showDownArrow',
                 'showMenu',
                 'showBack',
                 'showLogo',
@@ -162,10 +163,13 @@
         .down_select{
             padding: 20px;
             .down_text{
+                display: inline-block;
+                margin-bottom: 0;
                 font-size: 28px;
                 color:$app-header-btn-color;
             }
             .icon-down-arrow{
+                display: inline-block;
                 font-size: 32px;
                 color:$app-header-btn-color;
             }
