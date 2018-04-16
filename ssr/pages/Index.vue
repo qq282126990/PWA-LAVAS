@@ -1,8 +1,9 @@
 <template>
     <div>
-        <overall-search ref="overallSearch"></overall-search>
+        <overall-search ref="overallSearch"
+                        :style="{opacity: overallSearchPercent, top: `${overallSearchTop}px`}"></overall-search>
         <div class="content_wrapper" ref="contentWrapper">
-            <div class="wrapper" ref="wrapper">
+            <div class="wrapper" ref="wrapper" :style="{marginTop: `${contentMarginTop}px`}">
                 <!--横向滑动导航-->
                 <div class="content_header_scroll" ref="contentHeaderScroll">
                     <horizontal-scroll :newData="contentHeaderItem">
@@ -48,7 +49,7 @@
     import VerticalScroll from 'base/VerticalScroll.vue'
 
     function setState (store) {
-        store.dispatch ('appShell/appHeader/setAppHeader', {
+        store.dispatch('appShell/appHeader/setAppHeader', {
             show: true,
             title: 'Lavas',
             showDownArrow: true,
@@ -75,7 +76,7 @@
             ]
         },
         async asyncData ({store, route}) {
-            setState (store);
+            setState(store);
         },
         data () {
             return {
@@ -85,8 +86,8 @@
                  * */
                 contentHeaderItem: ['推荐', '关注', '热榜', '文档', '提问', '书店'],
                 /*
-                * 开启滚动组件监听滚动事件
-                * */
+                 * 开启滚动组件监听滚动事件
+                 * */
                 listenScroll: true,
                 /*
                  * 设置内容头部导航那个激活了
@@ -94,21 +95,39 @@
                  * */
                 horizontalActive: 0,
                 /*
-                * 内容头部 dot 滑动位置
-                * @type {Number}
-                * */
+                 * 内容头部 dot 滑动位置
+                 * @type {Number}
+                 * */
                 sliderDotsWidth: 0,
                 /*
-                * 垂直滚动数值
-                * @type {Number}
-                * */
-                verticalScrollY: 0
+                 * 垂直滚动数值
+                 * @type {Number}
+                 * */
+                verticalScrollY: 0,
+                /*
+                 * 内容偏移位置
+                 * @type {Number}
+                 * */
+                contentMarginTop: 0,
+                /*
+                 * 综合搜索透明度
+                 * @type {Number}
+                 * */
+                overallSearchPercent: 1,
+                /*
+                 * 综合搜索偏移位置
+                 * @type {Number}
+                 * */
+                overallSearchTop: null
             }
         },
         mounted () {
-            this.maxContentMarginTop = this.$refs.overallSearch.$el.children[0].clientHeight + ((this.$refs.contentHeaderScroll.clientHeight / 5) * 6);
+            let overallSearch = this.$refs.overallSearch.$el
+            this.maxContentMarginTop = -(overallSearch.children[0].clientHeight + ((this.$refs.contentHeaderScroll.clientHeight / 5) * 6));
+            // 初始化内容偏移位置
+            this.contentMarginTop = Math.abs(this.maxContentMarginTop);
 
-            this.$refs.wrapper.style.marginTop = `${this.maxContentMarginTop}px`;
+            this.overallSearchOffsetTop = overallSearch.offsetTop;
         },
         methods: {
             // 选择内容头部横向导航
@@ -122,26 +141,35 @@
             // 垂直滚动
             verticalScroll (pos) {
                 this.verticalScrollY = pos.y;
-
-                console.log (pos.y);
             }
         },
         activated () {
-            setState (this.$store);
+            setState(this.$store);
         },
         watch: {
             // 监听垂直滚动数值
             verticalScrollY (scrollY) {
-                let maxContentMarginTop = this.maxContentMarginTop + scrollY;
+                let newScrollY = Math.abs(Math.min(0, this.maxContentMarginTop - scrollY));
 
-                if (maxContentMarginTop > 0 && maxContentMarginTop < this.maxContentMarginTop) {
-                    this.$refs.wrapper.style.marginTop = `${maxContentMarginTop}px`;
+                // 透明度
+                const percent = Math.max(0, 1 - Math.abs(scrollY / Math.abs(this.maxContentMarginTop)));
+                this.overallSearchPercent = percent;
+
+                this.off = this.overallSearchOffsetTop;
+
+                if (scrollY < this.maxContentMarginTop) {
+                    this.contentMarginTop = 0;
+                    this.$refs.verticalScroll.refresh();
+                }
+                else {
+                    this.contentMarginTop = newScrollY;
+
+                    if (this.overallSearchOffsetTop >= this.$refs.contentWrapper.offsetTop) {
+                        this.overallSearchTop = this.off--
+                    }
+                    console.log(this.overallSearchTop)
                 }
 
-                if (maxContentMarginTop === 0 || maxContentMarginTop === this.maxContentMarginTop) {
-
-//                    this.$refs.verticalScroll.res;
-                }
             }
         },
         components: {
@@ -164,7 +192,6 @@
         right: 0;
         display: flex;
         flex-direction: column;
-        z-index: 1
         .wrapper {
             position: relative;
             overflow: hidden;

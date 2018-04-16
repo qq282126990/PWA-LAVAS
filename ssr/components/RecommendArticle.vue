@@ -20,7 +20,7 @@
                             </p>
                         </div>
                         <!--图片-->
-                        <div class="center_img"></div>
+                        <!--<div class="center_img"></div>-->
                     </div>
                     <!--文章底部-->
                     <div class="article_bottom">
@@ -54,7 +54,7 @@
                             </p>
                         </div>
                         <!--图片-->
-                        <div class="center_img"></div>
+                        <!--<div class="center_img"></div>-->
                     </div>
                     <!--文章底部-->
                     <div class="article_bottom">
@@ -88,7 +88,7 @@
                             </p>
                         </div>
                         <!--图片-->
-                        <div class="center_img"></div>
+                        <!--<div class="center_img"></div>-->
                     </div>
                     <!--文章底部-->
                     <div class="article_bottom">
@@ -122,7 +122,7 @@
                             </p>
                         </div>
                         <!--图片-->
-                        <div class="center_img"></div>
+                        <!--<div class="center_img"></div>-->
                     </div>
                     <!--文章底部-->
                     <div class="article_bottom">
@@ -156,7 +156,7 @@
                             </p>
                         </div>
                         <!--图片-->
-                        <div class="center_img"></div>
+                        <!--<div class="center_img"></div>-->
                     </div>
                     <!--文章底部-->
                     <div class="article_bottom">
@@ -190,41 +190,7 @@
                             </p>
                         </div>
                         <!--图片-->
-                        <div class="center_img"></div>
-                    </div>
-                    <!--文章底部-->
-                    <div class="article_bottom">
-                        <!--左-->
-                        <div class="bottom_left">
-                            <p>106 赞 · 22 评论</p>
-                        </div>
-                        <!--右-->
-                        <div class="bottom_right">
-                            <i class="iconfont icon-more-horiz"></i>
-                        </div>
-                    </div>
-                </div>
-            </v-list-tile>
-            <v-list-tile
-                dark
-                ripple
-                @click=""
-                class="article_li"
-            >
-                <!--文章-->
-                <div class="article">
-                    <!--文章标题-->
-                    <h1 class="article_title">Mac小白看过来，满满干货～</h1>
-                    <!--文章内容-->
-                    <div class="article_center">
-                        <!--文字-->
-                        <div class="center_txt">
-                            <p>
-                                周三，埋头工作之时，给大家放一个大招。本文可以让你，少走20年弯路。 本篇是原创首发，你能看到是幸运的，预计接下来会被大量转发，你也是在见证历史和未来。 2003年毕业不久，我进入了上海，到了2006年…
-                            </p>
-                        </div>
-                        <!--图片-->
-                        <div class="center_img"></div>
+                        <!--<div class="center_img"></div>-->
                     </div>
                     <!--文章底部-->
                     <div class="article_bottom">
