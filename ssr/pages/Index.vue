@@ -1,27 +1,35 @@
 <template>
     <div>
-        <overall-search></overall-search>
-        <div class="content_wrapper">
-            <!--横向滑动导航-->
-            <div class="content_header_scroll">
-                <horizontal-scroll :newData="contentHeaderItem">
-                    <div class="horizontal_item" v-for="(item, index) in contentHeaderItem" ref="horizontalItem">
-                        <v-btn flat
-                               :class="{'active': horizontalActive === index}"
-                               @click.native="selectHorizontal(index)">
-                            <h1 class="item_name" :class="{'active': horizontalActive === index}">{{item}}</h1>
-                        </v-btn>
-                        <div class="horizontal_slider_dots">
-                            <p  class="slider_dots" :style="{transform: `translate3d(${sliderDotsWidth}px, 0, 0)`}">
-                                <span class="dots"></span>
-                            </p>
+        <overall-search ref="overallSearch"></overall-search>
+        <div class="content_wrapper" ref="contentWrapper">
+            <div class="wrapper" ref="wrapper">
+                <!--横向滑动导航-->
+                <div class="content_header_scroll" ref="contentHeaderScroll">
+                    <horizontal-scroll :newData="contentHeaderItem">
+                        <div class="horizontal_item" v-for="(item, index) in contentHeaderItem" ref="horizontalItem">
+                            <v-btn flat
+                                   :class="{'active': horizontalActive === index}"
+                                   @click.native="selectHorizontal(index)">
+                                <h1 class="item_name" :class="{'active': horizontalActive === index}">{{item}}</h1>
+                            </v-btn>
+                            <div class="horizontal_slider_dots">
+                                <p class="slider_dots" :style="{transform: `translate3d(${sliderDotsWidth}px, 0, 0)`}">
+                                    <span class="dots"></span>
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                </horizontal-scroll>
-            </div>
-            <!--文章内容-->
-            <div class="content">
-                <recommend-article></recommend-article>
+                    </horizontal-scroll>
+                </div>
+                <!--文章内容-->
+                <div class="content">
+                    <vertical-scroll :listenScroll="listenScroll"
+                                     :probeType="3"
+                                     :bounce="false"
+                                     @scroll="verticalScroll"
+                                     ref="verticalScroll">
+                        <recommend-article></recommend-article>
+                    </vertical-scroll>
+                </div>
             </div>
         </div>
     </div>
@@ -36,9 +44,11 @@
     import horizontalScroll from 'base/HorizontalScroll.vue';
     // 推荐页文章
     import RecommendArticle from 'components/RecommendArticle.vue';
+    // 垂直滚动组件
+    import VerticalScroll from 'base/VerticalScroll.vue'
 
     function setState (store) {
-        store.dispatch('appShell/appHeader/setAppHeader', {
+        store.dispatch ('appShell/appHeader/setAppHeader', {
             show: true,
             title: 'Lavas',
             showDownArrow: true,
@@ -65,7 +75,7 @@
             ]
         },
         async asyncData ({store, route}) {
-            setState(store);
+            setState (store);
         },
         data () {
             return {
@@ -73,7 +83,11 @@
                  * 设置内容头部导航数据
                  * @type {Number}
                  * */
-                contentHeaderItem: ['推荐', '关注', '热榜','文档','提问','书店'],
+                contentHeaderItem: ['推荐', '关注', '热榜', '文档', '提问', '书店'],
+                /*
+                * 开启滚动组件监听滚动事件
+                * */
+                listenScroll: true,
                 /*
                  * 设置内容头部导航那个激活了
                  * @type {Number}
@@ -83,8 +97,18 @@
                 * 内容头部 dot 滑动位置
                 * @type {Number}
                 * */
-                sliderDotsWidth: 0
+                sliderDotsWidth: 0,
+                /*
+                * 垂直滚动数值
+                * @type {Number}
+                * */
+                verticalScrollY: 0
             }
+        },
+        mounted () {
+            this.maxContentMarginTop = this.$refs.overallSearch.$el.children[0].clientHeight + ((this.$refs.contentHeaderScroll.clientHeight / 5) * 6);
+
+            this.$refs.wrapper.style.marginTop = `${this.maxContentMarginTop}px`;
         },
         methods: {
             // 选择内容头部横向导航
@@ -94,15 +118,37 @@
 
                 // 内容头部 dot 滑动位置
                 this.sliderDotsWidth = index * this.$refs.horizontalItem[0].clientWidth;
+            },
+            // 垂直滚动
+            verticalScroll (pos) {
+                this.verticalScrollY = pos.y;
+
+                console.log (pos.y);
             }
         },
         activated () {
-            setState(this.$store);
+            setState (this.$store);
+        },
+        watch: {
+            // 监听垂直滚动数值
+            verticalScrollY (scrollY) {
+                let maxContentMarginTop = this.maxContentMarginTop + scrollY;
+
+                if (maxContentMarginTop > 0 && maxContentMarginTop < this.maxContentMarginTop) {
+                    this.$refs.wrapper.style.marginTop = `${maxContentMarginTop}px`;
+                }
+
+                if (maxContentMarginTop === 0 || maxContentMarginTop === this.maxContentMarginTop) {
+
+//                    this.$refs.verticalScroll.res;
+                }
+            }
         },
         components: {
             overallSearch,
             horizontalScroll,
-            RecommendArticle
+            RecommendArticle,
+            VerticalScroll
         }
     };
 </script>
@@ -111,10 +157,19 @@
     @require '~@/assets/stylus/variable'
 
     .content_wrapper {
-        padding-top: 200px;
+        position: fixed;
+        top: 100px;
+        bottom: 0;
+        left: 0;
+        right: 0;
         display: flex;
         flex-direction: column;
-        height: 100%;
+        z-index: 1
+        .wrapper {
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+        }
     }
 
     /*内容导航*/
@@ -136,16 +191,17 @@
             /*font-weight: bold;*/
             color: $colorContentHeaderItem;
             &.active {
+                font-weight: 600;
                 color: $colorContentHeaderItemActive;
             }
         }
-        .btn{
-            margin : 0;
-            height : 100%;
+        .btn {
+            margin: 0;
+            height: 100%;
             min-width: 100%;
         }
-        .btn__content{
-            margin :0 auto;
+        .btn__content {
+            margin: 0 auto;
         }
     }
 
@@ -165,22 +221,23 @@
             width: 136px;
             height: 6px;
             transition: all .5s;
-            .dots{
+            .dots {
                 display: block;
-                margin : 0 25px;
+                margin: 0 25px;
                 height: 6px;
-                background: #000;
+                background: $colorContentHeaderItemActive;
             }
         }
     }
 
-
     /*文章内容*/
-    .content{
-        flex : 1;
+    .content {
+        position: absolute;
+        top: 100px;
+        bottom: 125px;
+        flex: 1;
         overflow: hidden;
         width: 100%;
-        height : 500px;
         background: #EBEBEB;
     }
 </style>

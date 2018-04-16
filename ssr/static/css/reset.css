@@ -21,7 +21,7 @@ time, mark, audio, video, input {
     font-size: 100%;
     font-weight: normal;
     vertical-align: baseline;
-    font-family : -apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,"PingFang SC","Hiragino Sans GB",STHeiti,"Microsoft YaHei","Microsoft JhengHei","Source Han Sans SC","Noto Sans CJK SC","Source Han Sans CN","Noto Sans SC","Source Han Sans TC","Noto Sans CJK TC","WenQuanYi Micro Hei",SimSun,sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
 }
 
 html {
@@ -127,6 +127,7 @@ body {
     width: 100% !important;
     height: auto !important;
     padding: 0 !important;
+    font-size: inherit !important;
 }
 
 .list__tile--link:hover, .list__tile--highlighted {
@@ -158,6 +159,15 @@ body {
     flex-wrap: initial !important;
 }
 
-.btn--active .btn__content:before, .btn:focus .btn__content:before, .btn:hover .btn__content:before{
+.btn--active .btn__content:before, .btn:focus .btn__content:before, .btn:hover .btn__content:before {
     background: none !important;
 }
+
+.list {
+    padding: 0 !important;
+}
+
+.application a {
+    color: inherit !important;
+}
+

@@ -1,10 +1,10 @@
 @font-face {
     font-family: 'iconfont';  /* project id 627599 */
-    src: url('//at.alicdn.com/t/font_627599_mmkibvqsjni5dn29.eot');
-    src: url('//at.alicdn.com/t/font_627599_mmkibvqsjni5dn29.eot?#iefix') format('embedded-opentype'),
-    url('//at.alicdn.com/t/font_627599_mmkibvqsjni5dn29.woff') format('woff'),
-    url('//at.alicdn.com/t/font_627599_mmkibvqsjni5dn29.ttf') format('truetype'),
-    url('//at.alicdn.com/t/font_627599_mmkibvqsjni5dn29.svg#iconfont') format('svg');
+    src: url('//at.alicdn.com/t/font_627599_3hk3tglmpknvcxr.eot');
+    src: url('//at.alicdn.com/t/font_627599_3hk3tglmpknvcxr.eot?#iefix') format('embedded-opentype'),
+    url('//at.alicdn.com/t/font_627599_3hk3tglmpknvcxr.woff') format('woff'),
+    url('//at.alicdn.com/t/font_627599_3hk3tglmpknvcxr.ttf') format('truetype'),
+    url('//at.alicdn.com/t/font_627599_3hk3tglmpknvcxr.svg#iconfont') format('svg');
 }
 
 .iconfont {
@@ -57,4 +57,8 @@
 
 .icon-my-home:before {
     content: "\e609";
+}
+
+.icon-more-horiz:before {
+    content: "\e60a";
 }

@@ -98,11 +98,12 @@
         padding: 0 20px;
         width: 100%;
         height: 270px;
+        z-index : 2
         .overall_search {
             display: flex;
             flex-direction: column;
             padding: 0 60px;
-            box-shadow: 0px 4px 10px rgb(153, 153, 153);
+            box-shadow: 0 4px 10px rgb(153, 153, 153);
             width: 100%;
             height: 100%;
             background: $bgOverallSearch;
@@ -152,6 +153,7 @@
                 position: relative;
                 top: 20px;
                 font-size : 28px;
+                font-weight: 600;
             }
             p {
                 margin-bottom: 0;
