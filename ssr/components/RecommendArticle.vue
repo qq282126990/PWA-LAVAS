@@ -7,7 +7,7 @@
                     slot-scope="props"
                     dark
                     ripple
-                    @click="selectArticle"
+                    @click=""
                     class="article_li"
                 >
                     <!--文章-->
@@ -38,7 +38,6 @@
                         </div>
                     </div>
                 </v-list-tile>
-
             </virtual-collection>
         </v-list>
     </div>
@@ -88,10 +87,6 @@
                     x: (index % 1) * (this.recommendAticle.clientWidth + 10),
                     y: parseInt (index / 1) * this.cellSizeAndPositionGetterHeight
                 }
-            },
-            // 选择文章
-            selectArticle () {
-                this.$emit ('selectArticle');
             },
             ...mapActions ('appShell/virtualCollection', {
                 // 我们需要一个方法去计算这些块的信息 -> 用于计算每一个块显示的大小和显示的位置

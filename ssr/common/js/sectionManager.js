@@ -22,30 +22,30 @@ export default class SectionManager {
         this._cellMetadata[index] = cellMetadatum;
 
         // 该方法会返回所有的块的信息
-        this.getSections (cellMetadatum).forEach (section => section.addCellIndex ({index}));
+        this.getSections(cellMetadatum).forEach(section => section.addCellIndex({index}));
     }
 
     // 该方法会返回所有的块的信息
     getSections ({height, width, x, y}) {
         /*
-          =>┏━━━━┯━━━━┯━━━━┓ 分割线 sectionX
-           0┃0 0 ┊1 3 ┊6 6 ┃
-           1┃0 0 ┊2 3 ┊6 6 ┃
-          =>┠┈┈┈┈┼┈┈┈┈┼┈┈┈┈┨ 分割线 sectionX
-           2┃4 4 ┊4 3 ┊7 8 ┃
-           3┃4 4 ┊4 5 ┊9 9 ┃
-            ┗━━━━┷━━━━┷━━━━┛
-                 ↑    ↑
-           分割线 sectionY 分割线sectionY
-        */
+        =>┏━━┯━━┯━━┓ 分割线 sectionX
+         0┃0 0 ┊1 3 ┊6 6 ┃
+         1┃0 0 ┊2 3 ┊6 6 ┃
+        =>┠┈┈┼┈┈┼┈┈┨ 分割线 sectionX
+         2┃4 4 ┊4 3 ┊7 8 ┃
+         3┃4 4 ┊4 5 ┊9 9 ┃
+          ┗━━┷━━┷━━┛
+                ↑    ↑
+       分割线 sectionY 分割线sectionY
+         */
 
         // 设置该块X轴的分割线
-        const sectionXStart = Math.floor (x / this._sectionSize);
-        const sectionXStop = Math.floor ((x + width - 1) / this._sectionSize);
+        const sectionXStart = Math.floor(x / this._sectionSize);
+        const sectionXStop = Math.floor((x + width - 1) / this._sectionSize);
 
         // 设置该块Y轴的分割线
-        const sectionYStart = Math.floor (y / this._sectionSize);
-        const sectionYStop = Math.floor ((y + height - 1) / this._sectionSize);
+        const sectionYStart = Math.floor(y / this._sectionSize);
+        const sectionYStop = Math.floor((y + height - 1) / this._sectionSize);
 
         // 设置用于保存所有重叠的块
         const sections = [];
@@ -57,7 +57,7 @@ export default class SectionManager {
                 // 为每一块都创建一个key用于查找
                 const key = `${sectionX}.${sectionY}`;
                 if (!this._sections[key]) {
-                    this._sections[key] = new Section ({
+                    this._sections[key] = new Section({
                         height: this._sectionSize,
                         width: this._sectionSize,
                         x: sectionX * this._sectionSize,
@@ -66,7 +66,7 @@ export default class SectionManager {
                 }
 
                 // 把每个块所包含的信息都保存起来
-                sections.push (this._sections[key]);
+                sections.push(this._sections[key]);
             }
         }
 
@@ -76,7 +76,7 @@ export default class SectionManager {
 
     /** 基于当前注册单元的区段总数 */
     getTotalSectionCount () {
-        return Object.keys (this._sections).length;
+        return Object.keys(this._sections).length;
     }
 
     // 获取需要渲染那些块的索引
@@ -84,10 +84,10 @@ export default class SectionManager {
     getCellIndices ({height, width, x, y}) {
         const indices = {};
 
-        this.getSections ({height, width, x, y}).forEach ((section) => {
+        this.getSections({height, width, x, y}).forEach((section) => {
 
                 // 获取所有块的索引
-                return section.getCellIndices ().forEach ((index) => {
+                return section.getCellIndices().forEach((index) => {
                     return indices[index] = index;
                 });
             }

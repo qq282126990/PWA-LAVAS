@@ -33,7 +33,7 @@
                     <!-- -->
 
                     <!--块渲染无限滚动-->
-                    <recommend-article @selectArticle="selectArticle"></recommend-article>
+                    <recommend-article></recommend-article>
                 </div>
             </div>
         </div>
@@ -162,9 +162,6 @@
             // 垂直滚动
             verticalScroll (pos) {
                 this.verticalScrollY = pos.y;
-            },
-            // 选择文章
-            selectArticle () {
             }
         },
         activated () {
