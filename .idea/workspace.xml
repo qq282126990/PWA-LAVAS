@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5eab39ab-850a-4337-af2c-8ae0f09f6123" name="默认" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ssr/common/js/sectionManager.js" afterPath="$PROJECT_DIR$/ssr/common/js/sectionManager.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ssr/components/RecommendArticle.vue" afterPath="$PROJECT_DIR$/ssr/components/RecommendArticle.vue" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ssr/components/VirtualCollection.vue" afterPath="$PROJECT_DIR$/ssr/components/VirtualCollection.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ssr/pages/Index.vue" afterPath="$PROJECT_DIR$/ssr/pages/Index.vue" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -28,14 +24,24 @@
       <file leaf-file-name="VirtualCollection.vue" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ssr/components/VirtualCollection.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="166" column="15" lean-forward="false" selection-start-line="166" selection-start-column="15" selection-end-line="166" selection-end-column="15" />
+            <state relative-caret-position="-1620">
+              <caret line="12" column="31" lean-forward="false" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
               <folding>
-                <element signature="e#873#915#0" expanded="true" />
-                <element signature="e#2651#3918#0" expanded="false" />
-                <element signature="e#4010#4403#0" expanded="false" />
-                <element signature="e#4474#5369#0" expanded="false" />
+                <element signature="e#866#908#0" expanded="true" />
+                <element signature="e#2644#3911#0" expanded="false" />
+                <element signature="e#4003#4396#0" expanded="false" />
+                <element signature="e#4467#5362#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="player.vue" pinned="false" current-in-tab="false">
+        <entry file="file://D:/musicAPP/src/components/player/player.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="212">
+              <caret line="460" column="28" lean-forward="false" selection-start-line="460" selection-start-column="12" selection-end-line="460" selection-end-column="28" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -64,7 +70,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>article_li</find>
       <find>getComputedStyle</find>
       <find>vue-virtual-collection-container</find>
       <find>cell-container</find>
@@ -94,6 +99,7 @@
       <find>style</find>
       <find>selectArticle</find>
       <find>listenScroll</find>
+      <find>middleTouchStart</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -452,12 +458,12 @@
       <workItem from="1523681681706" duration="6026000" />
       <workItem from="1523691895773" duration="15694000" />
       <workItem from="1523785933518" duration="11009000" />
-      <workItem from="1523968786250" duration="12097000" />
+      <workItem from="1523968786250" duration="12361000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="184533000" />
+    <option name="totallyTimeSpent" value="184797000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -533,13 +539,6 @@
     <select />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ssr/node_modules/vuetify/dist/vuetify.min.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="5" column="20739" lean-forward="true" selection-start-line="5" selection-start-column="20739" selection-end-line="5" selection-end-column="20739" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ssr/node_modules/vuetify/dist/vuetify.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="279">
@@ -820,15 +819,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://D:/musicAPP/src/components/player/player.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="460" column="28" lean-forward="false" selection-start-line="460" selection-start-column="12" selection-end-line="460" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/ssr/components/VirtualCollection.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="166" column="15" lean-forward="false" selection-start-line="166" selection-start-column="15" selection-end-line="166" selection-end-column="15" />
+        <state relative-caret-position="-1620">
+          <caret line="12" column="31" lean-forward="false" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
           <folding>
-            <element signature="e#873#915#0" expanded="true" />
-            <element signature="e#2651#3918#0" expanded="false" />
-            <element signature="e#4010#4403#0" expanded="false" />
-            <element signature="e#4474#5369#0" expanded="false" />
+            <element signature="e#866#908#0" expanded="true" />
+            <element signature="e#2644#3911#0" expanded="false" />
+            <element signature="e#4003#4396#0" expanded="false" />
+            <element signature="e#4467#5362#0" expanded="false" />
           </folding>
         </state>
       </provider>

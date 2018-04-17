@@ -10,7 +10,7 @@
                      v-for="(item, index) in displayItems"
                      :key="item.index"
                      :style="getComputedStyle(item, index)"
-                     @mousedown="select(index)"
+                     @mousedown="select"
                      ref="cellContainer">
                     <slot name="cell" :data="item"></slot>
                 </div>
@@ -162,9 +162,9 @@
                 this.flushDisplayItems(pos.x, pos.y)
             },
             // 点击事件
-            select (index) {
-                console.log(index)
-               
+            select (e,index) {
+                console.log(e)
+
 //                let _this = this;
 //                this.$refs.cellContainer[index].addEventListener('click', function (e) {
 //
