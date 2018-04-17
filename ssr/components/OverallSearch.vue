@@ -98,6 +98,7 @@
         padding: 0 20px;
         width: 100%;
         height: 270px;
+        transition :all .3s;
         .overall_search {
             display: flex;
             flex-direction: column;

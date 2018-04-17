@@ -27,9 +27,9 @@
     "postcss-px-to-viewport": "^0.0.3",
     "stoppable": "^1.0.4",
     "vuetify": "^0.17.5",
-    "fastclick": "^1.0.6",
     "axios": "^0.17.1",
-    "better-scroll": "^1.8.0"
+    "better-scroll": "^1.8.0",
+    "ssr-window": "^1.0.0"
   },
   "devDependencies": {
     "express": "^4.16.2",

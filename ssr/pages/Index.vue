@@ -1,7 +1,7 @@
 <template>
     <div>
         <overall-search ref="overallSearch"
-                        :style="{opacity: overallSearchPercent, top: `${overallSearchTop}px`}"></overall-search>
+                        :style="{opacity: overallSearchPercent, transform: `translate3d(0, ${overallSearchTranslateY}px,0)`}"></overall-search>
         <div class="content_wrapper" ref="contentWrapper">
             <div class="wrapper" ref="wrapper" :style="{marginTop: `${contentMarginTop}px`}">
                 <!--横向滑动导航-->
@@ -22,14 +22,18 @@
                     </horizontal-scroll>
                 </div>
                 <!--文章内容-->
-                <div class="content">
-                    <vertical-scroll :listenScroll="listenScroll"
-                                     :probeType="3"
-                                     :bounce="false"
-                                     @scroll="verticalScroll"
-                                     ref="verticalScroll">
-                        <recommend-article></recommend-article>
-                    </vertical-scroll>
+                <div class="content" ref="content">
+                    <!--<vertical-scroll :listenScroll="listenScroll"-->
+                    <!--:probeType="3"-->
+                    <!--:bounce="false"-->
+                    <!--@scroll="verticalScroll"-->
+                    <!--ref="verticalScroll">-->
+                    <!--<recommend-article @selectArticle="selectArticle"></recommend-article>-->
+                    <!--</vertical-scroll>-->
+                    <!-- -->
+
+                    <!--块渲染无限滚动-->
+                    <recommend-article @selectArticle="selectArticle"></recommend-article>
                 </div>
             </div>
         </div>
@@ -38,7 +42,7 @@
 
 <script>
     // vuex
-    import {mapActions} from 'vuex';
+    import {mapActions, mapState,mapGetters} from 'vuex';
     // 综合查找组件
     import overallSearch from 'components/OverallSearch.vue';
     // 横向滚动组件
@@ -48,8 +52,9 @@
     // 垂直滚动组件
     import VerticalScroll from 'base/VerticalScroll.vue'
 
+
     function setState (store) {
-        store.dispatch('appShell/appHeader/setAppHeader', {
+        store.dispatch ('appShell/appHeader/setAppHeader', {
             show: true,
             title: 'Lavas',
             showDownArrow: true,
@@ -76,7 +81,7 @@
             ]
         },
         async asyncData ({store, route}) {
-            setState(store);
+            setState (store);
         },
         data () {
             return {
@@ -118,16 +123,32 @@
                  * 综合搜索偏移位置
                  * @type {Number}
                  * */
-                overallSearchTop: null
+                overallSearchTranslateY: 0,
+                /*
+                 * 块渲染无限滚动组件宽度
+                 * @type {Number}
+                 * */
+                virtualCollectionWidth: 0
             }
         },
+        computed: {
+            ...mapState ('appShell/virtualCollection', [
+                // 每一个列表的高度
+                'listHeight',
+                // 获取收集的滚动高度
+                'scrollTop'
+            ])
+        },
         mounted () {
-            let overallSearch = this.$refs.overallSearch.$el
-            this.maxContentMarginTop = -(overallSearch.children[0].clientHeight + ((this.$refs.contentHeaderScroll.clientHeight / 5) * 6));
-            // 初始化内容偏移位置
-            this.contentMarginTop = Math.abs(this.maxContentMarginTop);
+            let overallSearch = this.$refs.overallSearch.$el;
 
-            this.overallSearchOffsetTop = overallSearch.offsetTop;
+            this.maxContentMarginTop = -(overallSearch.children[0].clientHeight + ((this.$refs.contentHeaderScroll.clientHeight / 5) * 6));
+
+            // 初始化内容偏移位置
+            this.contentMarginTop = Math.abs (this.maxContentMarginTop);
+
+            // 综合搜索需要偏移到的最终位置
+            this.overallSearchTranslateYEnd = -(overallSearch.offsetTop - this.$refs.contentWrapper.offsetTop);
         },
         methods: {
             // 选择内容头部横向导航
@@ -141,33 +162,57 @@
             // 垂直滚动
             verticalScroll (pos) {
                 this.verticalScrollY = pos.y;
+            },
+            // 选择文章
+            selectArticle () {
             }
         },
         activated () {
-            setState(this.$store);
+            setState (this.$store);
         },
         watch: {
             // 监听垂直滚动数值
-            verticalScrollY (scrollY) {
-                let newScrollY = Math.abs(Math.min(0, this.maxContentMarginTop - scrollY));
+//            verticalScrollY (scrollY) {
+//                let newScrollY = Math.abs (Math.min (0, this.maxContentMarginTop - scrollY));
+//
+//                // 透明度
+//                const percent = Math.max (0, 1 - Math.abs (scrollY / Math.abs (this.maxContentMarginTop)));
+//                this.overallSearchPercent = percent;
+//
+//                // 综合搜索需要偏移到的最终位置
+//                let overallSearchTranslateYEnd = Math.max (this.overallSearchTranslateYEnd, Math.floor (scrollY / 3));
+//
+//                // 判断内容滚动
+//                if (scrollY < this.maxContentMarginTop) {
+//                    this.contentMarginTop = 0;
+//                    this.$refs.verticalScroll.refresh ();
+//                }
+//                else {
+//                    this.contentMarginTop = newScrollY;
+//
+//                    this.overallSearchTranslateY = overallSearchTranslateYEnd
+//                }
+//
+//            }
+            // 获取收集的滚动高度
+            scrollTop(scrollY) {
+                let newScrollY = Math.abs (Math.min (0, this.maxContentMarginTop - scrollY));
 
                 // 透明度
-                const percent = Math.max(0, 1 - Math.abs(scrollY / Math.abs(this.maxContentMarginTop)));
+                const percent = Math.max (0, 1 - Math.abs (scrollY / Math.abs (this.maxContentMarginTop)));
                 this.overallSearchPercent = percent;
 
-                this.off = this.overallSearchOffsetTop;
+                // 综合搜索需要偏移到的最终位置
+                let overallSearchTranslateYEnd = Math.max (this.overallSearchTranslateYEnd, Math.floor (scrollY / 3));
 
+                // 判断内容滚动
                 if (scrollY < this.maxContentMarginTop) {
                     this.contentMarginTop = 0;
-                    this.$refs.verticalScroll.refresh();
                 }
                 else {
                     this.contentMarginTop = newScrollY;
 
-                    if (this.overallSearchOffsetTop >= this.$refs.contentWrapper.offsetTop) {
-                        this.overallSearchTop = this.off--
-                    }
-                    console.log(this.overallSearchTop)
+                    this.overallSearchTranslateY = overallSearchTranslateYEnd
                 }
 
             }
