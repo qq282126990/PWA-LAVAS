@@ -9,5 +9,4 @@ export function setUrl() {
     return `https://${href}:4433`;
 }
 
-
-export default ERR_OK = 0;
+export const ERR_OK = 0;

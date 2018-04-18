@@ -48,13 +48,19 @@
     import {mapActions, mapState} from 'vuex';
     // 块渲染无限滚动组件
     import VirtualCollection from 'components/VirtualCollection.vue'
-    import {getArticle} from 'api/article'
 
+    function setState(store) {
+        store.dispatch('appShell/asyncAjax/getArticle', {id: 'articleRecommend'})
+    }
 
     export default {
+        async asyncData({store, route}) {
+           console.log(store)
+            setState(store);
+        },
         data () {
             return {
-                items: new Array (1000).fill (0).map ((_, index) => ({data: '#' + index}))
+                items: new Array (10).fill (0).map ((_, index) => ({data: '#' + index}))
             }
         },
         computed: {
@@ -69,7 +75,7 @@
             // 初始化块渲染无限滚动组件方法
             this.initVirtualCollection ();
 
-            getArticle({id: 'articleRecommend'})
+            // this.setArticle({id: 'articleRecommend'})
         },
         methods: {
             // 初始化块渲染无限滚动组件方法
@@ -103,7 +109,10 @@
                 setHeight: 'height',
                 // 每一个列表的高度
                 setListHeight: 'listHeight'
-            })
+            }),
+            ...mapActions ('appShell/asyncAjax', {
+                setArticle: 'getArticle'
+            }),
         },
         watch: {
             scrollTop () {
