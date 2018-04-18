@@ -2,7 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5eab39ab-850a-4337-af2c-8ae0f09f6123" name="默认" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/server/api/userApi.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/server/db.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/server/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/server/nginx.conf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/server/sqlMap.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ssr/api/article.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ssr/api/config.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ssr/store/appShell/asyncAjax.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ssr/components/RecommendArticle.vue" afterPath="$PROJECT_DIR$/ssr/components/RecommendArticle.vue" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ssr/components/VirtualCollection.vue" afterPath="$PROJECT_DIR$/ssr/components/VirtualCollection.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ssr/lavas.config.js" afterPath="$PROJECT_DIR$/ssr/lavas.config.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ssr/static/css/reset.css" afterPath="$PROJECT_DIR$/ssr/static/css/reset.css" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -14,44 +26,30 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="ExportToHTMLSettings">
     <option name="printScope" value="1" />
     <option name="OUTPUT_DIRECTORY" value="D:\pawlavas\exportToHTML" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="VirtualCollection.vue" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/ssr/components/VirtualCollection.vue">
+      <file leaf-file-name="asyncAjax.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ssr/store/appShell/asyncAjax.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1620">
-              <caret line="12" column="31" lean-forward="false" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
+            <state relative-caret-position="76">
+              <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="article.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ssr/api/article.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="76">
+              <caret line="4" column="26" lean-forward="false" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="26" />
               <folding>
-                <element signature="e#866#908#0" expanded="true" />
-                <element signature="e#2644#3911#0" expanded="false" />
-                <element signature="e#4003#4396#0" expanded="false" />
-                <element signature="e#4467#5362#0" expanded="false" />
+                <element signature="e#0#26#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="player.vue" pinned="false" current-in-tab="false">
-        <entry file="file://D:/musicAPP/src/components/player/player.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="212">
-              <caret line="460" column="28" lean-forward="false" selection-start-line="460" selection-start-column="12" selection-end-line="460" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VerticalScroll.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ssr/base/VerticalScroll.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="780">
-              <caret line="237" column="0" lean-forward="true" selection-start-line="237" selection-start-column="0" selection-end-line="237" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -70,36 +68,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>getComputedStyle</find>
-      <find>vue-virtual-collection-container</find>
-      <find>cell-container</find>
-      <find>mapState</find>
-      <find>indices</find>
-      <find>displayItems</find>
-      <find>registerCellsToSectionManager</find>
-      <find>SectionManager</find>
-      <find>onScroll</find>
-      <find>containerStyle</find>
-      <find>flushDisplayItems</find>
-      <find>verticalScroll</find>
-      <find>click</find>
-      <find>$listeners</find>
-      <find>classes</find>
-      <find>list__tile</find>
-      <find>ripple</find>
-      <find>show</find>
-      <find>show:</find>
-      <find>console.log(y)</find>
-      <find>ripple.show</find>
-      <find>cellContainer</find>
       <find>rep</find>
-      <find>unbind</find>
-      <find>_ref$value</find>
       <find>v-list-tile</find>
       <find>style</find>
       <find>selectArticle</find>
       <find>listenScroll</find>
       <find>middleTouchStart</find>
+      <find>VerticalScroll</find>
+      <find>select</find>
+      <find>value</find>
+      <find>inserted</find>
+      <find>unbind</find>
+      <find>_ref$value</find>
+      <find>ripple__container</find>
+      <find>ripple__</find>
+      <find>ripple</find>
+      <find>ripple.show</find>
+      <find>directive</find>
+      <find>_ref</find>
+      <find>RippleDataAttribute</find>
+      <find>directiveConfig</find>
+      <find>.list__tile:after</find>
+      <find>sql_name</find>
+      <find>reloa</find>
+      <find>userApi</find>
+      <find>select_name</find>
+      <find>conn</find>
+      <find>uuid</find>
+      <find>getArticle</find>
+      <find>getUserUid</find>
+      <find>sql_article_type</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -111,19 +109,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/spa/index.html" />
-        <option value="$PROJECT_DIR$/spa/.lavas/config.json" />
-        <option value="$PROJECT_DIR$/spa/core/app.js" />
-        <option value="$PROJECT_DIR$/spa/dist/sw-register.js" />
-        <option value="$PROJECT_DIR$/spa/lavas.config.js" />
-        <option value="$PROJECT_DIR$/spa/core/App.vue" />
-        <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/server.js" />
-        <option value="$PROJECT_DIR$/spa/core/entry-client.js" />
-        <option value="$PROJECT_DIR$/ssr/server.dev.js" />
-        <option value="$PROJECT_DIR$/ssr/.postcssrc.js" />
-        <option value="$PROJECT_DIR$/ssr/core/spa.html.tmpl" />
-        <option value="$PROJECT_DIR$/ssr/core/Skeleton.vue" />
         <option value="$PROJECT_DIR$/ssr/.lavas/router.js" />
         <option value="$PROJECT_DIR$/ssr/components/AppSidebar.vue" />
         <option value="$PROJECT_DIR$/ssr/.lavas/build.js" />
@@ -137,11 +122,9 @@
         <option value="$PROJECT_DIR$/ssr/assets/css/iconfont.css" />
         <option value="$PROJECT_DIR$/ssr/static/manifest.json" />
         <option value="$PROJECT_DIR$/ssr/common/js.js" />
-        <option value="$PROJECT_DIR$/ssr/lavas.config.js" />
         <option value="$PROJECT_DIR$/ssr/components/AppHeader.vue" />
         <option value="$PROJECT_DIR$/ssr/core/App.vue" />
         <option value="$PROJECT_DIR$/ssr/components/AppBottomNavigator.vue" />
-        <option value="$PROJECT_DIR$/ssr/static/css/reset.css" />
         <option value="$PROJECT_DIR$/ssr/node_modules/vuetify/dist/vuetify.css" />
         <option value="$PROJECT_DIR$/ssr/node_modules/vuetify/dist/vuetify.min.css" />
         <option value="$PROJECT_DIR$/ssr/assets/stylus/variable.styl" />
@@ -158,10 +141,25 @@
         <option value="$PROJECT_DIR$/ssr/store/appShell/virtualCollection.js" />
         <option value="$PROJECT_DIR$/ssr/common/js/sectionManager.js" />
         <option value="$PROJECT_DIR$/ssr/pages/Index.vue" />
-        <option value="$PROJECT_DIR$/ssr/components/RecommendArticle.vue" />
-        <option value="$PROJECT_DIR$/ssr/node_modules/vuetify/dist/vuetify.js" />
         <option value="$PROJECT_DIR$/ssr/base/VerticalScroll.vue" />
+        <option value="$PROJECT_DIR$/node_modules/vuetify/dist/vuetify.min.js" />
+        <option value="$PROJECT_DIR$/node_modules/vuetify/dist/vuetify.js" />
+        <option value="$PROJECT_DIR$/node_modules/vuetify/es5/index.js" />
+        <option value="$PROJECT_DIR$/node_modules/vuetify/src/components/index.js" />
+        <option value="$PROJECT_DIR$/node_modules/vuetify/src/index.js" />
+        <option value="$PROJECT_DIR$/ssr/node_modules/vuetify/dist/vuetify.js" />
+        <option value="$PROJECT_DIR$/ssr/static/css/reset.css" />
         <option value="$PROJECT_DIR$/ssr/components/VirtualCollection.vue" />
+        <option value="$USER_HOME$/Desktop/nginx-1.13.12/conf/nginx.conf" />
+        <option value="$PROJECT_DIR$/server/sqlMap.js" />
+        <option value="$PROJECT_DIR$/ssr/lavas.config.js" />
+        <option value="$PROJECT_DIR$/server/api/userApi.js" />
+        <option value="$PROJECT_DIR$/ssr/components/RecommendArticle.vue" />
+        <option value="$PROJECT_DIR$/server/nginx.conf" />
+        <option value="$PROJECT_DIR$/ssr/api/article.js" />
+        <option value="$PROJECT_DIR$/ssr/store/appShell/async-ajax.js" />
+        <option value="$PROJECT_DIR$/ssr/api/config.js" />
+        <option value="$PROJECT_DIR$/ssr/store/appShell/asyncAjax.js" />
       </list>
     </option>
   </component>
@@ -184,10 +182,10 @@
     <handled-path value="$PROJECT_DIR$/ssr/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1616" />
-    <option name="height" value="876" />
+    <option name="x" value="244" />
+    <option name="y" value="104" />
+    <option name="width" value="1514" />
+    <option name="height" value="906" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="添加" />
@@ -207,128 +205,64 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PWA-LAVAS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PWA-LAVAS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PWA-LAVAS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PWA-LAVAS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssr" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PWA-LAVAS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PWA-LAVAS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssr" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PWA-LAVAS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PWA-LAVAS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssr" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PWA-LAVAS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PWA-LAVAS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssr" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PWA-LAVAS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PWA-LAVAS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssr" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="common" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PWA-LAVAS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PWA-LAVAS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssr" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="base" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
+          <expand>
+            <path>
+              <item name="pawlavas" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pawlavas" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pawlavas" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pawlavas" type="462c0819:PsiDirectoryNode" />
+              <item name="common_components" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pawlavas" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pawlavas" type="462c0819:PsiDirectoryNode" />
+              <item name="ssr" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pawlavas" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pawlavas" type="462c0819:PsiDirectoryNode" />
+              <item name="ssr" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pawlavas" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pawlavas" type="462c0819:PsiDirectoryNode" />
+              <item name="ssr" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pawlavas" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pawlavas" type="462c0819:PsiDirectoryNode" />
+              <item name="ssr" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pawlavas" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pawlavas" type="462c0819:PsiDirectoryNode" />
+              <item name="ssr" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pawlavas" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pawlavas" type="462c0819:PsiDirectoryNode" />
+              <item name="ssr" type="462c0819:PsiDirectoryNode" />
+              <item name="store" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pawlavas" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pawlavas" type="462c0819:PsiDirectoryNode" />
+              <item name="ssr" type="462c0819:PsiDirectoryNode" />
+              <item name="store" type="462c0819:PsiDirectoryNode" />
+              <item name="appShell" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
         </subPane>
       </pane>
     </panes>
@@ -345,17 +279,18 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\PWA-LAVAS\ssr\static\css" />
-      <recent name="D:\pawlavas\ssr\assets\img\AppHeader" />
-      <recent name="D:\pawlavas\ssr\assets\img\header" />
-      <recent name="D:\pawlavas\ssr\assets\icon" />
-      <recent name="D:\PWA-LAVAS\ssr\components" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\pawlavas" />
       <recent name="D:\PWA-LAVAS\ssr\static\js" />
       <recent name="D:\PWA-LAVAS\components" />
       <recent name="D:\PWA-LAVAS" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\pawlavas\server" />
+      <recent name="D:\pawlavas\ssr\server" />
+      <recent name="D:\PWA-LAVAS\ssr\static\css" />
+      <recent name="D:\pawlavas\ssr\assets\img\AppHeader" />
+      <recent name="D:\pawlavas\ssr\assets\img\header" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -371,6 +306,14 @@
     </option>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+    </configuration>
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
       <method />
     </configuration>
@@ -406,15 +349,6 @@
       <option name="cucumberJsArguments" value="" />
       <option name="executablePath" />
       <option name="filePath" />
-      <method />
-    </configuration>
-    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
-      <node-interpreter>project</node-interpreter>
-      <node-options />
-      <gulpfile />
-      <tasks />
-      <arguments />
-      <envs />
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
@@ -459,37 +393,39 @@
       <workItem from="1523691895773" duration="15694000" />
       <workItem from="1523785933518" duration="11009000" />
       <workItem from="1523968786250" duration="12361000" />
+      <workItem from="1524045217307" duration="1865000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="184797000" />
+    <option name="totallyTimeSpent" value="209769000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <frame x="244" y="104" width="1514" height="906" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19987309" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20302822" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="调试" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Weex Documents" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2498265" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930845" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
-      <window_info id="运行" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32769832" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Weex Documents" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="调试" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
+      <window_info id="运行" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
+      <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="检查结果" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32991013" sideWeight="0.5" order="17" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="找到" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32971507" sideWeight="0.5" order="17" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -518,14 +454,14 @@
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="processedProjectFiles" value="true" />
+    <option name="version" value="1" />
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="13" />
+      <option name="time" value="17" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -539,209 +475,225 @@
     <select />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ssr/node_modules/vuetify/dist/vuetify.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="1034" column="21" lean-forward="false" selection-start-line="1034" selection-start-column="21" selection-end-line="1034" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ssr/static/css/reset.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="23" column="310" lean-forward="false" selection-start-line="23" selection-start-column="310" selection-end-line="23" selection-end-column="310" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ssr/assets/stylus/variable.styl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="840">
-          <caret line="28" column="10" lean-forward="false" selection-start-line="28" selection-start-column="10" selection-end-line="28" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ssr/components/AppSidebar.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="128" column="22" lean-forward="false" selection-start-line="128" selection-start-column="12" selection-end-line="128" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ssr/components/AppBottomNavigator.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2640">
-          <caret line="89" column="14" lean-forward="false" selection-start-line="89" selection-start-column="14" selection-end-line="89" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ssr/components/Sidebar.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/BaiduNetdiskDownload/项目源码/src/common/js/dom.js" />
-    <entry file="file://$PROJECT_DIR$/ssr/base/HorizontalScroll.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2640">
-          <caret line="88" column="9" lean-forward="false" selection-start-line="88" selection-start-column="9" selection-end-line="88" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/music/src/common/js/dom.js" />
-    <entry file="file://D:/BaiduNetdiskDownload/项目源码/src/components/music-list/music-list.vue" />
-    <entry file="file://D:/music/src/components/category-song-list/category-song-list.vue" />
-    <entry file="file://D:/music/src/components/new-song-speed/new-song-speed.vue" />
-    <entry file="file://D:/music/src/components/new-song/new-song.vue" />
-    <entry file="file://D:/music/src/components/digital-album-music-list/digital-album-music-list.vue" />
-    <entry file="file://D:/music/src/components/digital-album/digital-album.vue" />
-    <entry file="file://D:/music/src/pages/categoryzone/Categoryzone.vue" />
-    <entry file="file://D:/music/src/base/scroll/scroll.vue" />
-    <entry file="file://$PROJECT_DIR$/ssr/pages/Error.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/musicAPP/src/base/scroll/scroll.vue" />
-    <entry file="file://D:/musicAPP/src/base/chosen-song-list/chosen-song-list.vue" />
-    <entry file="file://D:/musicAPP/src/pages/categoryzone/Categoryzone.vue" />
-    <entry file="file://D:/musicAPP/src/pages/songsingle/Songsingle.vue" />
-    <entry file="file://D:/musicAPP/src/components/music-list/music-list.vue" />
-    <entry file="file://$PROJECT_DIR$/ssr/components/OverallSearch.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="722">
-          <caret line="38" column="0" lean-forward="true" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ssr/core/entry-server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="39" column="22" lean-forward="false" selection-start-line="39" selection-start-column="15" selection-end-line="39" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ssr/core/entry-client.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="31" column="35" lean-forward="false" selection-start-line="31" selection-start-column="29" selection-end-line="31" selection-end-column="35" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="e#74#96#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ssr/core/ssr.html.tmpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="371">
-          <caret line="53" column="14" lean-forward="false" selection-start-line="53" selection-start-column="14" selection-end-line="53" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ssr/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="423">
-          <caret line="35" column="13" lean-forward="true" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/vuetify/src/components/VList/VList.js" />
+    <entry file="file://$PROJECT_DIR$/node_modules/vuetify/src/components/VList/VListGroup.js" />
+    <entry file="file://$PROJECT_DIR$/node_modules/vuetify/src/components/VList/VListTile.js" />
+    <entry file="file://$PROJECT_DIR$/node_modules/vuetify/src/components/VList/VListTileAction.js" />
+    <entry file="file://$PROJECT_DIR$/node_modules/vuetify/src/components/VList/index.js" />
+    <entry file="file://$PROJECT_DIR$/node_modules/vuetify/src/util/helpers.js" />
+    <entry file="file://$PROJECT_DIR$/node_modules/vuetify/src/util/mask.js" />
+    <entry file="file://$PROJECT_DIR$/node_modules/vuetify/src/util/pointerSupport.js" />
+    <entry file="file://$PROJECT_DIR$/node_modules/vuetify/src/util/testing.js" />
+    <entry file="file://$PROJECT_DIR$/node_modules/vuetify/src/directives/ripple.js" />
+    <entry file="file://$PROJECT_DIR$/node_modules/vuetify/dist/vuetify.css" />
+    <entry file="file://$PROJECT_DIR$/node_modules/vuetify/index.d.ts" />
     <entry file="file://$PROJECT_DIR$/ssr/core/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+        <state relative-caret-position="133">
+          <caret line="10" column="25" lean-forward="false" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ssr/.lavas/router.js">
+    <entry file="file://$PROJECT_DIR$/ssr/node_modules/.0.17.7@vuetify/index.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-554">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/vuetify/src/util/to-have-been-warned.js" />
+    <entry file="file://$PROJECT_DIR$/node_modules/vuetify/dist/vuetify.min.js" />
+    <entry file="file://$PROJECT_DIR$/node_modules/vuetify/dist/vuetify.js" />
+    <entry file="file://$PROJECT_DIR$/node_modules/vuetify/es5/index.js" />
+    <entry file="file://$PROJECT_DIR$/node_modules/vuetify/src/components/index.js" />
+    <entry file="file://$PROJECT_DIR$/node_modules/vuetify/src/index.js" />
+    <entry file="file://$PROJECT_DIR$/node_modules/vuetify/src/components/VList/__snapshots__/VList.spec.js.snap" />
+    <entry file="file://$PROJECT_DIR$/node_modules/vuetify/src/components/VList/__snapshots__/VListGroup.spec.js.snap" />
+    <entry file="file://$PROJECT_DIR$/node_modules/vuetify/src/components/VList/__snapshots__/VListTileAction.spec.js.snap" />
+    <entry file="file://$PROJECT_DIR$/ssr/node_modules/vuetify/index.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="18" column="21" lean-forward="false" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/.recently_updates.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="380">
-          <caret line="41" column="23" lean-forward="true" selection-start-line="41" selection-start-column="23" selection-end-line="41" selection-end-column="23" />
+          <caret line="16" column="12" lean-forward="true" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ssr/store/appShell/appSidebar.js">
+    <entry file="file://$PROJECT_DIR$/ssr/dist/static/js/index.9d3094a1.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="247">
-          <caret line="13" column="17" lean-forward="false" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
+          <caret line="0" column="13366" lean-forward="false" selection-start-line="0" selection-start-column="13366" selection-end-line="0" selection-end-column="13366" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ssr/components/AppHeader.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-314">
-          <caret line="52" column="8" lean-forward="true" selection-start-line="52" selection-start-column="8" selection-end-line="52" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ssr/store/appShell/appBottomNavigator.js">
+    <entry file="file://$PROJECT_DIR$/ssr/node_modules/vuetify/src/util/colors.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-31">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ssr/store/appShell/common.js">
+    <entry file="file://$PROJECT_DIR$/ssr/node_modules/vuetify/src/util/mask.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-366">
-          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+        <state relative-caret-position="-31">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ssr/store/appShell/appHeader.js">
+    <entry file="file://$PROJECT_DIR$/ssr/node_modules/vuetify/src/util/pointerSupport.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-12">
-          <caret line="25" column="10" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ssr/common/js/section.js">
+    <entry file="file://$PROJECT_DIR$/ssr/node_modules/vuetify/src/util/testing.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="482">
-          <caret line="30" column="15" lean-forward="false" selection-start-line="30" selection-start-column="15" selection-end-line="30" selection-end-column="15" />
-          <folding />
+        <state relative-caret-position="-31">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/DHTML.js">
+    <entry file="file://$PROJECT_DIR$/ssr/node_modules/vuetify/src/util/to-have-been-warned.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-31">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ssr/node_modules/vuetify/src/directives/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ssr/node_modules/vuetify/src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="11" column="9" lean-forward="false" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ssr/node_modules/vuetify/dist/vuetify.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-99">
+          <caret line="806" column="3" lean-forward="false" selection-start-line="781" selection-start-column="2" selection-end-line="806" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ssr/node_modules/vuetify/src/util/helpers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="79" column="31" lean-forward="false" selection-start-line="79" selection-start-column="16" selection-end-line="79" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ssr/static/css/reset.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="536">
+          <caret line="172" column="0" lean-forward="false" selection-start-line="172" selection-start-column="0" selection-end-line="172" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/nginx-1.13.12/conf/nginx.conf">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="247">
-          <caret line="1312" column="0" lean-forward="false" selection-start-line="1312" selection-start-column="0" selection-end-line="1312" selection-end-column="0" />
-          <folding />
+          <caret line="20" column="31" lean-forward="false" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ssr/store/appShell/virtualCollection.js">
+    <entry file="file://D:/music/src/pages/home/Home.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2130">
-          <caret line="71" column="36" lean-forward="false" selection-start-line="71" selection-start-column="36" selection-end-line="71" selection-end-column="36" />
-          <folding />
+        <state relative-caret-position="461">
+          <caret line="682" column="31" lean-forward="true" selection-start-line="682" selection-start-column="31" selection-end-line="682" selection-end-column="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ssr/common/js/dom.js">
+    <entry file="file://$PROJECT_DIR$/ssr/lavas.config.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="16" column="35" lean-forward="true" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
+        <state relative-caret-position="228">
+          <caret line="36" column="33" lean-forward="true" selection-start-line="36" selection-start-column="33" selection-end-line="36" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ssr/common/js/sectionManager.js">
+    <entry file="file://$PROJECT_DIR$/server/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-150">
-          <caret line="40" column="0" lean-forward="true" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+        <state relative-caret-position="591">
+          <caret line="35" column="7" lean-forward="false" selection-start-line="35" selection-start-column="7" selection-end-line="35" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/sqlMap.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="1" column="37" lean-forward="false" selection-start-line="1" selection-start-column="37" selection-end-line="1" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/nginx.conf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2280">
+          <caret line="120" column="25" lean-forward="false" selection-start-line="120" selection-start-column="25" selection-end-line="120" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ssr/node_modules/vuetify/src/components/VList/__snapshots__/VListGroup.spec.js.snap">
+    <entry file="file://$PROJECT_DIR$/server/db.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="6" column="17" lean-forward="true" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/api/userApi.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="551">
+          <caret line="29" column="24" lean-forward="true" selection-start-line="29" selection-start-column="24" selection-end-line="29" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ssr/components/VirtualCollection.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="30" column="16" lean-forward="true" selection-start-line="30" selection-start-column="16" selection-end-line="30" selection-end-column="16" />
+          <folding>
+            <element signature="e#876#918#0" expanded="true" />
+            <element signature="e#5878#8203#0" expanded="false" />
+            <element signature="e#8250#9443#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ssr/components/RecommendArticle.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="29" column="36" lean-forward="true" selection-start-line="29" selection-start-column="36" selection-end-line="29" selection-end-column="36" />
+          <folding>
+            <element signature="e#1884#1948#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ssr/api/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="12" column="21" lean-forward="false" selection-start-line="12" selection-start-column="15" selection-end-line="12" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ssr/store/appShell/appSidebar.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -749,94 +701,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ssr/node_modules/vuetify/src/components/VList/VList.js">
+    <entry file="file://D:/music/src/store/modules/async-ajax.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ssr/node_modules/vuetify/src/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-364">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ssr/node_modules/vuetify/src/components/VList/VListTileAction.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="6" column="68" lean-forward="false" selection-start-line="6" selection-start-column="64" selection-end-line="6" selection-end-column="68" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ssr/node_modules/vuetify/src/components/VList/VListTile.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1214">
-          <caret line="47" column="42" lean-forward="true" selection-start-line="47" selection-start-column="42" selection-end-line="47" selection-end-column="42" />
+        <state relative-caret-position="38">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="3" selection-end-column="50" />
           <folding>
-            <element signature="e#0#44#0" expanded="true" />
+            <element signature="e#0#43#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ssr/node_modules/vuetify/dist/vuetify.js">
+    <entry file="file://$PROJECT_DIR$/ssr/api/article.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="825" column="32" lean-forward="false" selection-start-line="825" selection-start-column="23" selection-end-line="825" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ssr/pages/Index.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="33" column="0" lean-forward="true" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ssr/components/RecommendArticle.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="9" column="26" lean-forward="false" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
+        <state relative-caret-position="76">
+          <caret line="4" column="26" lean-forward="false" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="26" />
           <folding>
-            <element signature="n#div#0;n#v-list-tile#0;n#virtual-collection#0;n#v-list#0;n#div#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="e#2541#3084#0" expanded="false" />
-            <element signature="e#3173#3519#0" expanded="false" />
+            <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ssr/base/VerticalScroll.vue">
+    <entry file="file://$PROJECT_DIR$/ssr/store/appShell/asyncAjax.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="780">
-          <caret line="237" column="0" lean-forward="true" selection-start-line="237" selection-start-column="0" selection-end-line="237" selection-end-column="0" />
+        <state relative-caret-position="76">
+          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/musicAPP/src/components/player/player.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="460" column="28" lean-forward="false" selection-start-line="460" selection-start-column="12" selection-end-line="460" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ssr/components/VirtualCollection.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1620">
-          <caret line="12" column="31" lean-forward="false" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
-          <folding>
-            <element signature="e#866#908#0" expanded="true" />
-            <element signature="e#2644#3911#0" expanded="false" />
-            <element signature="e#4003#4396#0" expanded="false" />
-            <element signature="e#4467#5362#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>

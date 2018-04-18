@@ -48,6 +48,8 @@
     import {mapActions, mapState} from 'vuex';
     // 块渲染无限滚动组件
     import VirtualCollection from 'components/VirtualCollection.vue'
+    import {getArticle} from 'api/article'
+
 
     export default {
         data () {
@@ -66,6 +68,8 @@
 
             // 初始化块渲染无限滚动组件方法
             this.initVirtualCollection ();
+
+            getArticle({id: 'articleRecommend'})
         },
         methods: {
             // 初始化块渲染无限滚动组件方法

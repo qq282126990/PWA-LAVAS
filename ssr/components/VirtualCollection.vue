@@ -10,7 +10,7 @@
                      v-for="(item, index) in displayItems"
                      :key="item.index"
                      :style="getComputedStyle(item, index)"
-                     @mousedown="select"
+                     @click="select($event,index)"
                      ref="cellContainer">
                     <slot name="cell" :data="item"></slot>
                 </div>
@@ -22,7 +22,7 @@
 <script type="text/ecmascript-6">
     import {mapState, mapActions} from 'vuex';
     import SectionManager from "common/js/SectionManager";
-    import VerticalScroll from "base/VerticalScroll";
+    import VerticalScroll from "../base/VerticalScroll";
 
     export default {
         props: {
@@ -40,7 +40,7 @@
             }
         },
         mounted () {
-            this.init();
+            this.init ();
         },
         computed: {
             // 容器样式
@@ -57,7 +57,7 @@
                     height: this.height + "px"
                 }
             },
-            ...mapState('appShell/virtualCollection', [
+            ...mapState ('appShell/virtualCollection', [
                 // 我们需要一个方法去计算这些块的信息 -> 用于计算每一个块显示的大小和显示的位置
                 'cellSizeAndPositionGetter',
                 // 列表数据
@@ -72,28 +72,28 @@
             // 初始化
             init () {
                 // 获取块的管理
-                this._sectionManager = new SectionManager(this.sectionSize);
+                this._sectionManager = new SectionManager (this.sectionSize);
                 // 注册块和块的管理
-                this.registerCellsToSectionManager();
+                this.registerCellsToSectionManager ();
                 // 设置当前视图我们中应该显示那些块
-                this.flushDisplayItems(0, 0);
+                this.flushDisplayItems (0, 0);
             },
             // 注册块和块的管理
             registerCellsToSectionManager () {
                 // 如果_sectionManager中没有数据就创建一个
                 if (!this._sectionManager) {
-                    this._sectionManager = new SectionManager(this.sectionSize);
+                    this._sectionManager = new SectionManager (this.sectionSize);
                 }
                 let totalHeight = 0;
                 let totalWidth = 0;
 
                 // 我们需要去遍历去注册它,为每一个块都设置一个对应的信息方便用于查找他
-                this.collection.forEach((item, index) => {
+                this.collection.forEach ((item, index) => {
                     // 注册单元格大小和位置关系
-                    const cellMetadatum = this.cellSizeAndPositionGetter(item, index);
+                    const cellMetadatum = this.cellSizeAndPositionGetter (item, index);
 
                     // 注册块 -> 为每一个块都设置一个对应的信息
-                    this._sectionManager.registerCell({
+                    this._sectionManager.registerCell ({
                         index,
                         cellMetadatum
                     });
@@ -119,7 +119,7 @@
                     return;
                 }
 
-                const {width, height, x, y} = this._sectionManager.getCellMetadata(displayItem.index);
+                const {width, height, x, y} = this._sectionManager.getCellMetadata (displayItem.index);
 
                 return {
                     transform: `translate3d(${x}px, ${y}px, 0)`,
@@ -130,11 +130,11 @@
             // 设置当前视图我们中应该显示那些块
             flushDisplayItems (x, y) {
                 let scrollLeft = x;
-                let scrollTop = Math.abs(y);
+                let scrollTop = Math.abs (y);
 
                 // 然后这里我们需要去设置当前视图中应该渲染那些块
                 // 于是我们要在 SectionManager类中定义一个方法去获取需要渲染的那个块的索引
-                let indices = this._sectionManager.getCellIndices({
+                let indices = this._sectionManager.getCellIndices ({
                     height: this.height,
                     width: this.width,
                     x: scrollLeft,
@@ -144,8 +144,8 @@
                 // 到这里我们已经获取到了索引了,然后我们就可以去渲染该视图所对应的块了
                 const displayItems = [];
 
-                indices.forEach(index => {
-                    displayItems.push({
+                indices.forEach (index => {
+                    displayItems.push ({
                         index,
                         ...this.collection[index]
                     })
@@ -155,70 +155,111 @@
                 this.displayItems = displayItems;
 
                 // 收集的滚动高度
-                this.setScrollTop(-scrollTop);
+                this.setScrollTop (-scrollTop);
             },
             // 垂直滚动
             verticalScroll (pos) {
-                this.flushDisplayItems(pos.x, pos.y)
+                this.flushDisplayItems (pos.x, pos.y)
             },
             // 点击事件
-            select (e,index) {
-                console.log(e)
+            select (e, index) {
+                let cellContainer = this.$refs.cellContainer[index].getElementsByTagName ('a')[0];
 
-//                let _this = this;
-//                this.$refs.cellContainer[index].addEventListener('click', function (e) {
-//
-////                    return _this.show(e, el, binding);
-//                }, false);
+                // 点击出现水波纹效果
+                this.show (e, cellContainer);
+
+                // 隐藏水波纹效果
+                this.hide(cellContainer);
             },
-            show(e, el, _ref) {
-                var _ref$value = _ref.value,
-                    value = _ref$value === undefined ? {} : _ref$value;
+            // 点击出现水波纹效果
+            show (e, el) {
+                let RippleDataAttribute = 'data-ripple';
+                let _ref$value = true;
 
-                if (el.getAttribute(RippleDataAttribute) !== 'true') {
+                let value = _ref$value === undefined ? {} : _ref$value;
+
+                // 判断是否有节点
+                if (el.getAttribute (RippleDataAttribute) !== 'true') {
                     return;
                 }
 
-                var container = document.createElement('span');
-                var animation = document.createElement('span');
+                // 创建水波纹节点
+                let container = document.createElement ('span');
+                let animation = document.createElement ('span');
 
-                container.appendChild(animation);
+                // 插入节点
+                container.appendChild (animation);
                 container.className = 'ripple__container';
 
                 if (value.class) {
                     container.className += ' ' + value.class;
                 }
 
-                var size = el.clientWidth > el.clientHeight ? el.clientWidth : el.clientHeight;
+                // 为节点添加相关样式
+                let size = el.clientWidth > el.clientHeight ? el.clientWidth : el.clientHeight;
                 animation.className = 'ripple__animation';
                 animation.style.width = size * (value.center ? 1 : 2) + 'px';
                 animation.style.height = animation.style.width;
 
-                el.appendChild(container);
-                var computed = window.getComputedStyle(el);
+                el.appendChild (container);
+                let computed = window.getComputedStyle (el);
                 if (computed.position !== 'absolute' && computed.position !== 'fixed') el.style.position = 'relative';
 
-                var offset = el.getBoundingClientRect();
-                var x = value.center ? '50%' : e.clientX - offset.left + 'px';
-                var y = value.center ? '50%' : e.clientY - offset.top + 'px';
+                let offset = el.getBoundingClientRect ();
+                let x = value.center ? '50%' : e.clientX - offset.left + 'px';
+                let y = value.center ? '50%' : e.clientY - offset.top + 'px';
 
-                animation.classList.add('ripple__animation--enter');
-                animation.classList.add('ripple__animation--visible');
-                style(animation, 'translate(-50%, -50%) translate(' + x + ', ' + y + ') scale3d(0.01,0.01,0.01)');
-                animation.dataset.activated = Date.now();
+                animation.classList.add ('ripple__animation--enter');
+                animation.classList.add ('ripple__animation--visible');
+                style (animation, 'translate(-50%, -50%) translate(' + x + ', ' + y + ') scale3d(0.01,0.01,0.01)');
+                animation.dataset.activated = Date.now ();
 
-                setTimeout(function () {
-                    animation.classList.remove('ripple__animation--enter');
-                    style(animation, 'translate(-50%, -50%) translate(' + x + ', ' + y + ')  scale3d(0.99,0.99,0.99)');
+                setTimeout (function () {
+                    animation.classList.remove ('ripple__animation--enter');
+                    style (animation, 'translate(-50%, -50%) translate(' + x + ', ' + y + ')  scale3d(0.99,0.99,0.99)');
                 }, 0);
 
-                function style(el, value) {
-                    ['transform', 'webkitTransform'].forEach(function (i) {
+                // 添加样式兼容
+                function style (el, value) {
+                    ['transform', 'webkitTransform'].forEach (function (i) {
                         el.style[i] = value;
                     });
                 }
             },
-            ...mapActions('appShell/virtualCollection', {
+            // 隐藏水波纹效果
+            hide (el) {
+                let RippleDataAttribute = 'data-ripple';
+
+                // 判断是否有节点
+                if (el.getAttribute (RippleDataAttribute) !== 'true') {
+                    return;
+                }
+
+                // 获取要删除的节点
+                let ripples = el.getElementsByClassName ('ripple__animation');
+
+                if (ripples.length === 0) return;
+                let animation = ripples[ripples.length - 1];
+                let diff = Date.now () - Number (animation.dataset.activated);
+                let delay = 400 - diff;
+
+                delay = delay < 0 ? 0 : delay;
+
+                // 延迟 delay 秒后删除
+                setTimeout (function () {
+                    animation.classList.remove ('ripple__animation--visible');
+
+                    setTimeout (function () {
+                        // Need to figure out a new way to do this
+                        try {
+                            if (ripples.length < 1) el.style.position = null;
+                            animation.parentNode && el.removeChild (animation.parentNode);
+                        } catch (e) {
+                        }
+                    }, 300);
+                }, delay);
+            },
+            ...mapActions ('appShell/virtualCollection', {
                 /**
                  * 收集的滚动高度
                  *
@@ -229,7 +270,7 @@
         },
         watch: {
             collection () {
-                this.init();
+                this.init ();
             }
         },
         components: {

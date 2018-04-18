@@ -35,7 +35,8 @@ module.exports = {
                 'commonComponents': path.resolve(__dirname, '../common_components'),
                 'components': '@/components',
                 'base': '@/base',
-                'common': '@/common'
+                'common': '@/common',
+                'api': '@/api'
             },
             server: {
                 'iscroll/build/iscroll-lite$': path.join(__dirname, 'core/iscroll-ssr.js')
