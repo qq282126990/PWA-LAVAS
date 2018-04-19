@@ -14,7 +14,16 @@ router.post ('/getArticle', (req, res) => {
     // 查找用户名
     const params = req.body;
 
-    conn.query ('select * from ??', [`article_recommend`], function (err, result) {
+    if (params.method !== 'article' || !params) {
+        res.send ({
+            code: "-300",
+            msg: "参数错误",
+            data: []
+        });
+        return;
+    }
+
+    conn.query ('select * from ??', [`${params.id}`], function (err, result) {
         if (err) {
             console.log (err);
         }

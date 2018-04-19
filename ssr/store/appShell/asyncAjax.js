@@ -4,7 +4,7 @@ import {ERR_OK} from 'api/config';
 import {getArticle} from 'api/article';
 
 
-export const SET_ARTICLE = 'SET_ARTICLE';
+export const SET_ARTICLE_DATA = 'SET_ARTICLE_DATA';
 
 export const state = () => {
     return {
@@ -12,13 +12,13 @@ export const state = () => {
          * 获取对应类型文章
          * @type {Array}
          * */
-        article: []
+        articleData: []
     };
 };
 
 export const mutations = {
-    [SET_ARTICLE](state, article) {
-        state.article = article;
+    [SET_ARTICLE_DATA](state, articleData) {
+        state.articleData = articleData;
     }
 };
 
@@ -27,13 +27,13 @@ export const actions = {
      * 获取对应文章类型接口
      * @param {Function} commit
      */
-    async getArticle ({commit}, param) {
+    async getArticleAjax ({commit}, param) {
         let res = await getArticle(param);
         if (res.code === ERR_OK) {
-            commit(SET_ARTICLE, res.data.article);
+            commit(SET_ARTICLE_DATA, res.data.article);
         }
         else {
-            // 错误处理
+            /* 错误处理 */
         }
     }
 };

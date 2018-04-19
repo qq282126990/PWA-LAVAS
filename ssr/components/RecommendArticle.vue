@@ -1,44 +1,43 @@
 <template>
     <div class="recommend_article" ref="recommendAticle">
         <v-list class="article_list" ref="articleList">
-            <virtual-collection>
-                <v-list-tile
-                    slot="cell"
-                    slot-scope="props"
-                    dark
-                    ripple
-                    @click=""
-                    class="article_li"
-                >
-                    <!--文章-->
-                    <div class="article">
-                        <!--文章标题-->
-                        <h1 class="article_title">Mac小白看过来，满满干货～</h1>
-                        <!--文章内容-->
-                        <div class="article_center">
-                            <!--文字-->
-                            <div class="center_txt">
-                                <p>
-                                    周三，埋头工作之时，给大家放一个大招。本文可以让你，少走20年弯路。 本篇是原创首发，你能看到是幸运的，预计接下来会被大量转发，你也是在见证历史和未来。 2003年毕业不久，我进入了上海，到了2006年…
-                                </p>
-                            </div>
-                            <!--图片-->
-                            <!--<div class="center_img"></div>-->
+            <v-list-tile
+                dark
+                ripple
+                class="article_li"
+                v-for="(item, index) in getArticleData"
+                @click="select($event,index)"
+                :key="index"
+                ref="articleLi"
+            >
+                <!--文章-->
+                <div class="article">
+                    <!--文章标题-->
+                    <h1 class="article_title">Mac小白看过来，满满干货～</h1>
+                    <!--文章内容-->
+                    <div class="article_center">
+                        <!--文字-->
+                        <div class="center_txt">
+                            <p>
+                                周三，埋头工作之时，给大家放一个大招。本文可以让你，少走20年弯路。 本篇是原创首发，你能看到是幸运的，预计接下来会被大量转发，你也是在见证历史和未来。 2003年毕业不久，我进入了上海，到了2006年…
+                            </p>
                         </div>
-                        <!--文章底部-->
-                        <div class="article_bottom">
-                            <!--左-->
-                            <div class="bottom_left">
-                                <p>106 赞 · 22 评论</p>
-                            </div>
-                            <!--右-->
-                            <div class="bottom_right">
-                                <i class="iconfont icon-more-horiz"></i>
-                            </div>
+                        <!--图片-->
+                        <!--<div class="center_img"></div>-->
+                    </div>
+                    <!--文章底部-->
+                    <div class="article_bottom">
+                        <!--左-->
+                        <div class="bottom_left">
+                            <p>106 赞 · 22 评论</p>
+                        </div>
+                        <!--右-->
+                        <div class="bottom_right">
+                            <i class="iconfont icon-more-horiz"></i>
                         </div>
                     </div>
-                </v-list-tile>
-            </virtual-collection>
+                </div>
+            </v-list-tile>
         </v-list>
     </div>
 </template>
@@ -49,42 +48,139 @@
     // 块渲染无限滚动组件
     import VirtualCollection from 'components/VirtualCollection.vue'
 
-    function setState(store) {
-        store.dispatch('appShell/asyncAjax/getArticle', {id: 'articleRecommend'})
+    function setState (store) {
+        store.dispatch ('appShell/asyncAjax/getArticle', {id: 'articleRecommend'})
     }
 
     export default {
-        async asyncData({store, route}) {
-           console.log(store)
-            setState(store);
-        },
-        data () {
-            return {
-                items: new Array (10).fill (0).map ((_, index) => ({data: '#' + index}))
-            }
+        async asyncData ({store, route}) {
+            setState (store);
         },
         computed: {
             ...mapState ('appShell/virtualCollection', [
                 // 获取收集的滚动高度
                 'scrollTop'
-            ])
+            ]),
+            ...mapState ('appShell/asyncAjax', {
+                /* 获取对应类型文章 */
+                getArticleData: 'articleData'
+            })
+        },
+        created () {
+            this.setArticleAjax ({id: 'articleRecommend'})
         },
         mounted () {
             this.recommendAticle = this.$refs.recommendAticle;
 
             // 初始化块渲染无限滚动组件方法
             this.initVirtualCollection ();
-
-            // this.setArticle({id: 'articleRecommend'})
         },
         methods: {
+            // 点击事件
+            select (e, index) {
+                // 获取节点
+                let cellContainer = this.$refs.articleLi[index].$el.getElementsByTagName ('a')[0];
+
+                // 点击出现水波纹效果
+                this.show (e, cellContainer);
+
+                // 隐藏水波纹效果
+                this.hide (cellContainer);
+            },
+            // 点击出现水波纹效果
+            show (e, el) {
+                let RippleDataAttribute = 'data-ripple';
+                let _ref$value = true;
+
+                let value = _ref$value === undefined ? {} : _ref$value;
+
+                // 判断是否有节点
+                if (el.getAttribute (RippleDataAttribute) !== 'true') {
+                    return;
+                }
+
+                // 创建水波纹节点
+                let container = document.createElement ('span');
+                let animation = document.createElement ('span');
+
+                // 插入节点
+                container.appendChild (animation);
+                container.className = 'ripple__container';
+
+                if (value.class) {
+                    container.className += ' ' + value.class;
+                }
+
+                // 为节点添加相关样式
+                let size = el.clientWidth > el.clientHeight ? el.clientWidth : el.clientHeight;
+                animation.className = 'ripple__animation';
+                animation.style.width = size * (value.center ? 1 : 2) + 'px';
+                animation.style.height = animation.style.width;
+
+                el.appendChild (container);
+                let computed = window.getComputedStyle (el);
+                if (computed.position !== 'absolute' && computed.position !== 'fixed') el.style.position = 'relative';
+
+                let offset = el.getBoundingClientRect ();
+                let x = value.center ? '50%' : e.clientX - offset.left + 'px';
+                let y = value.center ? '50%' : e.clientY - offset.top + 'px';
+
+                animation.classList.add ('ripple__animation--enter');
+                animation.classList.add ('ripple__animation--visible');
+                style (animation, 'translate(-50%, -50%) translate(' + x + ', ' + y + ') scale3d(0.01,0.01,0.01)');
+                animation.dataset.activated = Date.now ();
+
+                setTimeout (function () {
+                    animation.classList.remove ('ripple__animation--enter');
+                    style (animation, 'translate(-50%, -50%) translate(' + x + ', ' + y + ')  scale3d(0.99,0.99,0.99)');
+                }, 0);
+
+                // 添加样式兼容
+                function style (el, value) {
+                    ['transform', 'webkitTransform'].forEach (function (i) {
+                        el.style[i] = value;
+                    });
+                }
+            },
+            // 隐藏水波纹效果
+            hide (el) {
+                let RippleDataAttribute = 'data-ripple';
+
+                // 判断是否有节点
+                if (el.getAttribute (RippleDataAttribute) !== 'true') {
+                    return;
+                }
+
+                // 获取要删除的节点
+                let ripples = el.getElementsByClassName ('ripple__animation');
+
+                if (ripples.length === 0) return;
+                let animation = ripples[ripples.length - 1];
+                let diff = Date.now () - Number (animation.dataset.activated);
+                let delay = 400 - diff;
+
+                delay = delay < 0 ? 0 : delay;
+
+                // 延迟 delay 秒后删除
+                setTimeout (function () {
+                    animation.classList.remove ('ripple__animation--visible');
+
+                    setTimeout (function () {
+                        // Need to figure out a new way to do this
+                        try {
+                            if (ripples.length < 1) el.style.position = null;
+                            animation.parentNode && el.removeChild (animation.parentNode);
+                        } catch (e) {
+                        }
+                    }, 300);
+                }, delay);
+            },
             // 初始化块渲染无限滚动组件方法
             initVirtualCollection () {
                 this.cellSizeAndPositionGetterHeight = (this.recommendAticle.clientWidth / 2) - (document.getElementsByClassName ('app-bottom-navigator-wrapper')[0].clientHeight / 2);
 
                 this.$nextTick (() => {
                     this.setCellSizeAndPositionGetter (this.cellSizeAndPositionGetter);
-                    this.setCollection (this.items);
                     this.setWidth (this.recommendAticle.clientWidth);
                     this.setHeight (this.recommendAticle.clientHeight);
                 });
@@ -111,12 +207,16 @@
                 setListHeight: 'listHeight'
             }),
             ...mapActions ('appShell/asyncAjax', {
-                setArticle: 'getArticle'
+                setArticleAjax: 'getArticleAjax'
             }),
         },
         watch: {
             scrollTop () {
                 this.setHeight (this.recommendAticle.clientHeight);
+            },
+            /* 监听文章接口返回数据 */
+            getArticleData (data) {
+                this.setCollection (data);
             }
         },
         components: {
@@ -140,9 +240,13 @@
 
     .article_li {
         position: relative;
-        margin: 20px 0;
+        margin-bottom: 20px;
         display: inline-block;
         box-shadow: 0 4px 10px rgb(153, 153, 153);
+    }
+
+    .article_li:first-child {
+        margin-top: 20px;
     }
 
     /*文章*/

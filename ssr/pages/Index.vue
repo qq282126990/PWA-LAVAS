@@ -23,17 +23,17 @@
                 </div>
                 <!--文章内容-->
                 <div class="content" ref="content">
-                    <!--<vertical-scroll :listenScroll="listenScroll"-->
-                    <!--:probeType="3"-->
-                    <!--:bounce="false"-->
-                    <!--@scroll="verticalScroll"-->
-                    <!--ref="verticalScroll">-->
-                    <!--<recommend-article @selectArticle="selectArticle"></recommend-article>-->
-                    <!--</vertical-scroll>-->
-                    <!-- -->
+                    <vertical-scroll :listenScroll="listenScroll"
+                                     :probeType="3"
+                                     :bounce="false"
+                                     @scroll="verticalScroll"
+                                     ref="verticalScroll">
+                        <recommend-article></recommend-article>
+                    </vertical-scroll>
+
 
                     <!--块渲染无限滚动-->
-                    <recommend-article></recommend-article>
+                    <!--<recommend-article></recommend-article>-->
                 </div>
             </div>
         </div>
@@ -42,7 +42,7 @@
 
 <script>
     // vuex
-    import {mapActions, mapState,mapGetters} from 'vuex';
+    import {mapActions, mapState, mapGetters} from 'vuex';
     // 综合查找组件
     import overallSearch from 'components/OverallSearch.vue';
     // 横向滚动组件
@@ -128,7 +128,12 @@
                  * 块渲染无限滚动组件宽度
                  * @type {Number}
                  * */
-                virtualCollectionWidth: 0
+                virtualCollectionWidth: 0,
+                /*
+                 * 设置滚动组件滚动方向
+                 * @type {Number}
+                 * */
+                scrollDirection: ''
             }
         },
         computed: {
@@ -136,19 +141,19 @@
                 // 每一个列表的高度
                 'listHeight',
                 // 获取收集的滚动高度
-                'scrollTop'
+                // 'scrollTop'
             ])
         },
         mounted () {
             let overallSearch = this.$refs.overallSearch.$el;
 
-            this.maxContentMarginTop = -(overallSearch.children[0].clientHeight + ((this.$refs.contentHeaderScroll.clientHeight / 5) * 6));
+            this.maxContentMarginTop = (overallSearch.children[0].clientHeight + ((this.$refs.contentHeaderScroll.clientHeight / 5) * 6));
 
             // 初始化内容偏移位置
-            this.contentMarginTop = Math.abs (this.maxContentMarginTop);
+            this.contentMarginTop = this.maxContentMarginTop;
 
             // 综合搜索需要偏移到的最终位置
-            this.overallSearchTranslateYEnd = -(overallSearch.offsetTop - this.$refs.contentWrapper.offsetTop);
+            // this.overallSearchTranslateYEnd = -(overallSearch.offsetTop - this.$refs.contentWrapper.offsetTop);
         },
         methods: {
             // 选择内容头部横向导航
@@ -169,7 +174,56 @@
         },
         watch: {
             // 监听垂直滚动数值
-//            verticalScrollY (scrollY) {
+            verticalScrollY (scrollY) {
+                // let newScrollY = Math.abs (Math.min (0, this.maxContentMarginTop - scrollY));
+
+                // 透明度
+                const percent = Math.max (0, 1 - Math.abs (scrollY / this.maxContentMarginTop));
+                this.overallSearchPercent = percent;
+
+                // 判断内容滚动
+                if (scrollY < 0 && scrollY < -5 && this.scrollDirection !== 'up') {
+                    this.scrollDirection = 'up';
+                }
+                else if (scrollY >= 0){
+                    this.scrollDirection = 'down';
+                }
+            },
+            scrollDirection (direction) {
+
+                if (direction === 'up') {
+                    this.contentMarginTop = 0;
+
+                    // 禁用滚动
+                    this.$refs.verticalScroll.disable();
+
+                    // 重新开启滚动
+                    setTimeout(() => {
+                        // 刷新滚动
+                        this.$refs.verticalScroll.refresh();
+
+                        this.$refs.verticalScroll.enable();
+                    }, 300);
+                }
+
+                if (direction === 'down') {
+                    this.contentMarginTop = this.maxContentMarginTop;
+
+                    // 禁用滚动
+                    this.$refs.verticalScroll.disable();
+
+                    // 重新开启滚动
+                    setTimeout(() => {
+                        // 刷新滚动
+                        this.$refs.verticalScroll.refresh();
+
+                        this.$refs.verticalScroll.enable();
+                    }, 300);
+                }
+
+            },
+            // 获取收集的滚动高度
+//            scrollTop (scrollY) {
 //                let newScrollY = Math.abs (Math.min (0, this.maxContentMarginTop - scrollY));
 //
 //                // 透明度
@@ -182,37 +236,14 @@
 //                // 判断内容滚动
 //                if (scrollY < this.maxContentMarginTop) {
 //                    this.contentMarginTop = 0;
-//                    this.$refs.verticalScroll.refresh ();
 //                }
 //                else {
 //                    this.contentMarginTop = newScrollY;
 //
 //                    this.overallSearchTranslateY = overallSearchTranslateYEnd
 //                }
-//
+
 //            }
-            // 获取收集的滚动高度
-            scrollTop(scrollY) {
-                let newScrollY = Math.abs (Math.min (0, this.maxContentMarginTop - scrollY));
-
-                // 透明度
-                const percent = Math.max (0, 1 - Math.abs (scrollY / Math.abs (this.maxContentMarginTop)));
-                this.overallSearchPercent = percent;
-
-                // 综合搜索需要偏移到的最终位置
-                let overallSearchTranslateYEnd = Math.max (this.overallSearchTranslateYEnd, Math.floor (scrollY / 3));
-
-                // 判断内容滚动
-                if (scrollY < this.maxContentMarginTop) {
-                    this.contentMarginTop = 0;
-                }
-                else {
-                    this.contentMarginTop = newScrollY;
-
-                    this.overallSearchTranslateY = overallSearchTranslateYEnd
-                }
-
-            }
         },
         components: {
             overallSearch,
@@ -238,6 +269,7 @@
             position: relative;
             overflow: hidden;
             height: 100%;
+            transition: all .3s cubic-bezier(0, 0, 0.2, 1)
         }
     }
 
@@ -303,7 +335,7 @@
     .content {
         position: absolute;
         top: 100px;
-        bottom: 125px;
+        bottom: 120px;
         flex: 1;
         overflow: hidden;
         width: 100%;

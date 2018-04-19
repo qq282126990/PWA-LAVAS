@@ -5,13 +5,13 @@
                          :bounce="false"
                          ref="verticalScroll"
                          @scroll="verticalScroll">
-            <div class="vue-virtual-collection-container" :style="containerStyle">
+            <div class="vue-virtual-collection-container" :style="containerStyle" ref="cellContainer">
                 <div class="cell-container"
                      v-for="(item, index) in displayItems"
                      :key="item.index"
                      :style="getComputedStyle(item, index)"
                      @click="select($event,index)"
-                     ref="cellContainer">
+                     >
                     <slot name="cell" :data="item"></slot>
                 </div>
             </div>
@@ -154,6 +154,10 @@
                 // 重新渲染数据
                 this.displayItems = displayItems;
 
+                this.$forceUpdate();
+
+                this.$refs.verticalScroll.refresh()
+
                 // 收集的滚动高度
                 this.setScrollTop (-scrollTop);
             },
@@ -163,7 +167,7 @@
             },
             // 点击事件
             select (e, index) {
-                let cellContainer = this.$refs.cellContainer[index].getElementsByTagName ('a')[0];
+                let cellContainer = this.$refs.cellContainer.childNodes[index].getElementsByTagName ('a')[0];
 
                 // 点击出现水波纹效果
                 this.show (e, cellContainer);

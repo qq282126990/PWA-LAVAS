@@ -237,7 +237,7 @@
 
 
                 // 监听滚动事件开始之前派发scroll滚动事件
-                if (this.listenBeforeScroll) {
+                if (this.listenBeforeScrol) {
                     this.scroll.on ('beforeScrollStart', () => {
                         this.$emit ('beforeScrollStart');
                     });

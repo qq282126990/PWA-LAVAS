@@ -7,7 +7,11 @@ export function getArticle (param) {
 
     const url = `${urlHeader}/serverPwaLavas/getArticle`;
 
-    return axios.post(url, param).then((res) => {
+    const data = Object.assign({}, param, {
+        method: 'article'
+    });
+
+    return axios.post(url, data).then((res) => {
         return Promise.resolve(res.data);
     });
 }
