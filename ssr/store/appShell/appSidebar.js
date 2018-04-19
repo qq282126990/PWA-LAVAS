@@ -39,7 +39,7 @@ export const state = () => {
                     },
                     {
                         text: 'Detail Page 2',
-                        image: 'https://github.com/google/material-design-icons/blob/master/social/2x_web/ic_mood_bad_black_48dp.png?raw=true',
+                        image: '',
                         alt: 'mood-bad',
                         route: '/detail/2'
                     },

@@ -170,3 +170,11 @@ body {
 .application a {
     color: inherit !important;
 }
+
+.blue--text{
+    color: #3276f0 !important;
+}
+
+.application .theme--light.list, .theme--light .list {
+    background: inherit !important;
+}

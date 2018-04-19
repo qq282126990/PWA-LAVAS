@@ -7,11 +7,14 @@
                 <!--横向滑动导航-->
                 <div class="content_header_scroll" ref="contentHeaderScroll">
                     <horizontal-scroll :newData="contentHeaderItem">
-                        <div class="horizontal_item" v-for="(item, index) in contentHeaderItem" ref="horizontalItem">
+                        <div class="horizontal_item"
+                             v-for="(item, index) in contentHeaderItem"
+                             :key="index"
+                             ref="horizontalItem">
                             <v-btn flat
                                    :class="{'active': horizontalActive === index}"
-                                   @click.native="selectHorizontal(index)">
-                                <h1 class="item_name" :class="{'active': horizontalActive === index}">{{item}}</h1>
+                                   @click.native="selectHorizontal(index, item.id)">
+                                <h1 class="item_name" :class="{'active': horizontalActive === index}">{{item.name}}</h1>
                             </v-btn>
                             <div class="horizontal_slider_dots">
                                 <p class="slider_dots" :style="{transform: `translate3d(${sliderDotsWidth}px, 0, 0)`}">
@@ -30,8 +33,6 @@
                                      ref="verticalScroll">
                         <recommend-article></recommend-article>
                     </vertical-scroll>
-
-
                     <!--块渲染无限滚动-->
                     <!--<recommend-article></recommend-article>-->
                 </div>
@@ -41,20 +42,20 @@
 </template>
 
 <script>
-    // vuex
     import {mapActions, mapState, mapGetters} from 'vuex';
-    // 综合查找组件
+    /* 综合查找组件 */
     import overallSearch from 'components/OverallSearch.vue';
-    // 横向滚动组件
+    /* 横向滚动组件 */
     import horizontalScroll from 'base/HorizontalScroll.vue';
-    // 推荐页文章
+    /* 推荐页文章 */
     import RecommendArticle from 'components/RecommendArticle.vue';
-    // 垂直滚动组件
+    /* 垂直滚动组件 */
     import VerticalScroll from 'base/VerticalScroll.vue'
 
 
     function setState (store) {
-        store.dispatch ('appShell/appHeader/setAppHeader', {
+        /* 头部状态 */
+        store.dispatch('appShell/appHeader/setAppHeader', {
             show: true,
             title: 'Lavas',
             showDownArrow: true,
@@ -68,6 +69,7 @@
                 }
             ]
         });
+
     }
 
     export default {
@@ -81,7 +83,9 @@
             ]
         },
         async asyncData ({store, route}) {
-            setState (store);
+            setState(store);
+            /* 请求文章接口默认推荐 */
+            await  store.dispatch('appShell/asyncAjax/getArticleAjax', {id: 'articleRecommend'})
         },
         data () {
             return {
@@ -89,7 +93,12 @@
                  * 设置内容头部导航数据
                  * @type {Number}
                  * */
-                contentHeaderItem: ['推荐', '关注', '热榜', '文档', '提问', '书店'],
+                contentHeaderItem: [{id: 'articleRecommend', name: '推荐'},
+                    {id: 'articleRecommend', name: '关注'},
+                    {id: 'articleRecommend', name: '热榜'},
+                    {id: 'articleRecommend', name: '文档'},
+                    {id: 'articleRecommend', name: '提问'},
+                    {id: 'articleRecommend', name: '书店'}],
                 /*
                  * 开启滚动组件监听滚动事件
                  * */
@@ -113,7 +122,7 @@
                  * 内容偏移位置
                  * @type {Number}
                  * */
-                contentMarginTop: 0,
+                contentMarginTop: null,
                 /*
                  * 综合搜索透明度
                  * @type {Number}
@@ -128,7 +137,7 @@
                  * 块渲染无限滚动组件宽度
                  * @type {Number}
                  * */
-                virtualCollectionWidth: 0,
+                // virtualCollectionWidth: 0,
                 /*
                  * 设置滚动组件滚动方向
                  * @type {Number}
@@ -137,8 +146,8 @@
             }
         },
         computed: {
-            ...mapState ('appShell/virtualCollection', [
-                // 每一个列表的高度
+            ...mapState('appShell/virtualCollection', [
+                /* 每一个列表的高度 */
                 'listHeight',
                 // 获取收集的滚动高度
                 // 'scrollTop'
@@ -147,76 +156,79 @@
         mounted () {
             let overallSearch = this.$refs.overallSearch.$el;
 
+            /* 内容最大偏移位置 */
             this.maxContentMarginTop = (overallSearch.children[0].clientHeight + ((this.$refs.contentHeaderScroll.clientHeight / 5) * 6));
-
-            // 初始化内容偏移位置
+            /* 设置内容偏移位置 */
             this.contentMarginTop = this.maxContentMarginTop;
-
-            // 综合搜索需要偏移到的最终位置
-            // this.overallSearchTranslateYEnd = -(overallSearch.offsetTop - this.$refs.contentWrapper.offsetTop);
+            /* 综合搜索需要偏移到的最终位置 */
+            this.overallSearchTranslateYEnd = -(overallSearch.offsetTop - this.$refs.contentWrapper.offsetTop);
         },
         methods: {
-            // 选择内容头部横向导航
-            selectHorizontal (index) {
-                // 需要激活的导航
+            /* 选择内容头部横向导航 */
+            selectHorizontal (index, id) {
+                this.setArticleAjax({id: id})
+
+                /* 需要激活的导航 */
                 this.horizontalActive = index;
 
-                // 内容头部 dot 滑动位置
+                /* 内容头部 dot 滑动位置 */
                 this.sliderDotsWidth = index * this.$refs.horizontalItem[0].clientWidth;
             },
-            // 垂直滚动
+            /* 垂直滚动 */
             verticalScroll (pos) {
                 this.verticalScrollY = pos.y;
-            }
+            },
+            ...mapActions('appShell/asyncAjax', {
+                setArticleAjax: 'getArticleAjax'
+            })
         },
         activated () {
-            setState (this.$store);
+            setState(this.$store);
         },
         watch: {
-            // 监听垂直滚动数值
+            /* 监听垂直滚动数值 */
             verticalScrollY (scrollY) {
-                // let newScrollY = Math.abs (Math.min (0, this.maxContentMarginTop - scrollY));
-
-                // 透明度
-                const percent = Math.max (0, 1 - Math.abs (scrollY / this.maxContentMarginTop));
-                this.overallSearchPercent = percent;
-
-                // 判断内容滚动
+                /* 判断内容滚动 */
                 if (scrollY < 0 && scrollY < -5 && this.scrollDirection !== 'up') {
                     this.scrollDirection = 'up';
                 }
-                else if (scrollY >= 0){
+                else if (scrollY >= 0) {
                     this.scrollDirection = 'down';
                 }
             },
             scrollDirection (direction) {
-
                 if (direction === 'up') {
+                    /* 内容偏移位置 */
                     this.contentMarginTop = 0;
+                    /* 综合搜索偏移位置 */
+                    this.overallSearchTranslateY = this.overallSearchTranslateYEnd;
+                    /* 综合搜索透明度 */
+                    this.overallSearchPercent = 0
 
-                    // 禁用滚动
+                    /* 禁用滚动 */
                     this.$refs.verticalScroll.disable();
-
-                    // 重新开启滚动
                     setTimeout(() => {
-                        // 刷新滚动
+                        /* 刷新滚动 */
                         this.$refs.verticalScroll.refresh();
-
+                        /* 重新开启滚动 */
                         this.$refs.verticalScroll.enable();
                     }, 300);
                 }
 
                 if (direction === 'down') {
+                    /* 内容偏移位置 */
                     this.contentMarginTop = this.maxContentMarginTop;
+                    /* 综合搜索偏移位置 */
+                    this.overallSearchTranslateY = 0;
+                    /* 综合搜索透明度 */
+                    this.overallSearchPercent = 1
 
-                    // 禁用滚动
+                    /* 禁用滚动 */
                     this.$refs.verticalScroll.disable();
-
-                    // 重新开启滚动
                     setTimeout(() => {
-                        // 刷新滚动
+                        /* 刷新滚动 */
                         this.$refs.verticalScroll.refresh();
-
+                        /* 重新开启滚动 */
                         this.$refs.verticalScroll.enable();
                     }, 300);
                 }
@@ -268,6 +280,7 @@
         .wrapper {
             position: relative;
             overflow: hidden;
+            margin-top: 390px;
             height: 100%;
             transition: all .3s cubic-bezier(0, 0, 0.2, 1)
         }

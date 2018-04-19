@@ -1,10 +1,8 @@
 import axios from 'axios';
-import {setUrl} from './config';
+import {urlHeader} from './config';
 
 // 获取对应文章类型接口
-export function getArticle (param) {
-    const urlHeader = setUrl();
-
+export function getArticleAjax (param) {
     const url = `${urlHeader}/serverPwaLavas/getArticle`;
 
     const data = Object.assign({}, param, {

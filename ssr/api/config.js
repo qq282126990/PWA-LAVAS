@@ -1,12 +1,4 @@
 // 接口前缀地址
-export function setUrl() {
-    let href = location.host;
-
-    if (href !== 'linfengzhuiyi.cn') {
-        href = 'linfengzhuiyi.cn';
-    }
-
-    return `https://${href}:4433`;
-}
+export const urlHeader = 'https://linfengzhuiyi.cn:4433';
 
 export const ERR_OK = 0;
