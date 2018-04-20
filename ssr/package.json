@@ -29,7 +29,8 @@
     "vuetify": "^0.17.5",
     "axios": "^0.17.1",
     "better-scroll": "^1.8.0",
-    "ssr-window": "^1.0.0"
+    "ssr-window": "^1.0.0",
+    "vue-lazyload": "^1.2.3"
   },
   "devDependencies": {
     "express": "^4.16.2",

@@ -30,10 +30,11 @@ export const actions = {
     async getArticleAjax ({commit}, param) {
         let res = await getArticleAjax(param);
         if (res.code === ERR_OK) {
-            commit(SET_ARTICLE_DATA, res.data.article);
+            commit(SET_ARTICLE_DATA, res.data);
         }
         else {
             /* 错误处理 */
+            commit(SET_ARTICLE_DATA, res.data);
         }
     }
 };

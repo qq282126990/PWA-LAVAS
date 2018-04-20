@@ -14,13 +14,19 @@ router.post ('/getArticle', (req, res) => {
     // 查找用户名
     const params = req.body;
 
-    if (params.method !== 'article' || !params) {
+    if (params.method !== 'article' || params.id === '' || !params) {
         res.send ({
             code: "-300",
             msg: "参数错误",
             data: []
         });
         return;
+    }
+
+    let articleType;
+
+    if (params.id === 'articleRecommend') {
+        articleType = 0
     }
 
     conn.query ('select * from ??', [`${params.id}`], function (err, result) {
@@ -38,7 +44,8 @@ router.post ('/getArticle', (req, res) => {
             res.send ({
                 code: 0,
                 data: {
-                    article: result
+                    article: result,
+                    type: articleType
                 }
             });
         }

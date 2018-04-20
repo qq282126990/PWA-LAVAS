@@ -13,7 +13,7 @@
                      @click="handleNavClick(item.route)"
                 >
                     <i class="iconfont item_icon" :class="item.icon"></i>
-                    <p class="item_name" :title="item.name">{{item.name}}</p>
+                    <p class="item_name" :title="item.name" role="presentation">{{item.name}}</p>
                 </div>
             </div>
         </div>

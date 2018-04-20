@@ -5,7 +5,7 @@
                 dark
                 ripple
                 class="article_li"
-                v-for="(item, index) in (articleData.length > 0 ? articleData : getArticleData)"
+                v-for="(item, index) in (articleList.length > 0 ? articleList : getArticleData.article)"
                 @click="select($event,index)"
                 :key="index"
                 ref="articleLi"
@@ -16,12 +16,14 @@
                     <h1 class="article_title">{{item.title}}</h1>
                     <!--文章内容-->
                     <div class="article_center">
-                        <!--文字-->
+                        <!--内容-->
                         <div class="center_txt">
+                            <!--文字-->
                             <p>{{item.smallcontent}}</p>
                         </div>
+
                         <!--图片-->
-                        <img class="center_img" :src="item.img"/>
+                        <img class="center_img" v-lazy="item.img" v-show="item.img"/>
                     </div>
                     <!--文章底部-->
                     <div class="article_bottom">
@@ -31,7 +33,11 @@
                         </div>
                         <!--右-->
                         <div class="bottom_right">
-                            <i class="iconfont icon-more-horiz"></i>
+                            <!--发布人-->
+                            <p class="right_txt">{{item.publisher}}</p>
+                            <i class="right_i" v-show="item.flowerName">·</i>
+                            <p class="right_txt">{{item.flowerName}}</p>
+                            <!--<i class="iconfont icon-more-horiz"></i>-->
                         </div>
                     </div>
                 </div>
@@ -42,42 +48,40 @@
 
 <script type="text/ecmascript-6">
     import {mapActions, mapState} from 'vuex';
-    /* 块渲染无限滚动组件 */
-    // import VirtualCollection from 'components/VirtualCollection.vue'
 
     export default {
+        props: {
+            /*
+            * 文章内容列表
+            * @type Array
+            * */
+            articleList: {
+                type: Array,
+                default: []
+            }
+        },
         data () {
             return {
                 articleData: []
             }
         },
         computed: {
-//            ...mapState ('appShell/virtualCollection', [
-//                /* 获取收集的滚动高度 */
-//                'scrollTop'
-//            ]),
-            ...mapState('appShell/asyncAjax', {
+            ...mapState ('appShell/asyncAjax', {
                 /* 获取对应类型文章 */
                 getArticleData: 'articleData'
             })
         },
-        mounted () {
-            // this.recommendAticle = this.$refs.recommendAticle;
-
-            /* 初始化块渲染无限滚动组件方法 */
-            // this.initVirtualCollection ();
-        },
         methods: {
             /* 文章点击事件 */
             select (e, index) {
-                /* 获取节点 */
-                let cellContainer = this.$refs.articleLi[index].$el.getElementsByTagName('a')[0];
+                // 获取节点
+                let cellContainer = this.$refs.articleLi[index].$el.getElementsByTagName ('a')[0];
 
-                /* 点击出现水波纹效果 */
-                this.show(e, cellContainer);
+                // 点击出现水波纹效果
+                this.show (e, cellContainer);
 
-                /* 隐藏水波纹效果 */
-                this.hide(cellContainer);
+                // 隐藏水波纹效果
+                this.hide (cellContainer);
             },
             /* 点击出现水波纹效果 */
             show (e, el) {
@@ -86,50 +90,50 @@
 
                 let value = _ref$value === undefined ? {} : _ref$value;
 
-                /* 判断是否有节点 */
-                if (el.getAttribute(RippleDataAttribute) !== 'true') {
+                // 判断是否有节点
+                if (el.getAttribute (RippleDataAttribute) !== 'true') {
                     return;
                 }
 
-                /* 创建水波纹节点 */
-                let container = document.createElement('span');
-                let animation = document.createElement('span');
+                // 创建水波纹节点
+                let container = document.createElement ('span');
+                let animation = document.createElement ('span');
 
-                /* 插入节点 */
-                container.appendChild(animation);
+                // 插入节点
+                container.appendChild (animation);
                 container.className = 'ripple__container';
 
                 if (value.class) {
                     container.className += ' ' + value.class;
                 }
 
-                /* 为节点添加相关样式 */
+                // 为节点添加相关样式
                 let size = el.clientWidth > el.clientHeight ? el.clientWidth : el.clientHeight;
                 animation.className = 'ripple__animation';
                 animation.style.width = size * (value.center ? 1 : 2) + 'px';
                 animation.style.height = animation.style.width;
 
-                el.appendChild(container);
-                let computed = window.getComputedStyle(el);
+                el.appendChild (container);
+                let computed = window.getComputedStyle (el);
                 if (computed.position !== 'absolute' && computed.position !== 'fixed') el.style.position = 'relative';
 
-                let offset = el.getBoundingClientRect();
+                let offset = el.getBoundingClientRect ();
                 let x = value.center ? '50%' : e.clientX - offset.left + 'px';
                 let y = value.center ? '50%' : e.clientY - offset.top + 'px';
 
-                animation.classList.add('ripple__animation--enter');
-                animation.classList.add('ripple__animation--visible');
-                style(animation, 'translate(-50%, -50%) translate(' + x + ', ' + y + ') scale3d(0.01,0.01,0.01)');
-                animation.dataset.activated = Date.now();
+                animation.classList.add ('ripple__animation--enter');
+                animation.classList.add ('ripple__animation--visible');
+                style (animation, 'translate(-50%, -50%) translate(' + x + ', ' + y + ') scale3d(0.01,0.01,0.01)');
+                animation.dataset.activated = Date.now ();
 
-                setTimeout(function () {
-                    animation.classList.remove('ripple__animation--enter');
-                    style(animation, 'translate(-50%, -50%) translate(' + x + ', ' + y + ')  scale3d(0.99,0.99,0.99)');
+                setTimeout (function () {
+                    animation.classList.remove ('ripple__animation--enter');
+                    style (animation, 'translate(-50%, -50%) translate(' + x + ', ' + y + ')  scale3d(0.99,0.99,0.99)');
                 }, 0);
 
-                /* 添加样式兼容 */
+                // 添加样式兼容
                 function style (el, value) {
-                    ['transform', 'webkitTransform'].forEach(function (i) {
+                    ['transform', 'webkitTransform'].forEach (function (i) {
                         el.style[i] = value;
                     });
                 }
@@ -138,79 +142,34 @@
             hide (el) {
                 let RippleDataAttribute = 'data-ripple';
 
-                /* 判断是否有节点 */
-                if (el.getAttribute(RippleDataAttribute) !== 'true') {
+                // 判断是否有节点
+                if (el.getAttribute (RippleDataAttribute) !== 'true') {
                     return;
                 }
 
-                /* 获取要删除的节点 */
-                let ripples = el.getElementsByClassName('ripple__animation');
+                // 获取要删除的节点
+                let ripples = el.getElementsByClassName ('ripple__animation');
 
                 if (ripples.length === 0) return;
                 let animation = ripples[ripples.length - 1];
-                let diff = Date.now() - Number(animation.dataset.activated);
+                let diff = Date.now () - Number (animation.dataset.activated);
                 let delay = 400 - diff;
 
                 delay = delay < 0 ? 0 : delay;
 
-                /* 延迟 delay 秒后删除 */
-                setTimeout(function () {
-                    animation.classList.remove('ripple__animation--visible');
+                // 延迟 delay 秒后删除
+                setTimeout (function () {
+                    animation.classList.remove ('ripple__animation--visible');
 
-                    setTimeout(function () {
+                    setTimeout (function () {
                         try {
                             if (ripples.length < 1) el.style.position = null;
-                            animation.parentNode && el.removeChild(animation.parentNode);
+                            animation.parentNode && el.removeChild (animation.parentNode);
                         } catch (e) {
                         }
                     }, 300);
                 }, delay);
-            },
-            /* 初始化块渲染无限滚动组件方法 */
-//            initVirtualCollection () {
-//                this.cellSizeAndPositionGetterHeight = (this.recommendAticle.clientWidth / 2) - (document.getElementsByClassName ('app-bottom-navigator-wrapper')[0].clientHeight / 2);
-//
-//                this.$nextTick (() => {
-//                    this.setCellSizeAndPositionGetter (this.cellSizeAndPositionGetter);
-//                    this.setWidth (this.recommendAticle.clientWidth);
-//                    this.setHeight (this.recommendAticle.clientHeight);
-//                });
-//            },
-            // 用于计算每一个块显示的大小和显示的位置
-//            cellSizeAndPositionGetter (item, index) {
-//                return {
-//                    width: this.recommendAticle.clientWidth,
-//                    height: this.cellSizeAndPositionGetterHeight,
-//                    x: (index % 1) * (this.recommendAticle.clientWidth + 10),
-//                    y: parseInt (index / 1) * this.cellSizeAndPositionGetterHeight
-//                }
-//            },
-            ...mapActions('appShell/virtualCollection', {
-                // 我们需要一个方法去计算这些块的信息 -> 用于计算每一个块显示的大小和显示的位置
-                // setCellSizeAndPositionGetter: 'cellSizeAndPositionGetter',
-                // 列表数据
-                // setCollection: 'collection',
-                // 收集的宽度
-                // setWidth: 'width',
-                // 收集的高度
-                // setHeight: 'height',
-                // 每一个列表的高度
-                // setListHeight: 'listHeight'
-            })
-        },
-        watch: {
-//            scrollTop () {
-//                this.setHeight (this.recommendAticle.clientHeight);
-//            },
-            /* 监听文章接口返回数据 */
-            getArticleData (data) {
-                console.log(data)
-                this.articleData = data
-                // this.setCollection(data);
             }
-        },
-        components: {
-            // VirtualCollection
         }
     }
 </script>
@@ -310,11 +269,23 @@
         }
         /*右*/
         .bottom_right {
-            line-height: 40px;
+            /*line-height: 40px;*/
+            font-size: 24px;
+            .right_txt {
+                display: inline-block;
+                margin: 0;
+                color: #d5d5d5;
+            }
+            .right_txt:first-child {
+                color: $colorArticleBottomTxt;
+            }
+            .right_i {
+                padding: 0 10px;
+                color: $colorArticleBottomTxt;
+            }
             .iconfont {
                 float: right;
                 font-size: 50px;
-                color: #d5d5d5
             }
         }
     }

@@ -9,10 +9,19 @@ import {createRouter} from '@/.lavas/router';
 import {createStore} from '@/.lavas/store';
 import AppComponent from './App.vue';
 import Vuetify from 'vuetify';
+import VueLazyload from 'vue-lazyload';
 
 Vue.use(Meta);
 
 Vue.use(Vuetify);
+
+Vue.use(VueLazyload, {
+    preLoad: 1.3,
+    error: 'static/img/icons/android-chrome-144x144.png',
+    loading: 'static/img/icons/android-chrome-144x144.png',
+    attempt: 1
+})
+
 
 Vue.config.productionTip = false;
 

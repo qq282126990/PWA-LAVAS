@@ -156,7 +156,7 @@
 
                 this.$forceUpdate();
 
-                this.$refs.verticalScroll.refresh()
+                this.$refs.verticalScroll.refresh();
 
                 // 收集的滚动高度
                 this.setScrollTop (-scrollTop);
@@ -254,7 +254,6 @@
                     animation.classList.remove ('ripple__animation--visible');
 
                     setTimeout (function () {
-                        // Need to figure out a new way to do this
                         try {
                             if (ripples.length < 1) el.style.position = null;
                             animation.parentNode && el.removeChild (animation.parentNode);
