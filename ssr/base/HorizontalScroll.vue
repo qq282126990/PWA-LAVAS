@@ -1,5 +1,5 @@
 <template>
-    <div class="horizontal_wrapper"  ref="horizontalWrapper">
+    <div class="horizontal_wrapper" ref="horizontalWrapper">
         <div class="horizontal" :style="{width: horizontalWidth}" ref="horizontal">
             <slot></slot>
         </div>
@@ -38,7 +38,7 @@
             });
         },
         methods: {
-            // 设置头部导航滑动的宽度
+            /* 设置头部导航滑动的宽度 */
             _setHeaderScroll() {
                 if (this.newData && this.newData.length) {
                     // 获取所有内容标签
@@ -77,6 +77,7 @@
             }
         },
         watch: {
+            /* 监听数据变化刷新滚动组件重新计算滚动高度 */
             newData() {
                 // 设置滑动的宽度
                 this.$nextTick(() => {
@@ -90,11 +91,12 @@
 
 <style lang="stylus" scoped>
 
-    .horizontal_wrapper{
+    .horizontal_wrapper {
         /*margin: 0 20px;*/
         overflow: hidden;
         height: 100%;
     }
+
     .horizontal {
         display: flex;
         flex-direction: row;

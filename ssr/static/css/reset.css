@@ -178,3 +178,7 @@ body {
 .application .theme--light.list, .theme--light .list {
     background: inherit !important;
 }
+
+.tabs__item{
+    padding: 0 !important;
+}

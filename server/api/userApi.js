@@ -25,8 +25,16 @@ router.post ('/getArticle', (req, res) => {
 
     let articleType;
 
-    if (params.id === 'articleRecommend') {
-        articleType = 0
+    switch (params.id) {
+        case 'articleRecommend':
+            articleType = 0
+            break;
+        case 'articleFind':
+            articleType = 1
+            break;
+        case 'articleHot':
+            articleType = 2
+            break;
     }
 
     conn.query ('select * from ??', [`${params.id}`], function (err, result) {
