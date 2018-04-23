@@ -1,54 +1,65 @@
 <template>
-    <div class="recommend_article">
-        <!--文章内容列表-->
-        <transition name="fade">
-            <v-list class="article_list" ref="articleList" v-show="getArticleData.article && getArticleData.article.length > 0">
-                <v-list-tile
-                    dark
-                    ripple
-                    class="article_li"
-                    v-for="(item, index) in getArticleData.article"
-                    @click="select($event,index)"
-                    :key="index"
-                    ref="articleLi"
-                >
-                    <!--文章-->
-                    <div class="article">
-                        <!--文章标题-->
-                        <h1 class="article_title">{{item.title}}</h1>
-                        <!--文章内容-->
-                        <div class="article_center">
-                            <!--内容-->
-                            <div class="center_txt">
-                                <!--文字-->
-                                <p>{{item.smallcontent}}</p>
+    <div>
+        <v-tabs-items>
+            <v-tabs-content
+                v-for="(item, index) in contentHeaderItem"
+                :key="index"
+                :id="'tab-' + item.id"
+            >
+                <div class="recommend_article">
+                    <!--文章内容列表-->
+                    <v-list class="article_list"
+                            ref="articleList"
+                           >
+                        <v-list-tile
+                            dark
+                            ripple
+                            class="article_li"
+                            v-for="(item, index) in getArticleData.article"
+                            @click="select($event,index)"
+                            :key="index"
+                            ref="articleLi"
+                        >
+                            <!--文章-->
+                            <div class="article">
+                                <!--文章标题-->
+                                <h1 class="article_title">{{item.title}}</h1>
+                                <!--文章内容-->
+                                <div class="article_center">
+                                    <!--内容-->
+                                    <div class="center_txt">
+                                        <!--文字-->
+                                        <p>{{item.smallcontent}}</p>
+                                    </div>
+                                    <!--图片-->
+                                    <div class="center_img" v-lazy:background-image="item.img" v-show="item.img">
+                                        <!--<img v-lazy="item.img" v-show="item.img"/>-->
+                                    </div>
+                                </div>
+                                <!--文章底部-->
+                                <div class="article_bottom">
+                                    <!--左-->
+                                    <div class="bottom_left">
+                                        <p>{{item.praise}} 赞 · {{item.comment}} 评论</p>
+                                    </div>
+                                    <!--右-->
+                                    <div class="bottom_right">
+                                        <!--发布人-->
+                                        <p class="right_txt">{{item.publisher}}</p>
+                                        <i class="right_i" v-show="item.flowerName">·</i>
+                                        <p class="right_txt">{{item.flowerName}}</p>
+                                        <!--<i class="iconfont icon-more-horiz"></i>-->
+                                    </div>
+                                </div>
                             </div>
-                            <!--图片-->
-                            <div class="center_img" v-lazy:background-image="item.img" v-show="item.img">
-                                <!--<img v-lazy="item.img" v-show="item.img"/>-->
-                            </div>
-                        </div>
-                        <!--文章底部-->
-                        <div class="article_bottom">
-                            <!--左-->
-                            <div class="bottom_left">
-                                <p>{{item.praise}} 赞 · {{item.comment}} 评论</p>
-                            </div>
-                            <!--右-->
-                            <div class="bottom_right">
-                                <!--发布人-->
-                                <p class="right_txt">{{item.publisher}}</p>
-                                <i class="right_i" v-show="item.flowerName">·</i>
-                                <p class="right_txt">{{item.flowerName}}</p>
-                                <!--<i class="iconfont icon-more-horiz"></i>-->
-                            </div>
-                        </div>
-                    </div>
-                </v-list-tile>
-            </v-list>
-        </transition>
-        <!--loading组件-->
-        <loading v-show="!getArticleData.article" :style="scrollDirection === 'up' ? 'paddingTop: 50%' : 'paddingTop: 30%'"></loading>
+                        </v-list-tile>
+                    </v-list>
+                    <!--loading组件-->
+                    <loading v-show="!getArticleData.article"
+                             :style="scrollDirection === 'up' ? 'paddingTop: 50%' : 'paddingTop: 30%'"></loading>
+                </div>
+            </v-tabs-content>
+        </v-tabs-items>
     </div>
 </template>
 
@@ -74,10 +85,18 @@
             scrollDirection: {
                 type: String,
                 default: 'down'
+            },
+            /*
+            * 文章内容导航头部
+            * @type {Array}
+            * */
+            contentHeaderItem: {
+                type: Array,
+                default: []
             }
         },
         computed: {
-            ...mapState('appShell/asyncAjax', {
+            ...mapState ('appShell/asyncAjax', {
                 /*
                  * 获取对应类型文章
                  * @data {Array}
@@ -94,13 +113,13 @@
              */
             select (e, index) {
                 // 获取节点
-                let cellContainer = this.$refs.articleLi[index].$el.getElementsByTagName('a')[0];
+                let cellContainer = this.$refs.articleLi[index].$el.getElementsByTagName ('a')[0];
 
                 // 点击出现水波纹效果
-                this.show(e, cellContainer);
+                this.show (e, cellContainer);
 
                 // 隐藏水波纹效果
-                this.hide(cellContainer);
+                this.hide (cellContainer);
             },
             /**
              * 点击出现水波纹效果
@@ -115,16 +134,16 @@
                 let value = _ref$value === undefined ? {} : _ref$value;
 
                 // 判断是否有节点
-                if (el.getAttribute(RippleDataAttribute) !== 'true') {
+                if (el.getAttribute (RippleDataAttribute) !== 'true') {
                     return;
                 }
 
                 // 创建水波纹节点
-                let container = document.createElement('span');
-                let animation = document.createElement('span');
+                let container = document.createElement ('span');
+                let animation = document.createElement ('span');
 
                 // 插入节点
-                container.appendChild(animation);
+                container.appendChild (animation);
                 container.className = 'ripple__container';
 
                 if (value.class) {
@@ -137,27 +156,27 @@
                 animation.style.width = size * (value.center ? 1 : 2) + 'px';
                 animation.style.height = animation.style.width;
 
-                el.appendChild(container);
-                let computed = window.getComputedStyle(el);
+                el.appendChild (container);
+                let computed = window.getComputedStyle (el);
                 if (computed.position !== 'absolute' && computed.position !== 'fixed') el.style.position = 'relative';
 
-                let offset = el.getBoundingClientRect();
+                let offset = el.getBoundingClientRect ();
                 let x = value.center ? '50%' : e.clientX - offset.left + 'px';
                 let y = value.center ? '50%' : e.clientY - offset.top + 'px';
 
-                animation.classList.add('ripple__animation--enter');
-                animation.classList.add('ripple__animation--visible');
-                style(animation, 'translate(-50%, -50%) translate(' + x + ', ' + y + ') scale3d(0.01,0.01,0.01)');
-                animation.dataset.activated = Date.now();
+                animation.classList.add ('ripple__animation--enter');
+                animation.classList.add ('ripple__animation--visible');
+                style (animation, 'translate(-50%, -50%) translate(' + x + ', ' + y + ') scale3d(0.01,0.01,0.01)');
+                animation.dataset.activated = Date.now ();
 
-                setTimeout(function () {
-                    animation.classList.remove('ripple__animation--enter');
-                    style(animation, 'translate(-50%, -50%) translate(' + x + ', ' + y + ')  scale3d(0.99,0.99,0.99)');
+                setTimeout (function () {
+                    animation.classList.remove ('ripple__animation--enter');
+                    style (animation, 'translate(-50%, -50%) translate(' + x + ', ' + y + ')  scale3d(0.99,0.99,0.99)');
                 }, 0);
 
                 // 添加样式兼容
                 function style (el, value) {
-                    ['transform', 'webkitTransform'].forEach(function (i) {
+                    ['transform', 'webkitTransform'].forEach (function (i) {
                         el.style[i] = value;
                     });
                 }
@@ -171,36 +190,36 @@
                 let RippleDataAttribute = 'data-ripple';
 
                 // 判断是否有节点
-                if (el.getAttribute(RippleDataAttribute) !== 'true') {
+                if (el.getAttribute (RippleDataAttribute) !== 'true') {
                     return;
                 }
 
                 // 获取要删除的节点
-                let ripples = el.getElementsByClassName('ripple__animation');
+                let ripples = el.getElementsByClassName ('ripple__animation');
 
                 if (ripples.length === 0) return;
                 let animation = ripples[ripples.length - 1];
-                let diff = Date.now() - Number(animation.dataset.activated);
+                let diff = Date.now () - Number (animation.dataset.activated);
                 let delay = 400 - diff;
 
                 delay = delay < 0 ? 0 : delay;
 
                 // 延迟 delay 秒后删除
-                setTimeout(function () {
-                    animation.classList.remove('ripple__animation--visible');
+                setTimeout (function () {
+                    animation.classList.remove ('ripple__animation--visible');
 
-                    setTimeout(function () {
+                    setTimeout (function () {
                         try {
                             if (ripples.length < 1) el.style.position = null;
-                            animation.parentNode && el.removeChild(animation.parentNode);
+                            animation.parentNode && el.removeChild (animation.parentNode);
                         } catch (e) {
                         }
                     }, 300);
                 }, delay);
             }
         },
-        activated() {
-          console.log('111')
+        activated () {
+            console.log ('111')
         },
         components: {
             Loading

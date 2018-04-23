@@ -21,7 +21,7 @@
                 default: null
             }
         },
-        data() {
+        data () {
             return {
                 /*
                  * 设置横向滚动的宽度
@@ -30,16 +30,16 @@
                 horizontalWidth: null
             }
         },
-        mounted() {
+        mounted () {
             // 设置滑动的宽度
-            this.$nextTick(() => {
+            this.$nextTick (() => {
                 // 设置头部导航滑动的宽度
-                this._setHeaderScroll();
+                this._setHeaderScroll ();
             });
         },
         methods: {
             /* 设置头部导航滑动的宽度 */
-            _setHeaderScroll() {
+            _setHeaderScroll () {
                 if (this.newData && this.newData.length) {
                     // 获取所有内容标签
                     this.children = this.$refs.horizontal.children;
@@ -49,19 +49,23 @@
 
                     // 循环选项
                     for (let i = 0; i < this.children.length; i++) {
-                        // 获取每个 childList 宽度
-                        let childList = this.children[i].clientWidth;
+                        let childList;
 
-                        // 设置每个轮播图的宽度
-                        width += childList;
+                        if (this.children[i].clientHeight >= 10) {
+                            // 获取每个 childList 宽度
+                            childList = this.children[i].clientWidth;
+
+                            // 设置每个轮播图的宽度
+                            width += childList;
+                        }
                     }
 
                     // 设置整个头部的宽度
                     this.horizontalWidth = width + 'px';
 
-                    this.$nextTick(() => {
+                    this.$nextTick (() => {
                         if (!this.horizontalScroll) {
-                            this.horizontalScroll = new BScroll(this.$refs.horizontalWrapper, {
+                            this.horizontalScroll = new BScroll (this.$refs.horizontalWrapper, {
                                 // 设置X轴滚动
                                 scrollX: true,
                                 // 当设置 eventPassthrough 为 'vertical' 的时候 ScrollY无效
@@ -70,7 +74,7 @@
                         }
                         else {
                             // 刷新头部滚动
-                            this.horizontalScroll.refresh();
+                            this.horizontalScroll.refresh ();
                         }
                     });
                 }
@@ -78,11 +82,11 @@
         },
         watch: {
             /* 监听数据变化刷新滚动组件重新计算滚动高度 */
-            newData() {
+            newData () {
                 // 设置滑动的宽度
-                this.$nextTick(() => {
+                this.$nextTick (() => {
                     // 设置头部导航滑动的宽度
-                    this._setHeaderScroll();
+                    this._setHeaderScroll ();
                 });
             }
         }

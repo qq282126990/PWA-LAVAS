@@ -10,9 +10,12 @@
         <div class="content_wrapper" ref="contentWrapper">
             <div class="wrapper" ref="wrapper" :style="{marginTop: `${contentMarginTop}px`}">
                 <v-tabs>
+                    <!--文章内容导航-->
                     <div class="content_header_scroll" ref="contentHeaderScroll">
                         <v-tabs-bar>
+                            <!--横向滚动-->
                             <horizontal-scroll :newData="contentHeaderItem">
+                                <!--导航-->
                                 <v-tabs-item
                                     v-for="(item, index) in contentHeaderItem"
                                     :key="index"
@@ -28,53 +31,26 @@
                                         </h1>
                                     </v-btn>
                                 </v-tabs-item>
-                                <v-tabs-slider class="horizontal_slider_dots" color="blue"></v-tabs-slider>
+                                <!--滚动条-->
+                                <v-tabs-slider class="slider_dots" color="blue"></v-tabs-slider>
                             </horizontal-scroll>
                         </v-tabs-bar>
                     </div>
-                    <v-tabs-items>
-                        <v-tabs-content
-                            v-for="(item, index) in contentHeaderItem"
-                            :key="index"
-                            :id="'tab-' + item.id"
-                        >
-                            <v-card flat>
-                                <v-card-text>{{ text }}</v-card-text>
-                            </v-card>
-                        </v-tabs-content>
-                    </v-tabs-items>
+                    <!--文章内容-->
+                    <div class="content" ref="content">
+                        <!--垂直滚动-->
+                        <vertical-scroll :listenScroll="listenScroll"
+                                         :probeType="probeType"
+                                         @scroll="verticalScroll"
+                                         ref="verticalScroll">
+                            <!--文章内容-->
+                            <recommend-article :articleList="saveArticleList[horizontalActive]"
+                                               :scrollDirection="scrollDirection"
+                                               :contentHeaderItem="contentHeaderItem"
+                            ></recommend-article>
+                        </vertical-scroll>
+                    </div>
                 </v-tabs>
-                <!--横向滑动导航-->
-                <!--<div class="content_header_scroll" ref="contentHeaderScroll">-->
-                <!--<horizontal-scroll :newData="contentHeaderItem">-->
-                <!--<div class="horizontal_item"-->
-                <!--v-for="(item, index) in contentHeaderItem"-->
-                <!--:key="index"-->
-                <!--ref="horizontalItem">-->
-                <!--&lt;!&ndash;按钮&ndash;&gt;-->
-                <!--<v-btn flat-->
-                <!--:class="{'active': horizontalActive === index}"-->
-                <!--@click.native="selectHorizontal(index, item.id)">-->
-                <!--<h1 class="item_name" :class="{'active': horizontalActive === index}">{{item.name}}</h1>-->
-                <!--</v-btn>-->
-                <!--&lt;!&ndash;dot&ndash;&gt;-->
-                <!--<div class="horizontal_slider_dots">-->
-                <!--<p class="slider_dots" :style="{transform: `translate3d(${sliderDotsWidth}px, 0, 0)`}">-->
-                <!--<span class="dots"></span>-->
-                <!--</p>-->
-                <!--</div>-->
-                <!--</div>-->
-                <!--</horizontal-scroll>-->
-                <!--</div>-->
-                <!--&lt;!&ndash;文章内容&ndash;&gt;-->
-                <!--<div class="content" ref="content">-->
-                <!--<vertical-scroll :listenScroll="listenScroll"-->
-                <!--:probeType="probeType"-->
-                <!--@scroll="verticalScroll"-->
-                <!--ref="verticalScroll">-->
-                <!--<recommend-article :articleList="saveArticleList[horizontalActive]" :scrollDirection="scrollDirection"></recommend-article>-->
-                <!--</vertical-scroll>-->
-                <!--</div>-->
             </div>
         </div>
     </div>
@@ -103,13 +79,10 @@
         },
         async asyncData ({store, route}) {
             /* 请求文章接口默认推荐 */
-            await  store.dispatch('appShell/asyncAjax/getArticleAjax', {id: 'articleRecommend'})
+            await  store.dispatch ('appShell/asyncAjax/getArticleAjax', {id: 'articleRecommend'})
         },
         data () {
             return {
-                tabs: ['tab-1', 'tab-2', 'tab-3'],
-                active: null,
-                text: 'Lorem ipsu',
                 /*
                  * 设置内容头部导航数据
                  * @data {Array}
@@ -117,9 +90,9 @@
                 contentHeaderItem: [{id: 'articleRecommend', name: '推荐'},
                     {id: 'articleFind', name: '发现'},
                     {id: 'articleHot', name: '热榜'},
-                    {id: '', name: '文档'},
-                    {id: '', name: '提问'},
-                    {id: '', name: '书店'}],
+                    {id: 'documents', name: '文档'},
+                    {id: 'questions', name: '提问'},
+                    {id: 'bookstore', name: '书店'}],
                 /*
                  * 开启滚动组件监听滚动事件
                  * @type {Boolean}
@@ -183,7 +156,7 @@
             }
         },
         computed: {
-            ...mapState('appShell/asyncAjax', {
+            ...mapState ('appShell/asyncAjax', {
                 /*
                  * 获取对应类型文章
                  * @data {Array}
@@ -193,14 +166,14 @@
         },
         created () {
             /* 创建文章内容类型的数据组 */
-            this._initArticleGroup(this.contentHeaderItem);
+            this._initArticleGroup (this.contentHeaderItem);
         },
         mounted () {
-            this._initData();
+            this._initData ();
         },
         methods: {
             /* 一些初始化操作 */
-            _initData() {
+            _initData () {
                 let overallSearch = this.$refs.overallSearch.$el;
 
                 // 内容最大偏移位置
@@ -235,12 +208,8 @@
                     if (!this.oldClick) {
                         this.oldClick = id;
 
-                        // 初始化文章列表
-                        this.setArticleList({});
 
-                        setTimeout(() => {
-                            this.setArticleList(this.saveArticleList[index]);
-                        }, 500)
+                        this.setArticleList (this.saveArticleList[index]);
                     }
 
 
@@ -248,10 +217,10 @@
                 }
 
                 // 初始化文章列表
-                this.setArticleList({});
+                this.setArticleList ({});
 
                 // 请求文章内容接口
-                this.setArticleAjax({id: id});
+                this.setArticleAjax ({id: id});
             },
             /**
              * 创建文章内容类型的数据组
@@ -262,8 +231,8 @@
                 let ret = [];
                 let items = [];
 
-                list.forEach(() => {
-                    ret.push(items);
+                list.forEach (() => {
+                    ret.push (items);
                 });
 
                 // 初始化文章内容组用于防止重复请求
@@ -277,7 +246,7 @@
             verticalScroll (pos) {
                 this.verticalScrollY = pos.y;
             },
-            ...mapActions('appShell/asyncAjax', {
+            ...mapActions ('appShell/asyncAjax', {
                 /*
                  * 获取对应文章类型接口
                  *
@@ -322,12 +291,12 @@
                     this.overallSearchPercent = 0;
 
                     // 禁用滚动
-                    this.$refs.verticalScroll.disable();
-                    setTimeout(() => {
+                    this.$refs.verticalScroll.disable ();
+                    setTimeout (() => {
                         // 刷新滚动
-                        this.$refs.verticalScroll.refresh();
+                        this.$refs.verticalScroll.refresh ();
                         // 重新开启滚动
-                        this.$refs.verticalScroll.enable();
+                        this.$refs.verticalScroll.enable ();
                     }, 300);
                 }
 
@@ -340,12 +309,12 @@
                     this.overallSearchPercent = 1;
 
                     // 禁用滚动
-                    this.$refs.verticalScroll.disable();
-                    setTimeout(() => {
+                    this.$refs.verticalScroll.disable ();
+                    setTimeout (() => {
                         // 刷新滚动
-                        this.$refs.verticalScroll.refresh();
+                        this.$refs.verticalScroll.refresh ();
                         // 重新开启滚动
-                        this.$refs.verticalScroll.enable();
+                        this.$refs.verticalScroll.enable ();
                     }, 300);
                 }
 
@@ -362,7 +331,7 @@
                 // 保存获取过的文章内容组用于防止重复请求
                 this.saveArticleList[data.type] = data;
 
-                this.setArticleList(this.saveArticleList[data.type])
+                this.setArticleList (this.saveArticleList[data.type])
             }
         },
         components: {
@@ -436,19 +405,20 @@
         padding: 0 10px;
         text-align: center;
         height: 6px;
-        .slider_dots {
-            position: absolute;
-            left: 0;
-            margin: 0;
-            width: 136px;
+    }
+
+    .slider_dots {
+        position: absolute;
+        left: 0;
+        margin: 0;
+        width: 136px !important;
+        height: 6px;
+        transition: all .5s;
+        .dots {
+            display: block;
+            margin: 0 25px;
             height: 6px;
-            transition: all .5s;
-            .dots {
-                display: block;
-                margin: 0 25px;
-                height: 6px;
-                background: $colorContentHeaderItemActive;
-            }
+            background: $colorContentHeaderItemActive;
         }
     }
 
@@ -461,5 +431,13 @@
         overflow: hidden;
         width: 100%;
         background: #EBEBEB;
+    }
+
+    .tabs__items {
+        height: 100%
+    }
+
+    .tabs {
+        height: 100%
     }
 </style>
