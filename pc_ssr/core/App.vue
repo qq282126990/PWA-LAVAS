@@ -28,7 +28,7 @@
 import Vue from 'vue';
 import {mapState, mapActions} from 'vuex';
 import AppHeader from '@/components/AppHeader';
-import UpdateToast from '@/components/UpdateToast';
+import UpdateToast from 'commonComponents/UpdateToast';
 import {keepAlivePages} from '@/.lavas/router';
 
 const ENABLE_SCROLL_CLASS = 'app-view-scroll-enabled';
@@ -157,13 +157,13 @@ $page-transition-duration = 0.35s
 
     .app-view
         position absolute
-        top 0
+        top 52px
         right 0
         bottom 0
         left 0
         -webkit-overflow-scrolling touch
         background white
-
+        box-sizing: content-box;
         &::-webkit-scrollbar
             width 0
             background transparent

@@ -29,6 +29,13 @@ module.exports = {
          * @type {Object.<string, Object>}
          */
         alias: {
+            base: {
+                'commonComponents': path.resolve(__dirname, '../common_components'),
+                'components': '@/components',
+                'base': '@/base',
+                'common': '@/common',
+                'api': '@/api'
+            },
             server: {
                 'iscroll/build/iscroll-lite$': path.join(__dirname, 'core/iscroll-ssr.js')
             }
