@@ -2,8 +2,13 @@
     <div>
         <div class="content">
             <div class="content_bg_one"></div>
+            <!--左边内容-->
             <div class="content_left">
                 <user-message></user-message>
+            </div>
+            <!--右边内容-->
+            <div class="content_right">
+                <search></search>
             </div>
         </div>
     </div>
@@ -11,7 +16,8 @@
 
 <script>
     import {mapActions} from 'vuex';
-    import UserMessage from 'components/UserMessage.vue'
+    import UserMessage from 'components/UserMessage'
+    import Search from 'components/Search'
 
     export default {
         name: 'index',
@@ -26,7 +32,8 @@
         mounted () {
         },
         components: {
-            UserMessage
+            UserMessage,
+            Search
         }
     };
 </script>
@@ -37,6 +44,7 @@
         display: flex;
         height: 100%;
         flex-wrap: wrap;
+        box-sizing: border-box;
     }
 
     .content_bg_one {
@@ -55,5 +63,11 @@
     .content_left {
         width: 250px;
         height: 100%
+    }
+
+    .content_right {
+        flex: 1;
+        padding-left :20px;
+        width: 100%;
     }
 </style>

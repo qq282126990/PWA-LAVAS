@@ -143,6 +143,7 @@ $page-transition-duration = 0.35s
     -moz-osx-font-smoothing grayscale
     text-align center
     color #2c3e50
+    min-width 800px
     height 100%
 
     .application--wrap
@@ -154,6 +155,7 @@ $page-transition-duration = 0.35s
         right 0
         left 0
         z-index 140
+        min-width: 800px;
 
     .app-view
         position absolute
