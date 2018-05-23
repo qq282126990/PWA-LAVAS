@@ -119,7 +119,7 @@
                 width:4px;
                 height: 14px;
                 border-radius: 20px;
-                background: #000;
+                background: $header-middle-txt;
             }
         }
     }

@@ -58,12 +58,14 @@
 </script>
 
 <style lang="stylus" scoped>
+    @require '~@/assets/stylus/variable'
+
     .user_message_wrapper {
         position: relative;
         padding: 15px 15px 20px 15px;
         width: 100%;
         /*height: 200px;*/
-        background: #3472E2;
+        background: $userMessageWrapper;
         z-index: 1;
         box-sizing: border-box;
         .user_message {
@@ -79,7 +81,7 @@
             height: 80px;
             border-radius: 50%;
             overflow: hidden;
-            background: #D3D7D8;
+            background: $userAvatar;
         }
         /*头像图片*/
         .user_avatar_img {
@@ -101,7 +103,7 @@
             align-items: left;
             display: flex;
             overflow: hidden;
-            color: #fff;
+            color: $userNameLevel;
         }
         .txt {
             flex: 1;
@@ -127,7 +129,7 @@
             line-height: 25px;
             width: 100%;
             height: 25px;
-            background: #EAEAEA;
+            background: $experiencePrompt;
             &::after {
                 content: '';
                 position: absolute;
@@ -137,14 +139,14 @@
                 height: 0px;
                 border-left: 10px solid transparent;
                 border-right: 10px solid transparent;
-                border-bottom: 10px solid #EAEAEA;
+                border-bottom: 10px solid $experiencePrompt;
             }
             .experience_prompt_highlight {
                 position: relative;
                 display: inline-block;
                 margin: 0;
                 padding: 0 10px;
-                color: red;
+                color: $experiencePromptHighlight;
             }
         }
     }
@@ -155,7 +157,7 @@
         display: flex;
         flex-wrap: wrap;
         width: 100%;
-        background: #fff;
+        background: $userNameLevel;
         z-index :100
         .badge_img {
             position: relative;
