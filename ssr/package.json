@@ -30,7 +30,9 @@
     "axios": "^0.17.1",
     "better-scroll": "^1.8.0",
     "ssr-window": "^1.0.0",
-    "vue-lazyload": "^1.2.3"
+    "vue-lazyload": "^1.2.3",
+    "postcss": "^6.0.21",
+    "postcss-loader": "^2.1.4"
   },
   "devDependencies": {
     "express": "^4.16.2",
