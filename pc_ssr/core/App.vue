@@ -142,8 +142,8 @@ $page-transition-duration = 0.35s
     -webkit-font-smoothing antialiased
     -moz-osx-font-smoothing grayscale
     text-align center
-    color #2c3e50
-    min-width 800px
+    color #000
+    min-width 850px
     height 100%
 
     .application--wrap
@@ -155,7 +155,7 @@ $page-transition-duration = 0.35s
         right 0
         left 0
         z-index 140
-        min-width: 800px;
+        min-width: 850px;
 
     .app-view
         position absolute
@@ -164,7 +164,7 @@ $page-transition-duration = 0.35s
         bottom 0
         left 0
         -webkit-overflow-scrolling touch
-        background white
+        background #e8e8e8
         box-sizing: content-box;
         &::-webkit-scrollbar
             width 0

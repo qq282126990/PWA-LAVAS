@@ -13,8 +13,15 @@
                 </li>
             </ul>
             <!--搜索框-->
-            <input class="search_input" type="search" autocomplete="off" spellcheck="false" placeholder="请输入搜索词"
-                   autocapitalize="off"/>
+            <div class="search_input_wrapper">
+                <input class="search_input" type="search"
+                       autocomplete="off"
+                       spellcheck="false"
+                       placeholder="请输入搜索词"
+                       autocapitalize="off"/>
+                <!--图标-->
+                <v-icon class="search_icon">search</v-icon>
+            </div>
         </div>
     </div>
 </template>
@@ -48,6 +55,7 @@
         min-height: 45px;
         display: flex;
         padding: 10px;
+        border-radius: 5px;
         background: $searchWrapper;
         /*搜索热门*/
         .search_hot {
@@ -58,12 +66,13 @@
         }
         /*标题*/
         .search_hot_title {
-            flex: 1;
+            flex: 0 0 70px;
             margin: 0;
             display: inline-table;
         }
         /*内容*/
         .search_hot_content {
+            flex: 1;
             display: flex;
             flex-wrap: wrap;
             padding-left: 10px;
@@ -74,14 +83,33 @@
             padding: 0 10px;
         }
         /*搜索输入框*/
+        .search_input_wrapper{
+            flex: 1;
+            position: relative;
+            float: right;
+        }
         .search_input {
-            flex: 0 0 40%;
+            position: relative;
+            padding: 0 20px 0 10px;
+            max-width : 150px;
             width: 100%;
             border-radius: 20px;
             height: 30px;
             color: $searchInputColor;
             background: $searchInputBg;
-            outline: none
+            outline: none;
+            transition: all .5s;
+            float: right;
+            &:focus {
+                max-width :200px;
+            }
+        }
+        /*搜索框图标*/
+        .search_icon {
+            position: absolute;
+            right: 0;
+            top: 0;
+            padding: 3px 13px 3px 3px;
         }
     }
 </style>
