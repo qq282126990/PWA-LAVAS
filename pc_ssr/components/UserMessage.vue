@@ -68,6 +68,7 @@
         background: $userMessageWrapper;
         z-index: 1;
         box-sizing: border-box;
+        border-radius: 5px;
         .user_message {
             display: flex;
         }
@@ -96,7 +97,6 @@
         }
         /*头像名称等级声望 退出按钮*/
         .user_name_level, .exit_user {
-            padding: 5px 20px;
             flex: 1;
             flex-wrap: wrap;
             flex-direction: column;

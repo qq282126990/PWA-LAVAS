@@ -8,7 +8,10 @@
             </div>
             <!--右边内容-->
             <div class="content_right">
+                <!--搜索框-->
                 <search></search>
+                <!--精选文章模块-->
+                <choice-article></choice-article>
             </div>
         </div>
     </div>
@@ -18,6 +21,7 @@
     import {mapActions} from 'vuex';
     import UserMessage from 'components/UserMessage'
     import Search from 'components/Search'
+    import ChoiceArticle from 'components/ChoiceArticle'
 
     export default {
         name: 'index',
@@ -33,7 +37,8 @@
         },
         components: {
             UserMessage,
-            Search
+            Search,
+            ChoiceArticle
         }
     };
 </script>
@@ -69,5 +74,6 @@
         flex: 1;
         padding-left :20px;
         width: 100%;
+        z-index :1
     }
 </style>
