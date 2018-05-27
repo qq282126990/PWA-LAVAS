@@ -63,12 +63,14 @@
     .user_message_wrapper {
         position: relative;
         padding: 15px 15px 20px 15px;
+        font-size: 13px;
         width: 100%;
         /*height: 200px;*/
-        background: $userMessageWrapper;
+        background: $user-message-wrapper;
         z-index: 1;
         box-sizing: border-box;
-        border-radius: 5px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
         .user_message {
             display: flex;
         }
@@ -82,7 +84,7 @@
             height: 80px;
             border-radius: 50%;
             overflow: hidden;
-            background: $userAvatar;
+            background: $user-avatar;
         }
         /*头像图片*/
         .user_avatar_img {
@@ -103,7 +105,7 @@
             align-items: left;
             display: flex;
             overflow: hidden;
-            color: $userNameLevel;
+            color: $user-name-level;
         }
         .txt {
             flex: 1;
@@ -129,7 +131,7 @@
             line-height: 25px;
             width: 100%;
             height: 25px;
-            background: $experiencePrompt;
+            background: $experience-prompt;
             &::after {
                 content: '';
                 position: absolute;
@@ -139,14 +141,14 @@
                 height: 0px;
                 border-left: 10px solid transparent;
                 border-right: 10px solid transparent;
-                border-bottom: 10px solid $experiencePrompt;
+                border-bottom: 10px solid $experience-prompt;
             }
             .experience_prompt_highlight {
                 position: relative;
                 display: inline-block;
                 margin: 0;
                 padding: 0 10px;
-                color: $experiencePromptHighlight;
+                color: $experience-prompt-highlight;
             }
         }
     }
@@ -157,8 +159,8 @@
         display: flex;
         flex-wrap: wrap;
         width: 100%;
-        background: $userNameLevel;
-        z-index :100
+        background: $user-name-level;
+        z-index: 100
         .badge_img {
             position: relative;
             padding: 10px 5px;
@@ -172,15 +174,15 @@
                 cursor: pointer;
             }
             img:hover + .badge_icon {
-                opacity :1;
+                opacity: 1;
             }
             /*icon*/
             .badge_icon {
                 position: absolute;
                 top: -15px;
                 left: 9px;
-                opacity :0;
-                transition : all .5s;
+                opacity: 0;
+                transition: all .5s;
                 color: pink;
                 cursor: pointer;
             }

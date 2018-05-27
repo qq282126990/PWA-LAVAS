@@ -99,24 +99,39 @@
             color: $header-wrapper-cl
         }
         .header_middle_img {
-            width: 35px;
-            height: 35px;
+            width: 30px;
+            height: 30px;
         }
         .header_middle_txt {
             position: relative;
             display: flex;
             text-align: right;
             .txt {
-                padding-right: 20px;
-                margin: 0;
-                font-size: 16px;
+                position: relative;
+                margin: 0 20px 0 0;
+                font-size: 13px;
+                width: 30px;
+                text-align: center;
+                cursor: pointer;
+                &:hover::after {
+                    width: 30px;
+                }
+                &::after {
+                    content: '';
+                    position: absolute;
+                    left: 0;
+                    bottom: -5px;
+                    width: 0;
+                    transition: all .3s;
+                    border-bottom: 2px solid $header-middle-txt;
+                }
             }
             &::after {
                 content: '';
                 position: absolute;
-                top: 5px;
-                right:0;
-                width:4px;
+                top: 3px;
+                right: 0;
+                width: 4px;
                 height: 14px;
                 border-radius: 20px;
                 background: $header-middle-txt;

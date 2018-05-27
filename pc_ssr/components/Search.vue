@@ -55,14 +55,15 @@
         min-height: 45px;
         display: flex;
         padding: 10px;
+        font-size: 13px;
         border-radius: 5px;
-        background: $searchWrapper;
+        background: $search-wrapper;
         /*搜索热门*/
         .search_hot {
             flex: 1;
             display: flex;
             align-items: center;
-            color: $searchHot;
+            color: $search-hot;
         }
         /*标题*/
         .search_hot_title {
@@ -77,13 +78,13 @@
             flex-wrap: wrap;
             padding-left: 10px;
             list-style: none;
-            color: $searchHotContent;
+            color: $search-hot-content;
         }
         .search_hot_content__li {
             padding: 0 10px;
         }
         /*搜索输入框*/
-        .search_input_wrapper{
+        .search_input_wrapper {
             flex: 1;
             position: relative;
             float: right;
@@ -91,17 +92,18 @@
         .search_input {
             position: relative;
             padding: 0 20px 0 10px;
-            max-width : 150px;
+            max-width: 150px;
             width: 100%;
+            font-size: 12px;
             border-radius: 20px;
             height: 30px;
-            color: $searchInputColor;
-            background: $searchInputBg;
+            color: $search-input-color;
+            background: $search-input-bg;
             outline: none;
             transition: all .5s;
             float: right;
             &:focus {
-                max-width :200px;
+                max-width: 200px;
             }
         }
         /*搜索框图标*/
