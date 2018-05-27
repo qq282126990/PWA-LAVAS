@@ -17,8 +17,8 @@ Vue.use(Vuetify);
 
 Vue.use(VueLazyload, {
     preLoad: 1.3,
-    error: 'static/img/icons/android-chrome-144x144.png',
-    loading: 'static/img/icons/android-chrome-144x144.png',
+    error: 'static/img/errorImg.jpg',
+    loading: 'static/img/errorImg.jpg',
     attempt: 1
 })
 

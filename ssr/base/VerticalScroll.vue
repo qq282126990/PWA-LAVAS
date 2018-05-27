@@ -187,7 +187,7 @@
             }, 20);
         },
         methods: {
-            // 初始化滚动组件
+            /* 初始化滚动组件 */
             initScroll () {
                 // 判断有没有渲染完成
                 if (!this.$refs.wrapper) {
@@ -254,35 +254,35 @@
                     this._initPullUpLoad ();
                 }
             },
-            // 禁用 better-scroll
+            /* 禁用 better-scroll */
             disable () {
                 this.scroll && this.scroll.disable ();
             },
-            // 启用 better-scroll, 默认 开启。
+            /* 启用 better-scroll, 默认 开启。 */
             enable () {
                 this.scroll && this.scroll.enable ();
             },
-            // 刷新 better-scroll
+            /* 刷新 better-scroll */
             refresh () {
                 this.scroll && this.scroll.refresh ();
             },
-            // 滚动到指定位置
+            /* 滚动到指定位置 */
             scrollTo () {
                 this.scroll && this.scroll.scrollTo.apply (this.scroll, arguments);
             },
-            // 滚动到指定的目标元素
+            /* 滚动到指定的目标元素 */
             scrollToElement () {
                 this.scroll && this.scroll.scrollToElement.apply (this.scroll, arguments);
             },
-            // 发送点击事件
+            /* 发送点击事件 */
             clickItem (e, item) {
                 this.$emit ('click', item);
             },
-            // 销毁 better-scroll，解绑事件。
+            /* 销毁 better-scroll，解绑事件。 */
             destroy () {
                 this.scroll.destroy ();
             },
-            // 初始化下拉刷新
+            /* 初始化下拉刷新 */
             _initPullDownRefresh () {
                 this.scroll.on ('pullingDown', () => {
                     // 是否开启下拉刷新之前进行某些操作
@@ -321,7 +321,7 @@
                 });
 
             },
-            // 初始化上拉刷新
+            /* 初始化上拉刷新 */
             _initPullUpLoad () {
                 this.scroll.on ('pullingUp', () => {
                     // 设置正在上拉加载
@@ -331,7 +331,7 @@
                     this.$emit ('pullingUp');
                 })
             },
-            // 刷新滚动组件重新计算滚动
+            /* 刷新滚动组件重新计算滚动 */
             forceUpdate (dirty) {
                 // 是否开启下拉刷新滚动组件
                 if (this.pullDownRefresh && this.isPullingDown) {
@@ -361,7 +361,7 @@
                     this.refresh ();
                 }
             },
-            // 反弹拉下来方法
+            /* 反弹拉下来方法 */
             _reboundPullDown () {
                 const {stopTime = 600} = this.pullDownRefresh;
 
@@ -375,7 +375,7 @@
                     }, stopTime);
                 });
             },
-            // 拉下后
+            /* 拉下后 */
             _afterPullDown () {
                 setTimeout (() => {
                     // 设置下拉风格
@@ -390,10 +390,8 @@
             }
         },
         watch: {
-            // 监听数据的变化
+            /* 监听数据变化刷新滚动组件重新计算滚动高度 */
             data (data) {
-                console.log (data);
-
                 setTimeout (() => {
                     // 数据发生变化时刷新滚动重新计算滚动
                     this.forceUpdate (true)

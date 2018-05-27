@@ -34,7 +34,15 @@ export const actions = {
         }
         else {
             /* 错误处理 */
-            commit(SET_ARTICLE_DATA, res.data);
+            commit(SET_ARTICLE_DATA, []);
         }
+    },
+    /**
+     * 获取文章内容列表
+     *
+     * @param {Function}
+     */
+    articleList ({commit}, articleList) {
+        commit (SET_ARTICLE_DATA, articleList);
     }
 };
