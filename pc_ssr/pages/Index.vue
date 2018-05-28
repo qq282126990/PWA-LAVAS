@@ -6,6 +6,7 @@
             <div class="content_left">
                 <user-message></user-message>
                 <user-attention></user-attention>
+                <user-attention></user-attention>
             </div>
             <!--右边内容-->
             <div class="content_right">
