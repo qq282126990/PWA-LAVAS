@@ -1,34 +1,73 @@
 <template>
     <div class="app_right_menu">
-        <!--列表内容-->
+        <!--回到最上-->
         <div class="app_right_menu_list">
             <v-icon class="app_right_menu_list__icon">publish</v-icon>
+        </div>
+        <!--帮助-->
+        <div class="app_right_menu_list">
+            <v-icon class="app_right_menu_list__icon">help</v-icon>
+        </div>
+        <!--写文章-->
+        <div class="app_right_menu_list">
+            <v-icon class="app_right_menu_list__icon">edit</v-icon>
         </div>
     </div>
 </template>
 
 <script type="text/ecmascript-6">
-    export default {}
+    export default {
+        mounted () {
+            // 监听浏览器滚动
+            window.addEventListener('scroll', this.scroll)
+        },
+        destroyed () {
+            window.removeEventListener('scroll', this.scroll)
+        },
+        methods: {
+            scroll (data) {
+                console.log(data)
+            }
+        }
+    }
 </script>
 
 <style lang="stylus" scoped>
+    @require '~@/assets/stylus/variable'
+
     .app_right_menu {
         position: fixed;
         right: 0;
         bottom: 15px;
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: flex-end;
         padding: 0 2.5%;
         width: 10%;
-        height: 10%;
     }
 
     .app_right_menu_list {
-        max-width :60px;
-        max-height :60px;
-        background: #fff;
+        margin-top: 5px;
+        max-width: 60px;
     }
 
     .app_right_menu_list__icon {
+        padding: 13px 10px;
+        border-radius: 5px;
         font-size: 30px;
-        color: #f2923b;
+        user-select: none;
+        cursor: pointer;
+        color: $app-right-menu-list-icon-color;
+        background: $app-right-menu-list-icon-bg;
+        &:hover{
+            color: #fff;
+            background: #dddddd;
+        }
+    }
+
+    @media screen and (max-width: 800px) {
+        .app_right_menu {
+            display: none;
+        }
     }
 </style>
