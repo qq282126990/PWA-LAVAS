@@ -5,18 +5,19 @@
             <!--左边内容-->
             <div class="content_left">
                 <user-message></user-message>
-                <user-attention></user-attention>
-                <user-attention></user-attention>
+                <user-attention v-for="item in contentLeftTitle" :userAttentionHeaderTxt="item"></user-attention>
             </div>
-            <!--右边内容-->
-            <div class="content_right">
+            <!--中间内容-->
+            <div class="content_middle">
                 <!--搜索框-->
                 <search></search>
                 <!--精选文章模块-->
-                <article-block :articleBlockData="articleBlockData[0]"></article-block>
+                <article-block :articleBlockData="contentRightTitle[0]"></article-block>
                 <!--普通文章模块-->
-                <article-block :articleBlockData="articleBlockData[1]"></article-block>
+                <article-block :articleBlockData="contentRightTitle[1]"></article-block>
             </div>
+            <!--右边内容-->
+            <app-right-menu></app-right-menu>
         </div>
     </div>
 </template>
@@ -27,6 +28,7 @@
     import UserAttention from 'components/UserAttention'
     import Search from 'components/Search'
     import ArticleBlock from 'components/ArticleBlock'
+    import AppRightMenu from 'components/AppRightMenu'
 
     export default {
         name: 'index',
@@ -40,7 +42,16 @@
         },
         data () {
           return {
-              articleBlockData: ['精选文章', '普通文章']
+              /*
+              * 右边内容标题
+              * @type {Array}
+              * */
+              contentRightTitle: ['精选文章', '普通文章'],
+              /*
+              * 左边内容标题
+              * @type {Array}
+              * */
+              contentLeftTitle: ['我关注的人', '推荐订阅']
           }
         },
         mounted () {
@@ -49,7 +60,8 @@
             UserMessage,
             UserAttention,
             Search,
-            ArticleBlock
+            ArticleBlock,
+            AppRightMenu
         }
     };
 </script>
@@ -81,7 +93,7 @@
         z-index: 1
     }
 
-    .content_right {
+    .content_middle {
         flex: 1;
         padding-left: 20px;
         width: 100%;

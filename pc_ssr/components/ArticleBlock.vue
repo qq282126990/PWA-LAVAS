@@ -69,7 +69,7 @@
             </div>
         </div>
         <!--more按钮-->
-        <div class="article_block_more_btn">
+        <div class="article_block_more_btn" v-show="articleBlockData === '普通文章'">
             <v-btn flat color="secondary" class="more_btn">更多</v-btn>
         </div>
     </div>
@@ -154,9 +154,9 @@
             display: flex;
             flex-direction: column;
             border-bottom: 2px solid $choice-article-content-list;
-        // &:last-child {
-        //     border-bottom: none;
-        // }
+         &:last-child {
+             border-bottom: none;
+         }
         }
         .article_block_content_list {
             padding: 15px 0;
@@ -184,12 +184,12 @@
         .content_list_text__title {
             margin: 0;
             padding-bottom: 5px;
-            font-size: 16px;
+            font-size: 18px;
         }
         /*文章内容*/
         .content_list_text__content {
             margin: 0;
-            font-size: 13px;
+            font-size: 14px;
             overflow: hidden;
         }
         /*查看全部按钮*/
@@ -229,6 +229,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        border-top: 2px solid $choice-article-content-list;
         .more_btn {
             margin: 0 !important;
             border: 1px solid #999;
