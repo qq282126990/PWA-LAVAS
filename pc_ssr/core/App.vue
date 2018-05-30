@@ -145,7 +145,7 @@ $page-transition-duration = 0.35s
     -webkit-font-smoothing antialiased
     -moz-osx-font-smoothing grayscale
     text-align center
-    color #000
+    color #000;
     min-width 850px
     height 100%
 

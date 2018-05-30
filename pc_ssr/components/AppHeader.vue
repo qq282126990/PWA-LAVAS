@@ -18,11 +18,19 @@
 </template>
 
 <script>
-    import {mapState} from 'vuex';
+    import {mapState, mapActions} from 'vuex';
     import EventBus from '@/core/event-bus';
 
     export default {
         name: 'appHeader',
+        mounted () {
+            // 监听浏览器滚动
+            window.addEventListener('scroll', this.scroll);
+        },
+        destroyed () {
+            // 销毁监听滚动
+            window.removeEventListener('scroll', this.scroll);
+        },
         computed: {
             ...mapState('appShell/appHeader', [
                 'show'
@@ -61,7 +69,32 @@
                 if (route) {
                     this.$router.push(route);
                 }
-            }
+            },
+            /*
+             * 滚动方法
+             * */
+            scroll () {
+                let scrollTop;
+                let documentElement = document.documentElement
+
+                // 获取滚动条
+                if (documentElement && documentElement.scrollTop) {
+                    scrollTop = documentElement.scrollTop;
+                }
+                else if (document.body) {
+                    scrollTop = document.body.scrollTop;
+                }
+
+                if (scrollTop > 52) {
+                    this.setAppHeader({show: false});
+                }
+                else {
+                    this.setAppHeader({show: true});
+                }
+            },
+            ...mapActions('appShell/appHeader', {
+                setAppHeader: 'setAppHeader'
+            })
         }
     };
 </script>

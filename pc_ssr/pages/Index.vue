@@ -76,11 +76,11 @@
 
     .content_bg_one {
         position: absolute;
-        top: 52px;
+        top: 0;
         left: 0;
         right: 0;
         width: 100%;
-        height: 300px;
+        height: 352px;
         background: url('../assets/img/content_bg_one.jpg') no-repeat;
         background-size: cover;
         z-index: 0;

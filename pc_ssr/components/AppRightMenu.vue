@@ -1,6 +1,6 @@
 <template>
     <transition name="fade">
-        <div class="app_right_menu" v-show="showMenu">
+        <div class="app_right_menu" :class="{'app_right_menu_hidden':setMenuClass }" v-show="showMenu">
             <!--回到最上-->
             <div class="app_right_menu_list">
                 <v-icon class="app_right_menu_list__icon">publish</v-icon>
@@ -19,34 +19,49 @@
 
 <script type="text/ecmascript-6">
     export default {
+        name: 'appRightMenu',
         data () {
             return {
                 /*
-                * 是否显示菜单
-                * @type {Boolean}
-                * */
-                showMenu: false
+                 * 是否显示菜单
+                 * @type {Boolean}
+                 * */
+                showMenu: false,
+                /*
+                 * 是否设置菜单样式
+                 * @type {Boolean}
+                 * */
+                setMenuClass: false
             }
         },
         mounted () {
             // 监听浏览器滚动
-            window.addEventListener ('scroll', this.scroll);
+            window.addEventListener('scroll', this.scroll);
 
         },
         destroyed () {
             // 销毁监听滚动
-            window.removeEventListener ('scroll', this.scroll);
+            window.removeEventListener('scroll', this.scroll);
         },
         methods: {
             scroll () {
                 let scrollTop;
+                let documentElement = document.documentElement
 
                 // 获取滚动条
-                if (document.documentElement && document.documentElement.scrollTop) {
-                    scrollTop = document.documentElement.scrollTop;
+                if (documentElement && documentElement.scrollTop) {
+                    scrollTop = documentElement.scrollTop;
                 }
                 else if (document.body) {
                     scrollTop = document.body.scrollTop;
+                }
+
+                // 是否滚动到底部
+                if ((documentElement.scrollHeight - scrollTop) < documentElement.clientHeight + 230) {
+                    this.setMenuClass = true
+                }
+                else {
+                    this.setMenuClass = false
                 }
 
                 if (scrollTop > 100) {
@@ -77,9 +92,14 @@
         bottom: 15px;
         display: flex;
         flex-direction: column-reverse;
-        align-items: flex-end;
+        align-items: flex-start;
         padding: 0 2.5%;
         width: 10%;
+        transition: all .5s;
+    }
+
+    .app_right_menu_hidden {
+        bottom: 245px;
     }
 
     .app_right_menu_list {
