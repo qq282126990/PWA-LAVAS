@@ -5,7 +5,7 @@
             <!--左边内容-->
             <div class="content_left">
                 <user-message></user-message>
-                <user-attention v-for="item in contentLeftTitle" :userAttentionHeaderTxt="item"></user-attention>
+                <user-attention v-for="(item, index) in contentLeftTitle" :userAttentionHeaderTxt="item" :key="index"></user-attention>
             </div>
             <!--中间内容-->
             <div class="content_middle">
