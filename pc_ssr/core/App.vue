@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <v-app>
+        <v-app >
             <app-header
                 class="app-shell-header">
             </app-header>
@@ -19,6 +19,7 @@
                     ></router-view>
                 </keep-alive>
             </transition>
+            <app-footer></app-footer>
             <update-toast></update-toast>
         </v-app>
     </div>
@@ -27,7 +28,8 @@
 <script>
 import Vue from 'vue';
 import {mapState, mapActions} from 'vuex';
-import AppHeader from '@/components/AppHeader';
+import AppHeader from 'components/AppHeader';
+import AppFooter from 'components/AppFooter';
 import UpdateToast from 'commonComponents/UpdateToast';
 import {keepAlivePages} from '@/.lavas/router';
 
@@ -37,7 +39,8 @@ export default {
     name: 'app',
     components: {
         UpdateToast,
-        AppHeader
+        AppHeader,
+        AppFooter
     },
     computed: {
         ...mapState('pageTransition', {
@@ -142,7 +145,7 @@ $page-transition-duration = 0.35s
     -webkit-font-smoothing antialiased
     -moz-osx-font-smoothing grayscale
     text-align center
-    color #000
+    color #000;
     min-width 850px
     height 100%
 
@@ -158,11 +161,10 @@ $page-transition-duration = 0.35s
         min-width: 850px;
 
     .app-view
-        position: absolute;
+        position: relative;
         top: 0;
         right: 0;
         left: 0;
-        min-height: 100%;
         -webkit-overflow-scrolling touch
         background #e8e8e8
         box-sizing: content-box;

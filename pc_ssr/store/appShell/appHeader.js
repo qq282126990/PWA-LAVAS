@@ -23,7 +23,6 @@ export const mutations = {
 };
 
 export const actions = {
-
     /**
      * 设置顶部导航条
      *
