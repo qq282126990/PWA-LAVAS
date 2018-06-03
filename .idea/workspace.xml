@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5eab39ab-850a-4337-af2c-8ae0f09f6123" name="默认" comment="默认">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="5eab39ab-850a-4337-af2c-8ae0f09f6123" name="默认" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -354,12 +351,20 @@
       <workItem from="1524190941724" duration="189000" />
       <workItem from="1524200139086" duration="608000" />
       <workItem from="1524210511018" duration="8734000" />
-      <workItem from="1528026698786" duration="97000" />
+      <workItem from="1528026698786" duration="447000" />
     </task>
+    <task id="LOCAL-00001" summary="feat update lavas server modules">
+      <created>1528026826265</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1528026826265</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="251523000" />
+    <option name="totallyTimeSpent" value="251873000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -421,6 +426,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feat update lavas server modules" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat update lavas server modules" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -577,6 +586,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
           <caret line="4" column="40" selection-start-line="4" selection-start-column="40" selection-end-line="4" selection-end-column="40" />
+          <folding>
+            <element signature="e#0#26#0" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -657,6 +669,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="646">
           <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="37" />
+          <folding>
+            <element signature="e#67#89#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
