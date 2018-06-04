@@ -96,7 +96,8 @@
         padding: 0 2.5%;
         width: 10%;
         transition: all .5s;
-    }
+        z-index :100;
+        }
 
     .app_right_menu_hidden {
         bottom: 245px;

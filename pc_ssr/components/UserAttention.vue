@@ -5,50 +5,11 @@
             <h1 class="user_attention_header__txt">{{userAttentionHeaderTxt}}</h1>
         </div>
         <!--关注的人-->
-        <div class="user_attention_content">
-            <div class="user_attention_content__list">
-                <!--头像-->
-                <img class="list_img" src="https://bc2.21cd.com.cn:3232/static//assets/img/man.jpg"/>
-                <!--文字-->
-                <div class="list_text" v-show="userAttentionHeaderTxt !== '推荐订阅'">
-                    <p class="list_text_name">Grand Thedf Autp</p>
-                    <p class="list_text_level">等级: 94</p>
-                </div>
-                <!--推荐关注样式-->
-                <div class="recommended_follow_text" v-show="userAttentionHeaderTxt === '推荐订阅'">
-                    <p class="recommended_follow_text_name">爱奇艺的频道</p>
-                    <v-btn outline color="indigo" class="recommended_follow_btn">订阅</v-btn>
-                </div>
+        <div class="user_attention_content" :class="{'no_login_wrapper':!getlogin }">
+            <div class="no_login">
+                <p>请先登录后查看</p>
             </div>
-            <div class="user_attention_content__list">
-                <!--头像-->
-                <img class="list_img" src="https://bc2.21cd.com.cn:3232/static//assets/img/man.jpg"/>
-                <!--文字-->
-                <div class="list_text" v-show="userAttentionHeaderTxt !== '推荐订阅'">
-                    <p class="list_text_name">Grand Thedf Autp</p>
-                    <p class="list_text_level">等级: 94</p>
-                </div>
-                <!--推荐关注样式-->
-                <div class="recommended_follow_text" v-show="userAttentionHeaderTxt === '推荐订阅'">
-                    <p class="recommended_follow_text_name">爱奇艺的频道</p>
-                    <v-btn outline color="indigo" class="recommended_follow_btn">订阅</v-btn>
-                </div>
-            </div>
-            <div class="user_attention_content__list">
-                <!--头像-->
-                <img class="list_img" src="https://bc2.21cd.com.cn:3232/static//assets/img/man.jpg"/>
-                <!--文字-->
-                <div class="list_text" v-show="userAttentionHeaderTxt !== '推荐订阅'">
-                    <p class="list_text_name">Grand Thedf Autp</p>
-                    <p class="list_text_level">等级: 94</p>
-                </div>
-                <!--推荐关注样式-->
-                <div class="recommended_follow_text" v-show="userAttentionHeaderTxt === '推荐订阅'">
-                    <p class="recommended_follow_text_name">爱奇艺的频道</p>
-                    <v-btn outline color="indigo" class="recommended_follow_btn">订阅</v-btn>
-                </div>
-            </div>
-            <div class="user_attention_content__list">
+            <div class="user_attention_content__list" v-show="getlogin">
                 <!--头像-->
                 <img class="list_img" src="https://bc2.21cd.com.cn:3232/static//assets/img/man.jpg"/>
                 <!--文字-->
@@ -63,7 +24,7 @@
                 </div>
             </div>
             <!--忽略更多-->
-            <div class="ignore_more">
+            <div class="ignore_more" v-show="getlogin">
                 <v-icon class="ignore_more_icon">more_horiz</v-icon>
             </div>
         </div>
@@ -71,12 +32,23 @@
 </template>
 
 <script>
+    import {mapState} from  'vuex';
+
     export default {
         props: {
             userAttentionHeaderTxt: {
                 type: String,
                 default: ''
             }
+        },
+        computed: {
+            ...mapState('appStore/appGlobal', {
+                /*
+                 * 登录状态
+                 * @type {Boolean}
+                 * */
+                getlogin: 'login'
+            })
         }
     };
 </script>
@@ -122,6 +94,7 @@
         display: flex;
         flex-direction: column;
         width: 100%;
+        min-height: 275px;
         background: #fff;
         .user_attention_content__list {
             display: flex;
@@ -185,13 +158,43 @@
         /*忽略更多*/
         .ignore_more {
             display: block;
-            line-height :35px;
+            line-height: 35px;
             width: 100%;
             height: 35px;
-            user-select :none;
+            user-select: none;
         }
         .ignore_more_icon {
             color: #999;
+        }
+    }
+
+    /*没有登录时的class*/
+    .no_login_wrapper {
+        padding: 0;
+        align-items: center;
+        flex-direction: inherit;
+    }
+
+    .no_login {
+        padding: 0 20px;
+        display: flex;
+        height: 275px;
+        width: 100%;
+        align-items: center;
+        background: rgba(0, 0, 0, .2);
+        p {
+            position: relative;
+            margin-top: 30px;
+            border-radius: 20px;
+            text-align: center;
+            line-height: 25px;
+            width: 100%;
+            height: 25px;
+            background: $experience-prompt;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
         }
     }
 </style>

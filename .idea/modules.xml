@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/PWA-LAVAS.iml" filepath="$PROJECT_DIR$/.idea/PWA-LAVAS.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/pawlavas.iml" filepath="$PROJECT_DIR$/.idea/pawlavas.iml" />
     </modules>
   </component>
 </project>

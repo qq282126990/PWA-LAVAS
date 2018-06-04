@@ -5,7 +5,10 @@
             <!--左边内容-->
             <div class="content_left">
                 <user-message></user-message>
-                <user-attention v-for="(item, index) in contentLeftTitle" :userAttentionHeaderTxt="item" :key="index"></user-attention>
+                <user-attention v-for="(item, index) in contentLeftTitle"
+                                :userAttentionHeaderTxt="item"
+                                :key="index"
+                ></user-attention>
             </div>
             <!--中间内容-->
             <div class="content_middle">
@@ -23,7 +26,7 @@
 </template>
 
 <script>
-    import {mapActions} from 'vuex';
+    import {mapActions,mapState} from 'vuex';
     import UserMessage from 'components/UserMessage'
     import UserAttention from 'components/UserAttention'
     import Search from 'components/Search'
@@ -57,19 +60,27 @@
             setState(store);
         },
         data () {
-          return {
-              /*
-              * 右边内容标题
-              * @type {Array}
-              * */
-              contentRightTitle: ['精选文章', '普通文章'],
-              /*
-              * 左边内容标题
-              * @type {Array}
-              * */
-              contentLeftTitle: ['我关注的人', '推荐订阅']
-          }
+            return {
+                /*
+                 * 右边内容标题
+                 * @type {Array}
+                 * */
+                contentRightTitle: ['精选文章', '普通文章'],
+                /*
+                 * 左边内容标题
+                 * @type {Array}
+                 * */
+                contentLeftTitle: ['我关注的人', '推荐订阅']
+            }
         },
+<<<<<<< HEAD
+=======
+        computed: {
+            ...mapState('appStore/appGlobal', {
+                getlogin: 'login'
+            })
+        },
+>>>>>>> b2c9be1e0cff742fa6d434903aef2c8c26816da8
         components: {
             UserMessage,
             UserAttention,

@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5eab39ab-850a-4337-af2c-8ae0f09f6123" name="默认" comment="">
+<<<<<<< HEAD
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pc_ssr/static/img/login-bg.png" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pc_spa/common/cache.js" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pc_spa/middlewares/login-middlewares.js" />
@@ -84,6 +85,15 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ssr/store/appShell/appSidebar.js" afterPath="$PROJECT_DIR$/ssr/store/appShell/appSidebar.js" />
       <change type="MOVED" beforePath="$PROJECT_DIR$/pc_ssr/assets/img/content_bg_one.jpg" afterPath="$PROJECT_DIR$/pc_ssr/static/img/content_bg_one.jpg" />
       <change type="MOVED" beforePath="$PROJECT_DIR$/pc_ssr/assets/img/header-logo.png" afterPath="$PROJECT_DIR$/pc_ssr/static/img/header-logo.png" />
+=======
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pc_ssr/assets/img/default_user_img.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pc_ssr/store/appStore/appGlobal.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pc_ssr/components/AppRightMenu.vue" afterPath="$PROJECT_DIR$/pc_ssr/components/AppRightMenu.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pc_ssr/components/UserAttention.vue" afterPath="$PROJECT_DIR$/pc_ssr/components/UserAttention.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pc_ssr/pages/Index.vue" afterPath="$PROJECT_DIR$/pc_ssr/pages/Index.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pc_ssr/components/UserMessage.vue" afterPath="$PROJECT_DIR$/pc_ssr/components/UserMessage.vue" />
+>>>>>>> b2c9be1e0cff742fa6d434903aef2c8c26816da8
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -103,6 +113,7 @@
   <component name="FavoritesManager">
     <favorites_list name="pawlavas" />
   </component>
+<<<<<<< HEAD
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="login.vue" pinned="false" current-in-tab="true">
@@ -127,6 +138,8 @@
       </file>
     </leaf>
   </component>
+=======
+>>>>>>> b2c9be1e0cff742fa6d434903aef2c8c26816da8
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -139,6 +152,7 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
+<<<<<<< HEAD
       <find>content</find>
       <find>52</find>
       <find>goo</find>
@@ -169,12 +183,47 @@
       <find>account_pwd_show</find>
       <find>background-color</find>
       <find>login_protocol</find>
+=======
+      <find>content_bg_one</find>
+      <find>article_block_content</find>
+      <find>list_text</find>
+      <find>article_block_header__title</find>
+      <find>content_list_text__title</find>
+      <find>_right</find>
+      <find>article_block_more_btn</find>
+      <find>user_attention_header__txt</find>
+      <find>content_middle</find>
+      <find>handleBeforeLeave</find>
+      <find>v-for</find>
+      <find>body, html</find>
+      <find>footer_text_txt</find>
+      <find>code_url</find>
+      <find>appHeaderShow</find>
+      <find>AppHeader</find>
+      <find>showSidebar</find>
+      <find>setAppHeader</find>
+      <find>show</find>
+      <find>appHeaderState</find>
+      <find>content</find>
+      <find>52</find>
+      <find>appshell</find>
+      <find>appShell</find>
+      <find>indeterminate</find>
+      <find>user_message_wrapper</find>
+      <find>badge</find>
+      <find>no_login</find>
+      <find>experience_prompt</find>
+      <find>user_attention_content</find>
+>>>>>>> b2c9be1e0cff742fa6d434903aef2c8c26816da8
     </findStrings>
     <replaceStrings>
       <replace />
       <replace>article_block_</replace>
       <replace>_middle</replace>
     </replaceStrings>
+    <dirStrings>
+      <dir>G:\PWA-LAVAS\pc_ssr\store\appShell</dir>
+    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -182,6 +231,28 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+<<<<<<< HEAD
+=======
+        <option value="$USER_HOME$/Desktop/nginx-1.13.12/conf/nginx.conf" />
+        <option value="$PROJECT_DIR$/server/sqlMap.js" />
+        <option value="$PROJECT_DIR$/server/nginx.conf" />
+        <option value="$PROJECT_DIR$/ssr/store/appShell/async-ajax.js" />
+        <option value="$PROJECT_DIR$/ssr/pages/Search.vue" />
+        <option value="$PROJECT_DIR$/ssr/node_modules/vuetify/dist/vuetify.css" />
+        <option value="$PROJECT_DIR$/ssr/node_modules/vuetify/dist/vuetify.min.css" />
+        <option value="$PROJECT_DIR$/ssr/store/appShell/appSidebar.js" />
+        <option value="$PROJECT_DIR$/ssr/api/config.js" />
+        <option value="$PROJECT_DIR$/ssr/api/article.js" />
+        <option value="$PROJECT_DIR$/ssr/lavas.config.js" />
+        <option value="$PROJECT_DIR$/ssr/components/VirtualCollection.vue" />
+        <option value="$PROJECT_DIR$/ssr/assets/stylus/variable.styl" />
+        <option value="$PROJECT_DIR$/ssr/components/OverallSearch.vue" />
+        <option value="$PROJECT_DIR$/ssr/package.json" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/ssr/core/app.js" />
+        <option value="$PROJECT_DIR$/ssr/base/VerticalScroll.vue" />
+        <option value="$PROJECT_DIR$/ssr/components/AppBottomNavigator.vue" />
+>>>>>>> b2c9be1e0cff742fa6d434903aef2c8c26816da8
         <option value="$PROJECT_DIR$/ssr/components/AppHeader.vue" />
         <option value="$PROJECT_DIR$/ssr/base/loading.vue" />
         <option value="$PROJECT_DIR$/ssr/store/appShell/article.js" />
@@ -198,10 +269,15 @@
         <option value="$PROJECT_DIR$/pc_ssr/.postcssrc.js" />
         <option value="$PROJECT_DIR$/pc_ssr/components/Search.vue" />
         <option value="$PROJECT_DIR$/pc_ssr/components/ChoiceArticle.vue" />
+<<<<<<< HEAD
+=======
+        <option value="$PROJECT_DIR$/pc_ssr/lavas.config.js" />
+        <option value="$PROJECT_DIR$/pc_ssr/components/ArticleBlock.vue" />
+>>>>>>> b2c9be1e0cff742fa6d434903aef2c8c26816da8
         <option value="$PROJECT_DIR$/pc_ssr/components/AppRightmMenu.vue" />
-        <option value="$PROJECT_DIR$/pc_ssr/components/UserAttention.vue" />
         <option value="$PROJECT_DIR$/pc_ssr/components/AppFotter.vue" />
         <option value="$PROJECT_DIR$/pc_ssr/assets/stylus/main.styl" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/pc_spa/middlewares/login.js" />
         <option value="$PROJECT_DIR$/pc_spa/middlewares/user/login.js" />
         <option value="$PROJECT_DIR$/pc_spa/pages/login.vue" />
@@ -233,6 +309,18 @@
         <option value="$PROJECT_DIR$/pc_ssr/assets/stylus/variable.styl" />
         <option value="$PROJECT_DIR$/pc_ssr/static/manifest.json" />
         <option value="$PROJECT_DIR$/pc_ssr/pages/login.vue" />
+=======
+        <option value="$PROJECT_DIR$/pc_ssr/assets/stylus/variable.styl" />
+        <option value="$PROJECT_DIR$/pc_ssr/store/appShell/appHeader.js" />
+        <option value="$PROJECT_DIR$/pc_ssr/components/AppHeader.vue" />
+        <option value="$PROJECT_DIR$/pc_ssr/core/App.vue" />
+        <option value="$PROJECT_DIR$/pc_ssr/components/AppFooter.vue" />
+        <option value="$PROJECT_DIR$/pc_ssr/store/appStore/appGlobal.js" />
+        <option value="$PROJECT_DIR$/pc_ssr/pages/Index.vue" />
+        <option value="$PROJECT_DIR$/pc_ssr/components/UserMessage.vue" />
+        <option value="$PROJECT_DIR$/pc_ssr/components/UserAttention.vue" />
+        <option value="$PROJECT_DIR$/pc_ssr/components/AppRightMenu.vue" />
+>>>>>>> b2c9be1e0cff742fa6d434903aef2c8c26816da8
       </list>
     </option>
   </component>
@@ -302,6 +390,26 @@
               <option name="myItemId" value="pc_ssr" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+<<<<<<< HEAD
+=======
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PWA-LAVAS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PWA-LAVAS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pc_ssr" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="store" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -320,6 +428,7 @@
               <option name="myItemId" value="static" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+>>>>>>> b2c9be1e0cff742fa6d434903aef2c8c26816da8
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -335,11 +444,49 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+<<<<<<< HEAD
               <option name="myItemId" value="static" />
+=======
+              <option name="myItemId" value="pages" />
+>>>>>>> b2c9be1e0cff742fa6d434903aef2c8c26816da8
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PWA-LAVAS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PWA-LAVAS" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="pc_ssr" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+<<<<<<< HEAD
               <option name="myItemId" value="img" />
+=======
+              <option name="myItemId" value="PWA-LAVAS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PWA-LAVAS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pc_ssr" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
+>>>>>>> b2c9be1e0cff742fa6d434903aef2c8c26816da8
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -357,6 +504,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+<<<<<<< HEAD
               <option name="myItemId" value="pages" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -372,28 +520,9 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="pc_ssr" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PWA-LAVAS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PWA-LAVAS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pc_ssr" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
+=======
               <option name="myItemId" value="assets" />
+>>>>>>> b2c9be1e0cff742fa6d434903aef2c8c26816da8
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -418,11 +547,38 @@
               <option name="myItemId" value="assets" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="img" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PWA-LAVAS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PWA-LAVAS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pc_ssr" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+<<<<<<< HEAD
       <pane id="Scope" />
       <pane id="Scratches" />
+=======
+      <pane id="Scratches" />
+      <pane id="Scope" />
+>>>>>>> b2c9be1e0cff742fa6d434903aef2c8c26816da8
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -438,11 +594,19 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+<<<<<<< HEAD
       <recent name="G:\PWA-LAVAS\pc_ssr\static\img" />
       <recent name="G:\PWA-LAVAS\pc_ssr\static\img\icons" />
       <recent name="G:\PWA-LAVAS\pc_ssr" />
       <recent name="G:\PWA-LAVAS\pc_ssr\pages" />
       <recent name="G:\PWA-LAVAS\pc_ssr\dist" />
+=======
+      <recent name="G:\PWA-LAVAS\pc_ssr\assets\img" />
+      <recent name="D:\PWA-LAVAS\pc_ssr" />
+      <recent name="D:\PWA-LAVAS" />
+      <recent name="D:\PWA-LAVAS\ssr\assets\img" />
+      <recent name="D:\PWA-LAVAS\ssr\static\img" />
+>>>>>>> b2c9be1e0cff742fa6d434903aef2c8c26816da8
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="G:\PWA-LAVAS\pc_ssr\common" />
@@ -450,6 +614,12 @@
       <recent name="G:\PWA-LAVAS\pc_ssr\static\img" />
       <recent name="G:\PWA-LAVAS\pc_ssr\components" />
       <recent name="D:\PWA-LAVAS\ssr\static\img" />
+<<<<<<< HEAD
+=======
+      <recent name="D:\pawlavas" />
+      <recent name="D:\PWA-LAVAS\ssr\static\js" />
+      <recent name="D:\PWA-LAVAS\components" />
+>>>>>>> b2c9be1e0cff742fa6d434903aef2c8c26816da8
     </key>
   </component>
   <component name="RunDashboard">
@@ -465,6 +635,14 @@
     </option>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+    </configuration>
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
       <method />
     </configuration>
@@ -500,15 +678,6 @@
       <option name="cucumberJsArguments" value="" />
       <option name="executablePath" />
       <option name="filePath" />
-      <method />
-    </configuration>
-    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
-      <node-interpreter>project</node-interpreter>
-      <node-options />
-      <gulpfile />
-      <tasks />
-      <arguments />
-      <envs />
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
@@ -584,6 +753,7 @@
       <workItem from="1527474332841" duration="4486000" />
       <workItem from="1527492965878" duration="656000" />
       <workItem from="1527656292085" duration="3804000" />
+<<<<<<< HEAD
       <workItem from="1527868716396" duration="165000" />
       <workItem from="1527908728414" duration="24593000" />
       <workItem from="1527943316139" duration="7348000" />
@@ -591,11 +761,20 @@
       <workItem from="1527992625773" duration="15000" />
       <workItem from="1527999414286" duration="5235000" />
       <workItem from="1528114462450" duration="311000" />
+=======
+      <workItem from="1527696560705" duration="51000" />
+      <workItem from="1527769419969" duration="6000" />
+      <workItem from="1527774770932" duration="6778000" />
+>>>>>>> b2c9be1e0cff742fa6d434903aef2c8c26816da8
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="396912000" />
+=======
+    <option name="totallyTimeSpent" value="365190000" />
+>>>>>>> b2c9be1e0cff742fa6d434903aef2c8c26816da8
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -607,17 +786,29 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
+<<<<<<< HEAD
     <frame x="-8" y="-8" width="1616" height="876" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20659062" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+=======
+    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16032954" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+>>>>>>> b2c9be1e0cff742fa6d434903aef2c8c26816da8
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="调试" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2498265" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+<<<<<<< HEAD
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25606468" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="运行" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="17" side_tool="false" content_ui="tabs" />
+=======
+      <window_info id="运行" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="17" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2574124" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
+>>>>>>> b2c9be1e0cff742fa6d434903aef2c8c26816da8
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Weex Documents" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -632,7 +823,10 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="检查结果" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32991013" sideWeight="0.5" order="19" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+<<<<<<< HEAD
       <window_info id="找到" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32884097" sideWeight="0.5" order="18" side_tool="false" content_ui="tabs" />
+=======
+>>>>>>> b2c9be1e0cff742fa6d434903aef2c8c26816da8
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -649,8 +843,17 @@
           <line>77</line>
           <option name="timeStamp" value="26" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/pc_ssr/lavas.config.js</url>
+          <line>9</line>
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
       </breakpoints>
+<<<<<<< HEAD
       <option name="time" value="37" />
+=======
+      <option name="time" value="34" />
+>>>>>>> b2c9be1e0cff742fa6d434903aef2c8c26816da8
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -663,6 +866,7 @@
     </expand>
     <select />
   </component>
+<<<<<<< HEAD
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/pc_ssr/server.prod.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -957,4 +1161,6 @@
       </provider>
     </entry>
   </component>
+=======
+>>>>>>> b2c9be1e0cff742fa6d434903aef2c8c26816da8
 </project>
