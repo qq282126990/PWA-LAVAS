@@ -5,19 +5,16 @@
             <!--左边内容-->
             <div class="content_left">
                 <user-message></user-message>
-                <user-attention v-for="(item, index) in contentLeftTitle"
-                                :userAttentionHeaderTxt="item"
-                                :key="index"
-                ></user-attention>
+                <user-attention v-for="(item, index) in contentLeftTitle" :userAttentionHeaderTxt="item" :key="index"></user-attention>
             </div>
             <!--中间内容-->
             <div class="content_middle">
                 <!--搜索框-->
                 <search></search>
-                <!--精选文章模块-->
-                <article-block :articleBlockData="contentRightTitle[0]"></article-block>
-                <!--普通文章模块-->
-                <article-block :articleBlockData="contentRightTitle[1]"></article-block>
+                <!--文章模块导航-->
+                <article-nav @selectArticle="selectArticle"></article-nav>
+                <!--文章模块-->
+                <article-block :articleBlockData="articleNavTitle"></article-block>
             </div>
             <!--右边内容-->
             <app-right-menu></app-right-menu>
@@ -26,12 +23,26 @@
 </template>
 
 <script>
-    import {mapActions,mapState} from 'vuex';
+    import {mapActions} from 'vuex';
     import UserMessage from 'components/UserMessage'
     import UserAttention from 'components/UserAttention'
     import Search from 'components/Search'
     import ArticleBlock from 'components/ArticleBlock'
     import AppRightMenu from 'components/AppRightMenu'
+    import ArticleNav from 'components/ArticleNav'
+
+    let state = {
+        appHeaderState: {
+            show: true
+        },
+        appFooterState: {
+            show: true
+        }
+    };
+    function setState(store) {
+        store.dispatch('appShell/appHeader/setAppHeader', state.appHeaderState);
+        store.dispatch('appShell/appFooter/setAppFooter', state.appFooterState);
+    }
 
     export default {
         name: 'index',
@@ -43,31 +54,35 @@
                 {name: 'description', content: '基于 Vue 的 PWA 解决方案，帮助开发者快速搭建 PWA 应用，解决接入 PWA 的各种问题'}
             ]
         },
-        data () {
-            return {
-                /*
-                 * 右边内容标题
-                 * @type {Array}
-                 * */
-                contentRightTitle: ['精选文章', '普通文章'],
-                /*
-                 * 左边内容标题
-                 * @type {Array}
-                 * */
-                contentLeftTitle: ['我关注的人', '推荐订阅']
-            }
+        async asyncData({store, route}) {
+            setState(store);
         },
-        computed: {
-            ...mapState('appStore/appGlobal', {
-                getlogin: 'login'
-            })
+        data () {
+          return {
+              /*
+              * 文章激活导航标题
+              * @type {Array}
+              * */
+              articleNavTitle: '精选文章',
+              /*
+              * 左边内容标题
+              * @type {Array}
+              * */
+              contentLeftTitle: ['我关注的人', '推荐订阅']
+          }
+        },
+        methods: {
+            selectArticle (articleNavTitle) {
+                this.articleNavTitle = articleNavTitle
+            }
         },
         components: {
             UserMessage,
             UserAttention,
             Search,
             ArticleBlock,
-            AppRightMenu
+            AppRightMenu,
+            ArticleNav
         }
     };
 </script>
@@ -87,7 +102,7 @@
         right: 0;
         width: 100%;
         height: 352px;
-        background: url('../assets/img/content_bg_one.jpg') no-repeat;
+        background: url('/static/img/content_bg_one.jpg') no-repeat;
         background-size: cover;
         z-index: 0;
     }

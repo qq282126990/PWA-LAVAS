@@ -117,7 +117,8 @@ else {
     app = new App();
 
     // if style is ready, start mounting immediately
-    if (!enableAsyncCSS
+    if (ssr
+        || !enableAsyncCSS
         || (enableAsyncCSS && window.STYLE_READY)) {
         window.mountLavas();
     }
@@ -142,7 +143,7 @@ function handleMiddlewares() {
                 .reduce((arr, {middleware}) => arr.concat(middleware), [])
         ];
 
-        // get all the middlewares defined by user
+        // get all the middlewares defined by pages
         const middlewares = await getMiddlewares(middlewareNames);
 
         let unknowMiddleware = middlewareNames.find(name => typeof middlewares[name] !== 'function');

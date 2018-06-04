@@ -1,12 +1,12 @@
 <template>
     <div>
-        <div class="user_message_wrapper" :class="{'no_login_wrapper' : !getlogin}">
+        <div class="user_message_wrapper">
             <!--用户头像、名称、等级、声望-->
             <div class="user_message">
                 <!--头像-->
                 <div class="user_avatar_wrapper">
                     <div class="user_avatar">
-                        <img class="user_avatar_img" src="../assets/img/default_user_img.png"/>
+                        <img class="user_avatar_img" src="https://cn.vuejs.org/images/logo.png"/>
                     </div>
                     <!--用户经验-->
                     <v-progress-circular
@@ -14,37 +14,31 @@
                         :size="100"
                         :width="10"
                         :rotate="-90"
-                        :value="userExperience"
+                        :value="50"
                         :fill="indeterminate "
                         color="green"
                     >
                     </v-progress-circular>
                 </div>
-                <div class="user_name_level" v-show="!getlogin">
-                    <p class="no_login">请先登录后查看</p>
-                </div>
 
-                <div v-show="getlogin">
-                    <!--用户名称等级-->
-                    <div class="user_name_level">
-                        <p class="txt">Luck Man</p>
-                        <p class="txt">等级：55</p>
-                        <p class="txt">声望：250</p>
-                    </div>
-                    <!--退出按钮-->
-                    <div class="exit_user">
-                        <p class="txt">[退出]</p>
-                    </div>
+                <!--用户名称等级-->
+                <div class="user_name_level">
+                    <p class="txt">Luck Man</p>
+                    <p class="txt">等级：55</p>
+                    <p class="txt">声望：250</p>
+                </div>
+                <!--退出按钮-->
+                <div class="exit_user">
+                    <p class="txt" @click="signOut">[退出]</p>
                 </div>
             </div>
             <!--经验提示-->
             <div class="experience_prompt">
-                <div v-show="getlogin">距离升级还有<p class="experience_prompt_highlight">0</p>经验</div>
-                <div v-show="!getlogin" class="no_login">请先登录后查看</div>
+                距离升级还有<p class="experience_prompt_highlight">0</p>经验
             </div>
         </div>
         <!--徽章-->
-        <div class="badge" v-show="getlogin">
+        <div class="badge">
             <div class="badge_img">
                 <img src="../static/img/徽章.png" title="爱心大使"/>
                 <v-icon class="badge_icon">favorite</v-icon>
@@ -54,27 +48,17 @@
 </template>
 
 <script type="text/ecmascript-6">
-    import {mapState} from  'vuex';
-
     export default{
         data () {
             return {
-                indeterminate: 'none',
-                /*
-                 * 用户经验
-                 * @type {Number}
-                 * */
-                userExperience: 0
+                indeterminate: 'none'
             }
         },
-        computed: {
-            ...mapState('appStore/appGlobal', {
-                /*
-                * 登录状态
-                * @type {Boolean}
-                * */
-                getlogin: 'login'
-            })
+        methods: {
+            // 退出登录按钮
+            signOut () {
+
+            }
         }
     }
 </script>
@@ -88,7 +72,6 @@
         font-size: 13px;
         width: 100%;
         /*height: 200px;*/
-        min-height: 170px;
         background: $user-message-wrapper;
         z-index: 1;
         box-sizing: border-box;
@@ -140,10 +123,11 @@
         /*退出按钮*/
         .exit_user {
             flex: initial;
-            padding-right: 0;
-            align-items: right;
-            flex-direction: initial;
-            text-align: right;
+            .txt{
+                flex: initial;
+                display :inline-block;
+                cursor: pointer;
+            }
         }
         /*用户经验提示*/
         .experience_prompt {
@@ -176,23 +160,8 @@
         }
     }
 
-    /*没有登录时的class*/
-    .no_login_wrapper {
-        border-radius: 5px;
-        align-items: center;
-    }
-
-    .no_login {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 0;
-        height: 100%
-    }
-
     /*徽章*/
     .badge {
-        margin-top: 20px;
         padding: 0 5px;
         display: flex;
         flex-wrap: wrap;
