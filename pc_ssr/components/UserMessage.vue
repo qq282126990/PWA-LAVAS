@@ -29,7 +29,7 @@
                 </div>
                 <!--退出按钮-->
                 <div class="exit_user">
-                    <p class="txt">[退出]</p>
+                    <p class="txt" @click="signOut">[退出]</p>
                 </div>
             </div>
             <!--经验提示-->
@@ -52,6 +52,12 @@
         data () {
             return {
                 indeterminate: 'none'
+            }
+        },
+        methods: {
+            // 退出登录按钮
+            signOut () {
+
             }
         }
     }
@@ -117,10 +123,11 @@
         /*退出按钮*/
         .exit_user {
             flex: initial;
-            padding-right: 0;
-            align-items: right;
-            flex-direction: initial;
-            text-align: right;
+            .txt{
+                flex: initial;
+                display :inline-block;
+                cursor: pointer;
+            }
         }
         /*用户经验提示*/
         .experience_prompt {

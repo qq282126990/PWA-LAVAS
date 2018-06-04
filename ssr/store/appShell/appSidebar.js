@@ -20,7 +20,7 @@ export const state = () => {
             iconRight: ''
         },
 
-        // user: {
+        // pages: {
         //     name: 'Lavas',
         //     email: 'lavas@baidu.com',
         //     location: 'Shanghai'

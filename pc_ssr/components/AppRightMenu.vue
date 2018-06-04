@@ -100,6 +100,7 @@
 
     .app_right_menu_hidden {
         bottom: 245px;
+        z-index :100;
     }
 
     .app_right_menu_list {

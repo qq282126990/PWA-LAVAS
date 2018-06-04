@@ -25,7 +25,8 @@ module.exports = {
         ],
         alias: {
             base: {
-                'commonComponents': path.resolve(__dirname, '../common_components')
+                'commonComponents': path.resolve(__dirname, '../common_components'),
+                'common': '@/common'
             }
         }
     },

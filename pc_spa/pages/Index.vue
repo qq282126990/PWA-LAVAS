@@ -18,6 +18,8 @@ export default {
             {name: 'description', content: '基于 Vue 的 PWA 解决方案，帮助开发者快速搭建 PWA 应用，解决接入 PWA 的各种问题'}
         ]
     },
+    // 单独配置 middleware 属性，注意：这里配置的中间件，前后端均会执行。
+    middleware: ['login-middlewares'],
     async asyncData({store, route}) {
         setState(store);
     }

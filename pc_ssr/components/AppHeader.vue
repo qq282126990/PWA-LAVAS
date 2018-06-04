@@ -4,12 +4,12 @@
         <header class="header_wrapper" v-show="show">
             <div class="header_middle" v-cloak>
                 <!--logo-->
-                <img class="header_middle_img" src="../assets/img/header-logo.png"/>
+                <img class="header_middle_img" src="/static/img/header-logo.png"/>
                 <!--icon-->
                 <v-icon class="header_middle_icon">dehaze</v-icon>
                 <!--文本-->
                 <div class="header_middle_txt">
-                    <p class="txt">登录</p>
+                    <p class="txt" @click="login">{{loginTxt}}</p>
                     <p class="txt">注册</p>
                 </div>
             </div>
@@ -23,13 +23,25 @@
 
     export default {
         name: 'appHeader',
+        data () {
+            return {
+                /*
+                 * 头部登录显示文字
+                 * */
+                loginTxt: '登录'
+            }
+        },
         mounted () {
-            // 监听浏览器滚动
-            window.addEventListener('scroll', this.scroll);
+            if (!/\/login/.test(this.$route.path)) {
+                // 监听浏览器滚动
+                window.addEventListener('scroll', this.scroll);
+            }
         },
         destroyed () {
-            // 销毁监听滚动
-            window.removeEventListener('scroll', this.scroll);
+            if (!/\/login/.test(this.$route.path)) {
+                // 销毁监听滚动
+                window.removeEventListener('scroll', this.scroll);
+            }
         },
         computed: {
             ...mapState('appShell/appHeader', [
@@ -91,6 +103,14 @@
                 else {
                     this.setAppHeader({show: true});
                 }
+            },
+            /*
+             * 登录跳转
+             * */
+            login () {
+                this.$router.replace({
+                    path: '/login'
+                })
             },
             ...mapActions('appShell/appHeader', {
                 setAppHeader: 'setAppHeader'

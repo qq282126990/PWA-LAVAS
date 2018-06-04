@@ -1,9 +1,10 @@
-const path = require ('path');
-const express = require ('express');
+const path = require('path');
+const express = require('express');
 const app = express();
 const historyMiddleware = require('connect-history-api-fallback');
 const LavasCore = require('lavas-core-vue');
 const port = 8080; // 对外端口
+
 
 function registerSPA(url, dirPath) {
     if (url.endsWith('/')) {
@@ -32,7 +33,7 @@ function registerSPA(url, dirPath) {
 
 
 // SPA
-registerSPA('/spa', 'spa/dist');
+registerSPA('/spa', 'pc_spa/dist');
 
 // NOT required when SSR is enabled
 // app.listen(port, () => {
@@ -40,7 +41,7 @@ registerSPA('/spa', 'spa/dist');
 // });
 
 // SSR
-let core = new LavasCore(path.resolve(__dirname, 'ssr/dist'));
+let core = new LavasCore(path.resolve(__dirname, 'pc_ssr/dist'));
 
 core.init('production')
     .then(() => core.runAfterBuild())

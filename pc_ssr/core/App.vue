@@ -150,8 +150,8 @@ $page-transition-duration = 0.35s
     height 100%
 
     .application--wrap
-        height 100%
-        min-height 100%
+        /*height 100%*/
+        /*min-height 100%*/
 
     .app-shell-header
         position fixed
@@ -171,7 +171,7 @@ $page-transition-duration = 0.35s
         &::-webkit-scrollbar
             width 0
             background transparent
-        &.transition-slide
+        /*&.transition-slide
             transition transform $page-transition-duration cubic-bezier(0, 0, 0.2, 1)
 
             &.slide-left-enter
@@ -200,6 +200,7 @@ $page-transition-duration = 0.35s
             &.slide-right-leave-active
                 overflow-y auto
 
+        */
         &.transition-fade
             opacity 1
             transition opacity 1s ease

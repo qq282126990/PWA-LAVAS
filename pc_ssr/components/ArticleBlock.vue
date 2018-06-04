@@ -21,11 +21,12 @@
                         <!--标题-->
                         <h1 class="content_list_text__title">使用cnpmjs.org搭建私有npm源</h1>
                         <!--文章内容-->
-                        <p class="content_list_text__content">
-                            前言 淘宝NPM 让很多技术同学过上了爽快的日子，因为访问npmjs.com有时候真的很慢很慢，真的感叹阿里的财大气粗。而且cnpm还开源了，网址为cnpm/cnpmjs.org 。很多公司使用cnpm…
+                        <div class="content_list_text__content">
+                            <p>
+                                前言 淘宝NPM 让很多技术同学过上了爽快的日子，因为访问npmjs.com有时候真的很慢很慢，真的感叹阿里的财大气粗。而且cnpm还开源了，网址为cnpm/cnpmjs.org 。很多公司使用cnpm…</p>
                             <!--查看全部按钮-->
                             <span class="content_look_all">阅读全文</span>
-                        </p>
+                        </div>
                     </div>
                     <!--发文时间-->
                     <div class="send_content_time">
@@ -49,11 +50,12 @@
                         <!--标题-->
                         <h1 class="content_list_text__title">使用cnpmjs.org搭建私有npm源</h1>
                         <!--文章内容-->
-                        <p class="content_list_text__content">
-                            前言 淘宝NPM 让很多技术同学过上了爽快的日子，因为访问npmjs.com有时候真的很慢很慢，真的感叹阿里的财大气粗。而且cnpm还开源了，网址为cnpm/cnpmjs.org 。很多公司使用cnpm…
+                        <div class="content_list_text__content">
+                            <p>
+                                前言 淘宝NPM 让很多技术同学过上了爽快的日子，因为访问npmjs.com有时候真的很慢很慢，真的感叹阿里的财大气粗。而且cnpm还开源了，网址为cnpm/cnpmjs.org 。很多公司使用cnpm…</p>
                             <!--查看全部按钮-->
                             <span class="content_look_all">阅读全文</span>
-                        </p>
+                        </div>
                     </div>
                     <!--发文时间-->
                     <div class="send_content_time">
@@ -154,9 +156,9 @@
             display: flex;
             flex-direction: column;
             border-bottom: 2px solid $choice-article-content-list;
-         &:last-child {
-             border-bottom: none;
-         }
+            &:last-child {
+                border-bottom: none;
+            }
         }
         .article_block_content_list {
             padding: 15px 0;
@@ -191,6 +193,9 @@
             margin: 0;
             font-size: 14px;
             overflow: hidden;
+            p {
+                margin: 0;
+            }
         }
         /*查看全部按钮*/
         .content_look_all {

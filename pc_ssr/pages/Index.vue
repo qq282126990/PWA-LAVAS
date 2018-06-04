@@ -30,6 +30,19 @@
     import ArticleBlock from 'components/ArticleBlock'
     import AppRightMenu from 'components/AppRightMenu'
 
+    let state = {
+        appHeaderState: {
+            show: true
+        },
+        appFooterState: {
+            show: true
+        }
+    };
+    function setState(store) {
+        store.dispatch('appShell/appHeader/setAppHeader', state.appHeaderState);
+        store.dispatch('appShell/appFooter/setAppFooter', state.appFooterState);
+    }
+
     export default {
         name: 'index',
         metaInfo: {
@@ -39,6 +52,9 @@
                 {name: 'keywords', content: 'lavas PWA'},
                 {name: 'description', content: '基于 Vue 的 PWA 解决方案，帮助开发者快速搭建 PWA 应用，解决接入 PWA 的各种问题'}
             ]
+        },
+        async asyncData({store, route}) {
+            setState(store);
         },
         data () {
           return {
@@ -53,8 +69,6 @@
               * */
               contentLeftTitle: ['我关注的人', '推荐订阅']
           }
-        },
-        mounted () {
         },
         components: {
             UserMessage,
@@ -81,7 +95,7 @@
         right: 0;
         width: 100%;
         height: 352px;
-        background: url('../assets/img/content_bg_one.jpg') no-repeat;
+        background: url('/static/img/content_bg_one.jpg') no-repeat;
         background-size: cover;
         z-index: 0;
     }

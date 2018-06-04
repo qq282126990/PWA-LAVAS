@@ -52,7 +52,7 @@ export default function (context) {
                         .reduce((arr, {middleware}) => arr.concat(middleware), [])
                 ];
 
-                // get all the middlewares defined by user
+                // get all the middlewares defined by pages
                 const middlewares = await getMiddlewares(middlewareNames);
                 let matchedMiddlewares = middlewareNames.map(name => middlewares[name]);
 

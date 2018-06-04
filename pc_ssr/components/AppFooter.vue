@@ -1,5 +1,5 @@
 <template>
-    <div class="footer_wrapper">
+    <div class="footer_wrapper" v-show="show">
         <!--源码地址-->
         <a class="code_url" target="_blank">源码地址</a>
         <div class="footer_text">
@@ -23,7 +23,16 @@
 </template>
 
 <script>
-    export default {};
+    import {mapState, mapActions} from 'vuex';
+
+    export default {
+        name: 'appFooter',
+        computed: {
+            ...mapState('appShell/appFooter', [
+                'show'
+            ])
+        },
+    };
 </script>
 
 <style lang="stylus" scoped>

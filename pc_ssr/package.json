@@ -31,7 +31,8 @@
     "postcss-loader": "^2.1.4",
     "stoppable": "^1.0.4",
     "vue-lazyload": "^1.2.3",
-    "vuetify": "^0.17.5"
+    "vuetify": "^0.17.5",
+    "good-storage": "^1.0.1"
   },
   "devDependencies": {
     "express": "^4.16.2",
