@@ -259,8 +259,8 @@
         /*账号输入*/
         .account_input {
             margin-top: 16px;
-            border-bottom: 1px solid $account-input-br;
-            color: $account-input;
+            border-bottom: 1px solid #ebebeb;
+            color: #1a1a1a;
             line-height: 24px;
             font-size: 14px;
             width: 100%;
@@ -272,7 +272,7 @@
             display: flex;
             align-items: center;
             margin-top: 12px;
-            border-bottom: 1px solid $account-input-br;
+            border-bottom: 1px solid #ebebeb;
             line-height: 24px;
             height: 48px;
         }
@@ -310,7 +310,7 @@
         text-align: center;
         margin: 16px 0 0 0;
         font-size: 14px;
-        color: $login-protocol;
+        color: #8590a6;
     }
 
     .forget_password {
@@ -326,8 +326,8 @@
         width: 100%;
         height: 58px;
         font-size: 16px;
-        border-top: 1px solid $account-input-br;
-        background: $login-transfer;
+        border-top: 1px solid #ebebeb;
+        background: #f6f6f6;
         .txt {
             margin: 0
         }

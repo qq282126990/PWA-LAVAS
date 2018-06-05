@@ -59,7 +59,7 @@
             margin: 0;
             padding: 10px;
             border-radius: 5px;
-            font-size: 14px;
+            font-size: 16px;
             cursor: pointer;
         }
         .active {
