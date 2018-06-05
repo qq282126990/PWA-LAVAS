@@ -4,11 +4,11 @@
             <app-header
                 class="app-shell-header">
             </app-header>
-            <transition
-                :name="pageTransitionEffect"
-                @before-enter="handleBeforeEnter"
-                @after-enter="handleAfterEnter"
-                @before-leave="handleBeforeLeave">
+            <!--<transition-->
+                <!--:name="pageTransitionEffect"-->
+                <!--@before-enter="handleBeforeEnter"-->
+                <!--@after-enter="handleAfterEnter"-->
+                <!--@before-leave="handleBeforeLeave">-->
                 <keep-alive
                     :include="[...keepAlivePages]">
                     <router-view
@@ -18,7 +18,7 @@
                         :data-page-id="$route.fullPath"
                     ></router-view>
                 </keep-alive>
-            </transition>
+            <!--</transition>-->
             <app-footer></app-footer>
             <update-toast></update-toast>
         </v-app>
@@ -201,13 +201,13 @@ $page-transition-duration = 0.35s
                 overflow-y auto
 
         */
-        &.transition-fade
-            opacity 1
-            transition opacity 1s ease
+        /*&.transition-fade*/
+            /*opacity 1*/
+            /*transition opacity 1s ease*/
 
-            &.fade-enter
-                opacity 0
+            /*&.fade-enter*/
+                /*opacity 0*/
 
-            &.fade-leave-active
-                opacity 0
+            /*&.fade-leave-active*/
+                /*opacity 0*/
 </style>
