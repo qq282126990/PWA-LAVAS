@@ -14,7 +14,7 @@
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <link rel="apple-touch-icon" href="<<= htmlWebpackPlugin.options.config.build.publicPath >>static/img/icons/apple-touch-icon-152x152.png">
         <meta name="app-mobile-web-app-title" content="Lavas">
-
+        <script type="text/javascript" charset="utf-8" src="https://unpkg.com/jparticles@2.0.1/production/jparticles.all.js"></script>
         << for (var jsFilePath of htmlWebpackPlugin.files.js) { >>
             <link rel="preload" href="<<= jsFilePath >>" as="script">
         << } >>

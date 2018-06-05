@@ -12,14 +12,7 @@ export const state = () => {
          *
          * @type {boolean}
          */
-        show: true,
-
-        /**
-         * 标题内容
-         *
-         * @type {string}
-         */
-        title: 'Lavas'
+        show: true
     };
 };
 
@@ -30,7 +23,6 @@ export const mutations = {
 };
 
 export const actions = {
-
     /**
      * 设置顶部导航条
      *

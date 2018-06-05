@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <v-app>
+        <v-app >
             <app-header
                 class="app-shell-header">
             </app-header>
@@ -19,6 +19,7 @@
                     ></router-view>
                 </keep-alive>
             </transition>
+            <app-footer></app-footer>
             <update-toast></update-toast>
         </v-app>
     </div>
@@ -27,8 +28,9 @@
 <script>
 import Vue from 'vue';
 import {mapState, mapActions} from 'vuex';
-import AppHeader from '@/components/AppHeader';
-import UpdateToast from '@/components/UpdateToast';
+import AppHeader from 'components/AppHeader';
+import AppFooter from 'components/AppFooter';
+import UpdateToast from 'commonComponents/UpdateToast';
 import {keepAlivePages} from '@/.lavas/router';
 
 const ENABLE_SCROLL_CLASS = 'app-view-scroll-enabled';
@@ -37,7 +39,8 @@ export default {
     name: 'app',
     components: {
         UpdateToast,
-        AppHeader
+        AppHeader,
+        AppFooter
     },
     computed: {
         ...mapState('pageTransition', {
@@ -142,36 +145,33 @@ $page-transition-duration = 0.35s
     -webkit-font-smoothing antialiased
     -moz-osx-font-smoothing grayscale
     text-align center
-    color #2c3e50
+    color #000;
+    min-width 850px
     height 100%
 
     .application--wrap
-        height 100%
-        min-height 100%
+        /*height 100%*/
+        /*min-height 100%*/
 
     .app-shell-header
         position fixed
         right 0
         left 0
         z-index 140
+        min-width: 850px;
 
     .app-view
-        position absolute
-        top 0
-        right 0
-        bottom 0
-        left 0
+        position: relative;
+        top: 0;
+        right: 0;
+        left: 0;
         -webkit-overflow-scrolling touch
-        background white
-
+        background #e8e8e8
+        box-sizing: content-box;
         &::-webkit-scrollbar
             width 0
             background transparent
-
-        &.app-view-with-header
-            top $app-header-height
-
-        &.transition-slide
+        /*&.transition-slide
             transition transform $page-transition-duration cubic-bezier(0, 0, 0.2, 1)
 
             &.slide-left-enter
@@ -200,6 +200,7 @@ $page-transition-duration = 0.35s
             &.slide-right-leave-active
                 overflow-y auto
 
+        */
         &.transition-fade
             opacity 1
             transition opacity 1s ease

@@ -12,7 +12,8 @@ const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
     build: {
-        ssr: false,
+        ssr: true,
+        cssExtract: true,
         path: BUILD_PATH,
         publicPath: '/',
         ssrCopy: isDev ? [] : [
@@ -29,6 +30,13 @@ module.exports = {
          * @type {Object.<string, Object>}
          */
         alias: {
+            base: {
+                'commonComponents': path.resolve(__dirname, '../common_components'),
+                'components': '@/components',
+                'base': '@/base',
+                'common': '@/common',
+                'api': '@/api'
+            },
             server: {
                 'iscroll/build/iscroll-lite$': path.join(__dirname, 'core/iscroll-ssr.js')
             }
