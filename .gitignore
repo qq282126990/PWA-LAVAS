@@ -6,3 +6,4 @@ yarn-debug.log*
 yarn-error.log*
 .lavas/
 .nyc_output
+/node_server/.idea/

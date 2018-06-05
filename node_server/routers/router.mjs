@@ -1,38 +1,56 @@
 import express from 'express'
 import mongoose from 'mongoose'
+import tracer from 'tracer'
 import _public from '../controllers/public'
 import _article from '../controllers/articles'
 import _user from '../controllers/users'
-import {_dbError,_encryptedPWD} from '../functions/function'
-const router =express.Router();
-
-mongoose.connect('mongodb://127.0.0.1:27017/beike');//链接
+import {UserModel} from '../models/model' // 用户api,构造函数应该是大写开头
+const logger = tracer.console();
+import {_dbError, _encryptedPWD} from '../functions/function'
+const router = express.Router();
+/**
+ * @desc mongodb options
+ * */
+const options = {
+    db: {native_parser: true},
+    server: {
+        poolSize: 5, // 线程池是什么鬼
+        socketOptions: {
+            keepAlive: 30000
+        }
+    },
+    user: 'admin',
+    pass: 'lavas'//数据库账号
+}
+mongoose.connect('mongodb://127.0.0.1:27017/lavas', options);//链接
 const connect = async function () {
-    let db = await mongoose.connection;
-    if(db){
-        let InitAdministrator={
-            username:'admin',
-            password:'admin',
-            nick:'admin',
-            email:'admin@lavas.io'
+    let db = mongoose.connection;
+    if (db) {
+        let InitAdministrator = {
+            username: 'admin',
+            password: 'admin',
+            nick: 'admin',
+            email: 'admin@lavas.io'
         };
-        db.once('connected',function () {
-            logger.info('————————————>db is connected<————————————');
-            UsersModel
-                .find({username:InitAdministrator.username},function (err,res) {
-                    if(err){
-                        _dbError(res,err)
+        db.once('connected', async function () {
+            logger.warn('————————————>db is connected<————————————');
+            UserModel
+                .find({username: InitAdministrator.username}, function (err, res) {
+                    if (err) {
+                        _dbError(res, err)
                     }
-                    if(res.length===0){
-                        InitAdministrator.password=_encryptedPWD(InitAdministrator.password);//用户密码加密
-                        let adminModel = new UsersModel(InitAdministrator);
+                    if (res.length === 0) {
+                        InitAdministrator.password = _encryptedPWD(InitAdministrator.password);//用户密码加密
+                        let adminModel = new UserModel(InitAdministrator);
                         adminModel.save(function (err, res) {
                             if (err) {
-                                logger.info('----------> 初始化admin账号失败 v_v')
+                                logger.warn('----------> 初始化admin账号失败 v_v')
                             } else {
-                                logger.info('----------> 初始化admin账号成功 ^_^')
+                                logger.warn('----------> 初始化admin账号成功 ^_^')
                             }
                         })
+                    }else {
+                        logger.warn('----------> admin账号已被初始化过 ^_^')
                     }
                 })
         })
@@ -45,17 +63,17 @@ connect();//start Init Admin
 /**
  * @decs 登录模块
  * */
-router.post('/login',_public.login);
+router.post('/login', _public.login);
 
 /**
  * @desc 退出登录模块
  * */
-router.post('/logout',_public.logout);
+router.post('/logout', _public.logout);
 
 /**
  * @desc 注册模块
  * */
-router.post('/register',_public.register);
+router.post('/register', _public.register);
 
 /**
  * @desc 查询文章的数据
