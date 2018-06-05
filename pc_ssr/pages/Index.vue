@@ -92,6 +92,7 @@
         padding: 77px 10% 0 10%;
         display: flex;
         flex-wrap: wrap;
+        min-height: 100vh;
         box-sizing: border-box;
     }
 

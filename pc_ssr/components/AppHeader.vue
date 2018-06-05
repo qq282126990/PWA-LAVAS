@@ -108,7 +108,7 @@
              * 登录跳转
              * */
             login () {
-                this.$router.replace({
+                this.$router.push({
                     path: '/login'
                 })
             },
