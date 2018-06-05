@@ -1,78 +1,116 @@
 <template>
-    <div class="recommend_article">
-        <v-list class="article_list" ref="articleList">
-            <v-list-tile
-                dark
-                ripple
-                class="article_li"
-                v-for="(item, index) in (articleList.length > 0 ? articleList : getArticleData.article)"
-                @click="select($event,index)"
+    <div>
+        <v-tabs-items>
+            <v-tabs-content
+                v-for="(item, index) in contentHeaderItem"
                 :key="index"
-                ref="articleLi"
+                :id="'tab-' + item.id"
             >
-                <!--文章-->
-                <div class="article">
-                    <!--文章标题-->
-                    <h1 class="article_title">{{item.title}}</h1>
-                    <!--文章内容-->
-                    <div class="article_center">
-                        <!--内容-->
-                        <div class="center_txt">
-                            <!--文字-->
-                            <p>{{item.smallcontent}}</p>
-                        </div>
-
-                        <!--图片-->
-                        <img class="center_img" v-lazy="item.img" v-show="item.img"/>
-                    </div>
-                    <!--文章底部-->
-                    <div class="article_bottom">
-                        <!--左-->
-                        <div class="bottom_left">
-                            <p>{{item.praise}} 赞 · {{item.comment}} 评论</p>
-                        </div>
-                        <!--右-->
-                        <div class="bottom_right">
-                            <!--发布人-->
-                            <p class="right_txt">{{item.publisher}}</p>
-                            <i class="right_i" v-show="item.flowerName">·</i>
-                            <p class="right_txt">{{item.flowerName}}</p>
-                            <!--<i class="iconfont icon-more-horiz"></i>-->
-                        </div>
-                    </div>
+                <div class="recommend_article">
+                    <!--文章内容列表-->
+                    <v-list class="article_list"
+                            ref="articleList"
+                           >
+                        <v-list-tile
+                            dark
+                            ripple
+                            class="article_li"
+                            v-for="(item, index) in getArticleData.article"
+                            @click="select($event,index)"
+                            :key="index"
+                            ref="articleLi"
+                        >
+                            <!--文章-->
+                            <div class="article">
+                                <!--文章标题-->
+                                <h1 class="article_title">{{item.title}}</h1>
+                                <!--文章内容-->
+                                <div class="article_center">
+                                    <!--内容-->
+                                    <div class="center_txt">
+                                        <!--文字-->
+                                        <p>{{item.smallcontent}}</p>
+                                    </div>
+                                    <!--图片-->
+                                    <div class="center_img" v-lazy:background-image="item.img" v-show="item.img">
+                                        <!--<img v-lazy="item.img" v-show="item.img"/>-->
+                                    </div>
+                                </div>
+                                <!--文章底部-->
+                                <div class="article_bottom">
+                                    <!--左-->
+                                    <div class="bottom_left">
+                                        <p>{{item.praise}} 赞 · {{item.comment}} 评论</p>
+                                    </div>
+                                    <!--右-->
+                                    <div class="bottom_right">
+                                        <!--发布人-->
+                                        <p class="right_txt">{{item.publisher}}</p>
+                                        <i class="right_i" v-show="item.flowerName">·</i>
+                                        <p class="right_txt">{{item.flowerName}}</p>
+                                        <!--<i class="iconfont icon-more-horiz"></i>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </v-list-tile>
+                    </v-list>
+                    <!--loading组件-->
+                    <loading v-show="!getArticleData.article"
+                             :style="scrollDirection === 'up' ? 'paddingTop: 50%' : 'paddingTop: 30%'"></loading>
                 </div>
-            </v-list-tile>
-        </v-list>
+            </v-tabs-content>
+        </v-tabs-items>
     </div>
 </template>
 
 <script type="text/ecmascript-6">
     import {mapActions, mapState} from 'vuex';
+    /* loading组件 */
+    import Loading from 'base/loading.vue'
 
     export default {
         props: {
             /*
-            * 文章内容列表
-            * @type Array
-            * */
+             * 文章内容列表
+             * @type Array
+             * */
             articleList: {
+                type: null,
+                default: {}
+            },
+            /*
+             * 设置滚动组件滚动方向
+             * @type {String}
+             * */
+            scrollDirection: {
+                type: String,
+                default: 'down'
+            },
+            /*
+            * 文章内容导航头部
+            * @type {Array}
+            * */
+            contentHeaderItem: {
                 type: Array,
                 default: []
             }
         },
-        data () {
-            return {
-                articleData: []
-            }
-        },
         computed: {
             ...mapState ('appShell/asyncAjax', {
-                /* 获取对应类型文章 */
+                /*
+                 * 获取对应类型文章
+                 * @data {Array}
+                 * */
                 getArticleData: 'articleData'
             })
         },
         methods: {
-            /* 文章点击事件 */
+            /**
+             * 文章点击事件
+             *
+             * @param {Object} e 当前点击的元素节点
+             * @param {Object} index 文章的下标
+             */
             select (e, index) {
                 // 获取节点
                 let cellContainer = this.$refs.articleLi[index].$el.getElementsByTagName ('a')[0];
@@ -83,7 +121,12 @@
                 // 隐藏水波纹效果
                 this.hide (cellContainer);
             },
-            /* 点击出现水波纹效果 */
+            /**
+             * 点击出现水波纹效果
+             *
+             * @param {Object} e 当前点击的元素节点
+             * @param {Object} el 需要添加的节点
+             */
             show (e, el) {
                 let RippleDataAttribute = 'data-ripple';
                 let _ref$value = true;
@@ -138,7 +181,11 @@
                     });
                 }
             },
-            /* 隐藏水波纹效果 */
+            /**
+             * 隐藏水波纹效果
+             *
+             * @param {Object} el 需要删除的节点
+             */
             hide (el) {
                 let RippleDataAttribute = 'data-ripple';
 
@@ -170,12 +217,26 @@
                     }, 300);
                 }, delay);
             }
+        },
+        activated () {
+            console.log ('111')
+        },
+        components: {
+            Loading
         }
     }
 </script>
 
 <style lang="stylus" scoped>
     @require '~@/assets/stylus/variable';
+
+    .fade-enter-active, .fade-leave-active {
+        transition: opacity .5s;
+    }
+
+    .fade-enter, .fade-leave-to {
+        opacity: 0;
+    }
 
     .recommend_article {
         position: relative;
@@ -249,6 +310,13 @@
             overflow: hidden;
             width: 214px;
             height: 160px;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            img {
+                width: 100%;
+                height: 100%
+            }
         }
     }
 

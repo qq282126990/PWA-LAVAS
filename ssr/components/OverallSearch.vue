@@ -32,7 +32,7 @@
                 other_item: [
                     {
                         // 按钮的名字
-                        name: '写心得',
+                        name: '写文章',
 
                         // 显示的 icon
                         icon: 'icon-modify',

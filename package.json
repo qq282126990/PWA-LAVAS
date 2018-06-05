@@ -23,6 +23,10 @@
     "stoppable": "^1.0.4",
     "vuetify": "^0.17.5",
     "iscroll": "5.1.0",
+    "postcss-px-to-viewport": "^0.0.3",
+    "postcss": "^6.0.21",
+    "postcss-loader": "^2.1.4",
+    "postcss-aspect-ratio-mini": "^0.0.2",
     "postcss-px-to-viewport": "^0.0.3"
   },
   "transformModules": {
