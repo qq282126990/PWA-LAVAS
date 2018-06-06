@@ -37,11 +37,12 @@ async  function _dbSuccess(res,msg,data,errorCode) {
  * @desc 判断是否授权
  * */
 
-async function _isAuth(res,session) {
-    if(session){
+async function _isAuth(res,req) {
+    if(req.session&&req.session.userInfo&&req.session.userInfo.id){
         return true
     }else {
-        return await _dbError(res,'尚未登录无法获取',4003)
+        await _dbError(res,'尚未登录无法获取',4003)
+        return false
     }
 }
 

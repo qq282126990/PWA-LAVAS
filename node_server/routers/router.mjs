@@ -32,7 +32,7 @@ const connect = async function () {
             nick: 'admin',
             email: 'admin@lavas.io'
         };
-        db.once('connected', async function () {
+        db.once('connected', async function onceConnect () {
             logger.warn('————————————>db is connected<————————————');
             UserModel
                 .find({username: InitAdministrator.username}, function (err, res) {
@@ -54,6 +54,8 @@ const connect = async function () {
                     }
                 })
         })
+        //连接失败警告
+        db.on('error', logger.warn.bind(logger, '\n*****数据库连接失败*****:\n'));
     }
 };
 connect();//start Init Admin

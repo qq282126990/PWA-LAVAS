@@ -12,16 +12,15 @@ const PORT = process.env.PORT||8888;
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.set('port',PORT);
-app.use('/api', router)
 
 // seesion
-
 app.use(session({
-    secret:'super-secret-key',
-    resave:false,
-    saveUninitialized:false,
-    cookie:{maxAge:6000000}
+    secret: 'super-secret-key',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {maxAge: 6000000}
 }));
+app.use('/api', router);//需要放到最后，否则无法使用前面的
 
 app.listen(PORT,HOST);
 console.warn('server start listen on '+HOST+':'+PORT);
