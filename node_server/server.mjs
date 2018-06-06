@@ -6,7 +6,7 @@ import router from './routers/router.mjs'
 const logger = tracer.console();
 
 const app = express();
-const HOST = process.env.HOST||'0.0.0.0';
+const HOST = process.env.HOST||'localhost';
 const PORT = process.env.PORT||8888;
 
 app.use(bodyParser.urlencoded({extended:true}));

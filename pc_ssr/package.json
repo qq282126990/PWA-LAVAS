@@ -32,7 +32,8 @@
     "stoppable": "^1.0.4",
     "vue-lazyload": "^1.2.3",
     "vuetify": "^0.17.5",
-    "good-storage": "^1.0.1"
+    "good-storage": "^1.0.1",
+    "query-string":"^6.1.0"
   },
   "devDependencies": {
     "express": "^4.16.2",

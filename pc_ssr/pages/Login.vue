@@ -12,14 +12,17 @@
                 <!--登录输入框-->
                 <div class="login_content_input" v-show="!showRegisteredModule">
                     <!--账号输入-->
-                    <input class="account_input" type="text" placeholder="请输入邮箱"/>
+                    <input class="account_input"
+                           type="text"
+                           placeholder="请输入邮箱"
+                           v-model="userEmail"/>
                     <!--账号密码输入-->
                     <div class="account_pwd_input_wrapper">
                         <input class="account_pwd_input"
                                placeholder="请输入密码"
-                               :class="{'account_pwd_show' : !showPwd && (pwd.length > 0)}"
+                               :class="{'account_pwd_show' : !showPwd && (userPwd.length > 0)}"
                                :type="showPwd ? 'text' : 'password'"
-                               v-model="pwd"
+                               v-model="userPwd"
                         />
                         <!--密码隐藏显示-->
                         <v-icon class="account_pwd_show" @click="clickShowPwd('loginPwd')">
@@ -35,7 +38,7 @@
                     <div class="account_pwd_input_wrapper">
                         <input class="account_pwd_input"
                                placeholder="邮箱验证码"
-                               type="number"
+                               type="text"
                                v-model="emailCode"
                         />
                         <!--密码隐藏显示-->
@@ -72,7 +75,9 @@
                     </div>
                 </div>
                 <!--确定按钮-->
-                <v-btn flat color="white" class="login_btn">{{showRegisteredModule ? '注册' : '登录'}}</v-btn>
+                <v-btn flat color="white" class="login_btn" @click="clickEndBtn(showRegisteredModule)">
+                    {{showRegisteredModule ? '注册' : '登录'}}
+                </v-btn>
                 <!--协议-->
                 <p class="login_protocol" :class="{'forget_password': !showRegisteredModule}">
                     {{showRegisteredModule ? '注册即代表同意《Lavas社区协议》《隐私政策》' : '忘了密码？'}}
@@ -91,6 +96,8 @@
 </template>
 
 <script>
+    import UserManager from 'api/UserManager';
+
     let state = {
         appHeaderState: {
             show: false
@@ -145,10 +152,15 @@
                  * */
                 showRegisteredInputPwd: false,
                 /*
+                 * 用户登录密码
+                 * @type {String}
+                 * */
+                userEmail: '',
+                /*
                  * 密码
                  * @type {String}
                  * */
-                pwd: '',
+                userPwd: '',
                 /*
                  * 注册输入密码
                  * @type {String}
@@ -182,7 +194,6 @@
             },
             // 显示隐藏密码
             clickShowPwd(data) {
-                console.log(data)
                 if (data === 'loginPwd') {
                     this.showPwd = !this.showPwd;
                 }
@@ -200,6 +211,24 @@
             // 获取邮箱验证码
             getEmailCode () {
                 this.showRegisteredInputPwd = true;
+            },
+            // 点击确定按钮 登录/注册
+            clickEndBtn (btn) {
+                console.log(this.userEmail)
+                console.log(this.userPwd)
+                // 登录
+                if (!btn) {
+                    UserManager.usertLogin({'username': this.userEmail, 'password': this.userPwd})
+                        .then(response => {
+                            console.log(response)
+                        }).catch(err => {
+                        console.log(err)
+                    })
+                }
+                // 注册
+                else {
+
+                }
             }
         }
     };

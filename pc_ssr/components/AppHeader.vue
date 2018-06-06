@@ -4,7 +4,7 @@
         <header class="header_wrapper" v-show="show">
             <div class="header_middle" v-cloak>
                 <!--logo-->
-                <img class="header_middle_img" src="/static/img/header-logo.png"/>
+                <img class="header_middle_img" src="/static/img/icons/apple-touch-icon-152x152.png"/>
                 <!--icon-->
                 <v-icon class="header_middle_icon">dehaze</v-icon>
                 <!--文本-->
