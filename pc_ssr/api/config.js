@@ -1,2 +1,2 @@
 // api接口地址
-export const baseUrl = 'http://localhost:8888/api';
+export const baseUrl = 'http://localhost:3004/api';

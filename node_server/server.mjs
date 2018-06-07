@@ -3,11 +3,16 @@ import bodyParser from 'body-parser'
 import session from 'express-session'
 import tracer from 'tracer'
 import router from './routers/router.mjs'
+import cors from 'cors'
 const logger = tracer.console();
-
 const app = express();
 const HOST = process.env.HOST||'localhost';
-const PORT = process.env.PORT||8888;
+const PORT = process.env.PORT|| 3004;
+
+app.use(cors({
+    methods:['GET','POST'],
+    alloweHeaders:['Conten-Type', 'Authorization']
+}));
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());

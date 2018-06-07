@@ -5,29 +5,67 @@
             <div class="login_content_header">
                 <h1 class="header_h1">Lavas</h1>
                 <!--标题-->
-                <div class="header_title">{{showRegisteredModule ? '注册Lavas社区，发现更大的PWA世界' : '登录Lavas社区，发现更大的PWA世界'}}
+                <div class="header_title">
+                    {{showRegisteredModule ? '注册Lavas社区，发现更大的PWA世界' : '登录Lavas社区，发现更大的PWA世界'}}
                 </div>
             </div>
             <div class="login_content">
                 <!--登录输入框-->
                 <div class="login_content_input" v-show="!showRegisteredModule">
                     <!--账号输入-->
-                    <input class="account_input"
-                           type="text"
-                           placeholder="请输入邮箱"
-                           v-model="userEmail"/>
+                    <div class="account_input_wrapper">
+                        <input class="account_input"
+                               type="text"
+                               spellcheck="false"
+                               :placeholder="nologinEmail ? '' : '请输入邮箱'"
+                               @blur="blurInput($event,'loginEmail')"
+                               @focus="focusInput($event,'loginEmail')"
+                               ref="loginEmail"
+                               v-model="userEmail"
+                        />
+                        <!--错误提示-->
+                        <transition name="fade">
+                            <p class="account_input_error" v-show="loginEmailError">请输入正确的邮箱</p>
+                        </transition>
+                        <!--没有输入时的提示-->
+                        <transition name="fade">
+                            <p class="account_input_title"
+                               @click="blurInput($event,'loginEmailClick')"
+                               v-show="nologinEmail"
+                            >
+                                请输入邮箱
+                            </p>
+                        </transition>
+                    </div>
                     <!--账号密码输入-->
                     <div class="account_pwd_input_wrapper">
                         <input class="account_pwd_input"
-                               placeholder="请输入密码"
+                               spellcheck="false"
+                               :placeholder="showPwd.length > 0 ? '' : '请输入密码'"
                                :class="{'account_pwd_show' : !showPwd && (userPwd.length > 0)}"
                                :type="showPwd ? 'text' : 'password'"
+                               @blur="blurInput($event,'loginPwd')"
+                               @focus="focusInput($event,'loginPwd')"
+                               ref="loginPwd"
                                v-model="userPwd"
                         />
                         <!--密码隐藏显示-->
                         <v-icon class="account_pwd_show" @click="clickShowPwd('loginPwd')">
                             {{showPwd ? 'visibility' : 'visibility_off' }}
                         </v-icon>
+                        <!--没有输入时的提示-->
+                        <transition name="fade">
+                            <p class="login_no_pwd"
+                               @click="blurInput($event,'loginPwdClick')"
+                               v-show="nologinPwd"
+                            >
+                                请输入密码
+                            </p>
+                        </transition>
+                        <!--错误提示-->
+                        <transition name="fade">
+                            <p class="account_pwd_error" v-show="loginPwdError">请输入正确的密码</p>
+                        </transition>
                     </div>
                 </div>
                 <!--注册输入框-->
@@ -37,6 +75,7 @@
                     <!--账号密码输入-->
                     <div class="account_pwd_input_wrapper">
                         <input class="account_pwd_input"
+                               spellcheck="false"
                                placeholder="邮箱验证码"
                                type="text"
                                v-model="emailCode"
@@ -49,6 +88,7 @@
                         <!--密码输入-->
                         <div class="account_pwd_input_wrapper">
                             <input class="account_pwd_input"
+                                   spellcheck="false"
                                    placeholder="请输入密码"
                                    :class="{'account_pwd_show' : !showRegisteredPwd && (registeredPwd.length > 0)}"
                                    :type="showRegisteredPwd ? 'text' : 'password'"
@@ -62,6 +102,7 @@
                         <!--密码输入-->
                         <div class="account_pwd_input_wrapper">
                             <input class="account_pwd_input"
+                                   spellcheck="false"
                                    placeholder="请再次输入密码"
                                    :class="{'account_pwd_show' : !showRegisteredAgainPwd && (registeredAgainPwd.length > 0)}"
                                    :type="showRegisteredAgainPwd ? 'text' : 'password'"
@@ -175,7 +216,27 @@
                  * 邮箱验证码
                  * @type {String}
                  * */
-                emailCode: ''
+                emailCode: '',
+                /*
+                 * 登录没有输入邮箱
+                 * @type {Boolean}
+                 * */
+                nologinEmail: false,
+                /*
+                 * 登录没有输入密码
+                 * @type {Boolean}
+                 * */
+                nologinPwd: false,
+                /*
+                 * 点击按钮错误提示
+                 * @type {Boolean}
+                 * */
+                loginEmailError: false,
+                /*
+                 * 登录输入密码错误提示
+                 * @type {Boolean}
+                 * */
+                loginPwdError: false
             }
         },
         methods: {
@@ -204,6 +265,44 @@
                     this.showRegisteredAgainPwd = !this.showRegisteredAgainPwd;
                 }
             },
+            // 输入框失去焦点
+            blurInput (event, data) {
+                // 登录邮箱输入判断
+                if (this.userEmail.length > 0) {
+                    return;
+                }
+                else if (data === 'loginEmail') {
+                    this.nologinEmail = true;
+                }
+                else if (data === 'loginEmailClick') {
+                    this.$refs.loginEmail.focus();
+                    this.nologinEmail = false;
+                }
+
+                // 登录密码输入判断
+                if (this.userPwd.length > 0) {
+                    return;
+                }
+                else if (data === 'loginPwd') {
+                    this.nologinPwd = true
+                }
+                else if (data === 'loginPwdClick') {
+                    this.$refs.loginPwd.focus();
+                    this.nologinPwd = false
+                }
+            },
+            // 输入框获取焦点
+            focusInput (event, data) {
+                // 登录邮箱输入判断
+                if (data === 'loginEmail') {
+                    this.loginEmailError = false
+                }
+
+                // 登录密码输入判断
+                if (data === 'loginPwd') {
+                    this.loginPwdError = false
+                }
+            },
             // 切换模块
             switchModule () {
                 this.showRegisteredModule = !this.showRegisteredModule;
@@ -214,15 +313,29 @@
             },
             // 点击确定按钮 登录/注册
             clickEndBtn (btn) {
-                console.log(this.userEmail)
-                console.log(this.userPwd)
+                let checkEmailRegExp = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/
+
                 // 登录
                 if (!btn) {
+                    // 如果登录邮箱和密码都没有输入不执行 ajax
+                    if (this.userEmail.length === 0 || this.userPwd.length === 0) {
+                        return;
+                    }
+
+                    // 判断邮箱是否正确再进行下一步
+                    if (checkEmailRegExp.test(this.userEmail)) {
+                        this.loginEmailError = false;
+                    }
+                    else {
+                        this.loginEmailError = true
+                        return;
+                    }
+
                     UserManager.usertLogin({'username': this.userEmail, 'password': this.userPwd})
                         .then(response => {
-                            console.log(response)
+                            console.log(response.data)
                         }).catch(err => {
-                        console.log(err)
+                        console.log(err.data)
                     })
                 }
                 // 注册
@@ -236,6 +349,14 @@
 
 <style lang="stylus" scoped>
     @require '~@/assets/stylus/variable'
+
+    .fade-enter-active {
+        transition: opacity .5s;
+    }
+
+    .fade-enter, .fade-leave-to {
+        opacity: 0;
+    }
 
     .login_wrapper {
         display: flex;
@@ -260,6 +381,7 @@
     }
 
     /*头部*/
+    ww
     .login_content_header {
         padding-top: 30px;
         .header_h1 {
@@ -286,6 +408,10 @@
             margin: 0;
         }
         /*账号输入*/
+        .account_input_wrapper {
+            position: relative;
+            width: 100%;
+        }
         .account_input {
             margin-top: 16px;
             border-bottom: 1px solid $account-input-br;
@@ -296,14 +422,48 @@
             height: 48px;
             outline: none;
         }
+        /*输入框提示*/
+        .account_input_title, .login_no_pwd {
+            position: absolute;
+            top: 0;
+            display: flex;
+            align-items: center;
+            margin: 0;
+            margin-top: 16px;
+            font-size: inherit;
+            width: 100%;
+            height: 48px;
+            color: $account-input-title-cl;
+        }
+        /*请输入正确的邮箱号*/
+        .account_input_error, .account_pwd_error {
+            position: absolute;
+            top: 0;
+            right: 0;
+            display: flex;
+            align-items: center;
+            margin: 0;
+            padding-left: 20px;
+            margin-top: 16px;
+            text-align: center;
+            font-size: inherit;
+            box-sizing: content-box;
+            height: 48px;
+            color: $account-input-title-cl;
+            background: $account-input-title-bg
+        }
         /*账号密码输入*/
         .account_pwd_input_wrapper {
+            position: relative;
             display: flex;
             align-items: center;
             margin-top: 12px;
             border-bottom: 1px solid $account-input-br;
             line-height: 24px;
             height: 48px;
+        }
+        .login_no_pwd{
+            margin :0;
         }
         .account_pwd_input {
             flex: 1;
@@ -319,6 +479,9 @@
             font-size: 24px;
             letter-spacing: 1.8px;
             user-select: none;
+        }
+        .account_pwd_error {
+            margin: 0 30px 0 0;
         }
         /*获取短信验证码*/
         .account_get_email_code {
