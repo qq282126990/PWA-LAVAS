@@ -40,6 +40,12 @@ const _article={
      * @desc  发表新的文章 ＋编辑文章 //todo 没有login 时候，无法发表，或无返回
      * */
     publishArticle: async (req, res, next) => {
+        //判断是否授权，如果授权未被通过，则打断
+        const isAuth= await _isAuth(res, req);
+        if(!isAuth){
+            logger.warn('----【非法访问】并想发表/编辑文章----\n')
+            return false
+        }
         let data = req.body;
         if (data._id) {
             logger.error('编辑 文章');
@@ -89,6 +95,12 @@ const _article={
      * @desc 拉取单篇文章
      * */
     getArticle: async (req, res, next) => {
+        //判断是否授权，如果授权未被通过，则打断
+        const isAuth= await _isAuth(res, req);
+        if(!isAuth){
+            logger.warn('----【非法访问】拉取单篇文章----\n')
+            return false
+        }
         let id = req.query.id;
         if (!id) {
             _dbError(res);
@@ -108,6 +120,12 @@ const _article={
      * @desc 删除单篇文章
      * */
     deleteArticle: async (req, res, next) => {
+        //判断是否授权，如果授权未被通过，则打断
+        const isAuth= await _isAuth(res, req);
+        if(!isAuth){
+            logger.warn('----【非法访问】并想删除单篇文章----\n')
+            return false
+        }
         let data = req.bdoy;
         return _dbSuccess(res, data)
     }
