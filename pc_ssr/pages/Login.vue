@@ -6,128 +6,33 @@
                 <h1 class="header_h1">Lavas</h1>
                 <!--标题-->
                 <div class="header_title">
-                    {{showRegisteredModule ? '注册Lavas社区，发现更大的PWA世界' : '登录Lavas社区，发现更大的PWA世界'}}
+                    {{switchModule ? '注册Lavas社区，发现更大的PWA世界' : '登录Lavas社区，发现更大的PWA世界'}}
                 </div>
             </div>
             <div class="login_content">
                 <!--登录输入框-->
-                <div class="login_content_input" v-show="!showRegisteredModule">
-                    <!--账号输入-->
-                    <div class="account_input_wrapper">
-                        <input class="account_input"
-                               type="text"
-                               spellcheck="false"
-                               :placeholder="nologinEmail ? '' : '请输入邮箱'"
-                               @blur="blurInput($event,'loginEmail')"
-                               @focus="focusInput($event,'loginEmail')"
-                               ref="loginEmail"
-                               v-model="userEmail"
-                        />
-                        <!--错误提示-->
-                        <transition name="fade">
-                            <p class="account_input_error" v-show="loginEmailError">请输入正确的邮箱</p>
-                        </transition>
-                        <!--没有输入时的提示-->
-                        <transition name="fade">
-                            <p class="account_input_title"
-                               @click="blurInput($event,'loginEmailClick')"
-                               v-show="nologinEmail"
-                            >
-                                请输入邮箱
-                            </p>
-                        </transition>
-                    </div>
-                    <!--账号密码输入-->
-                    <div class="account_pwd_input_wrapper">
-                        <input class="account_pwd_input"
-                               spellcheck="false"
-                               :placeholder="showPwd.length > 0 ? '' : '请输入密码'"
-                               :class="{'account_pwd_show' : !showPwd && (userPwd.length > 0)}"
-                               :type="showPwd ? 'text' : 'password'"
-                               @blur="blurInput($event,'loginPwd')"
-                               @focus="focusInput($event,'loginPwd')"
-                               ref="loginPwd"
-                               v-model="userPwd"
-                        />
-                        <!--密码隐藏显示-->
-                        <v-icon class="account_pwd_show" @click="clickShowPwd('loginPwd')">
-                            {{showPwd ? 'visibility' : 'visibility_off' }}
-                        </v-icon>
-                        <!--没有输入时的提示-->
-                        <transition name="fade">
-                            <p class="login_no_pwd"
-                               @click="blurInput($event,'loginPwdClick')"
-                               v-show="nologinPwd"
-                            >
-                                请输入密码
-                            </p>
-                        </transition>
-                        <!--错误提示-->
-                        <transition name="fade">
-                            <p class="account_pwd_error" v-show="loginPwdError">请输入正确的密码</p>
-                        </transition>
-                    </div>
-                </div>
+                <login-module :loginEmailError="loginEmailError"
+                              :loginPwdError="loginPwdError"
+                              @loginEmail="_loginEmail"
+                              @loginPwd="_loginPwd"
+                              v-show="!switchModule"
+                >
+                </login-module>
                 <!--注册输入框-->
-                <div class="login_content_input" v-show="showRegisteredModule">
-                    <!--账号输入-->
-                    <input class="account_input" type="text" placeholder="邮箱"/>
-                    <!--账号密码输入-->
-                    <div class="account_pwd_input_wrapper">
-                        <input class="account_pwd_input"
-                               spellcheck="false"
-                               placeholder="邮箱验证码"
-                               type="text"
-                               v-model="emailCode"
-                        />
-                        <!--密码隐藏显示-->
-                        <p class="account_get_email_code" @click="getEmailCode">获取邮箱验证码</p>
-                    </div>
-                    <!--注册输入密码-->
-                    <div v-show="showRegisteredInputPwd">
-                        <!--密码输入-->
-                        <div class="account_pwd_input_wrapper">
-                            <input class="account_pwd_input"
-                                   spellcheck="false"
-                                   placeholder="请输入密码"
-                                   :class="{'account_pwd_show' : !showRegisteredPwd && (registeredPwd.length > 0)}"
-                                   :type="showRegisteredPwd ? 'text' : 'password'"
-                                   v-model="registeredPwd"
-                            />
-                            <!--密码隐藏显示-->
-                            <v-icon class="account_pwd_show" @click="clickShowPwd('registeredPwd')">
-                                {{showRegisteredPwd ? 'visibility' : 'visibility_off' }}
-                            </v-icon>
-                        </div>
-                        <!--密码输入-->
-                        <div class="account_pwd_input_wrapper">
-                            <input class="account_pwd_input"
-                                   spellcheck="false"
-                                   placeholder="请再次输入密码"
-                                   :class="{'account_pwd_show' : !showRegisteredAgainPwd && (registeredAgainPwd.length > 0)}"
-                                   :type="showRegisteredAgainPwd ? 'text' : 'password'"
-                                   v-model="registeredAgainPwd"
-                            />
-                            <!--密码隐藏显示-->
-                            <v-icon class="account_pwd_show" @click="clickShowPwd('registeredAgainPwd')">
-                                {{showRegisteredAgainPwd ? 'visibility' : 'visibility_off' }}
-                            </v-icon>
-                        </div>
-                    </div>
-                </div>
+                <registered-module v-show="switchModule"></registered-module>
                 <!--确定按钮-->
-                <v-btn flat color="white" class="login_btn" @click="clickEndBtn(showRegisteredModule)">
-                    {{showRegisteredModule ? '注册' : '登录'}}
+                <v-btn flat color="white" class="login_btn" @click="clickEndBtn(switchModule)">
+                    {{switchModule ? '注册' : '登录'}}
                 </v-btn>
                 <!--协议-->
-                <p class="login_protocol" :class="{'forget_password': !showRegisteredModule}">
-                    {{showRegisteredModule ? '注册即代表同意《Lavas社区协议》《隐私政策》' : '忘了密码？'}}
+                <p class="login_protocol" :class="{'forget_password': !switchModule}">
+                    {{switchModule ? '注册即代表同意《Lavas社区协议》《隐私政策》' : '忘了密码？'}}
                 </p>
             </div>
             <!--跳转提示-->
             <div class="login_transfer">
                 <p class="txt">没有帐号？</p>
-                <p class="txt transfer" @click="switchModule">{{showRegisteredModule ? '登录' : '注册'}}</p>
+                <p class="txt transfer" @click="_switchModule">{{switchModule ? '登录' : '注册'}}</p>
             </div>
         </div>
         <!--<router-link to="/"><h2>LAVAS</h2></router-link>-->
@@ -138,6 +43,8 @@
 
 <script>
     import UserManager from 'api/UserManager';
+    import LoginModule from 'components/Login/LoginModule';
+    import RegisteredModule from 'components/Login/RegisteredModule';
 
     let state = {
         appHeaderState: {
@@ -168,65 +75,10 @@
         data () {
             return {
                 /*
-                 * 是否显示注册模块
+                 * 切换模块
                  * @type {Boolean}
                  * */
-                showRegisteredModule: false,
-                /*
-                 * 注册输入密码显示
-                 * @type {Boolean}
-                 * */
-                showRegisteredPwd: false,
-                /*
-                 * 注册再次输入密码显示
-                 * @type {Boolean}
-                 * */
-                showRegisteredAgainPwd: false,
-                /*
-                 * 是否显示密码
-                 * @type {Boolean}
-                 * */
-                showPwd: false,
-                /*
-                 * 点击获取邮箱验证码显示注册输入密码
-                 * @type {Boolean}
-                 * */
-                showRegisteredInputPwd: false,
-                /*
-                 * 用户登录密码
-                 * @type {String}
-                 * */
-                userEmail: '',
-                /*
-                 * 密码
-                 * @type {String}
-                 * */
-                userPwd: '',
-                /*
-                 * 注册输入密码
-                 * @type {String}
-                 * */
-                registeredPwd: '',
-                /*
-                 * 注册再次输入密码
-                 * @type {String}
-                 * */
-                registeredAgainPwd: '',
-                /*
-                 * 邮箱验证码
-                 * @type {String}
-                 * */
-                emailCode: '',
-                /*
-                 * 登录没有输入邮箱
-                 * @type {Boolean}
-                 * */
-                nologinEmail: false,
-                /*
-                 * 登录没有输入密码
-                 * @type {Boolean}
-                 * */
-                nologinPwd: false,
+                switchModule: false,
                 /*
                  * 点击按钮错误提示
                  * @type {Boolean}
@@ -236,80 +88,44 @@
                  * 登录输入密码错误提示
                  * @type {Boolean}
                  * */
-                loginPwdError: false
+                loginPwdError: false,
+                /*
+                 * 登录邮箱
+                 * @type {String}
+                 * */
+                loginEmail: '',
+                /*
+                 * 登录密码
+                 * @type {String}
+                 * */
+                loginPwd: ''
             }
         },
         methods: {
-            async login() {
-                // 如果未登录，设置登录成功
-                if (!this.$store.state.common.login) {
-
-                    // 修改 store 中的登录状态为 true
-                    await this.$store.dispatch('common/setLogin', true);
-                    this.$refs.tips.innerHTML = 'tips：登录成功';
-                }
-                // 如果登录显示已登录
-                else {
-                    this.$refs.tips.innerHTML = 'tips：已登录';
-                }
+//            async login() {
+//                // 如果未登录，设置登录成功
+//                if (!this.$store.state.common.login) {
+//
+//                    // 修改 store 中的登录状态为 true
+//                    await this.$store.dispatch('common/setLogin', true);
+//                    this.$refs.tips.innerHTML = 'tips：登录成功';
+//                }
+//                // 如果登录显示已登录
+//                else {
+//                    this.$refs.tips.innerHTML = 'tips：已登录';
+//                }
+//            },
+            // 接收登录邮箱输入数据
+            _loginEmail (data) {
+                this.loginEmail = data;
             },
-            // 显示隐藏密码
-            clickShowPwd(data) {
-                if (data === 'loginPwd') {
-                    this.showPwd = !this.showPwd;
-                }
-                else if (data === 'registeredPwd') {
-                    this.showRegisteredPwd = !this.showRegisteredPwd;
-                }
-                else if (data === 'registeredAgainPwd') {
-                    this.showRegisteredAgainPwd = !this.showRegisteredAgainPwd;
-                }
-            },
-            // 输入框失去焦点
-            blurInput (event, data) {
-                // 登录邮箱输入判断
-                if (this.userEmail.length > 0) {
-                    return;
-                }
-                else if (data === 'loginEmail') {
-                    this.nologinEmail = true;
-                }
-                else if (data === 'loginEmailClick') {
-                    this.$refs.loginEmail.focus();
-                    this.nologinEmail = false;
-                }
-
-                // 登录密码输入判断
-                if (this.userPwd.length > 0) {
-                    return;
-                }
-                else if (data === 'loginPwd') {
-                    this.nologinPwd = true
-                }
-                else if (data === 'loginPwdClick') {
-                    this.$refs.loginPwd.focus();
-                    this.nologinPwd = false
-                }
-            },
-            // 输入框获取焦点
-            focusInput (event, data) {
-                // 登录邮箱输入判断
-                if (data === 'loginEmail') {
-                    this.loginEmailError = false
-                }
-
-                // 登录密码输入判断
-                if (data === 'loginPwd') {
-                    this.loginPwdError = false
-                }
+            // 接收登录密码输入数据
+            _loginPwd (data) {
+                this.loginPwd = data;
             },
             // 切换模块
-            switchModule () {
-                this.showRegisteredModule = !this.showRegisteredModule;
-            },
-            // 获取邮箱验证码
-            getEmailCode () {
-                this.showRegisteredInputPwd = true;
+            _switchModule () {
+                this.switchModule = !this.switchModule;
             },
             // 点击确定按钮 登录/注册
             clickEndBtn (btn) {
@@ -318,20 +134,20 @@
                 // 登录
                 if (!btn) {
                     // 如果登录邮箱和密码都没有输入不执行 ajax
-                    if (this.userEmail.length === 0 || this.userPwd.length === 0) {
+                    if (this.loginEmail.length === 0 || this.loginPwd.length === 0) {
                         return;
                     }
 
                     // 判断邮箱是否正确再进行下一步
-                    if (checkEmailRegExp.test(this.userEmail)) {
-                        this.loginEmailError = false;
-                    }
-                    else {
-                        this.loginEmailError = true
-                        return;
-                    }
+//                    if (checkEmailRegExp.test(this.loginEmail)) {
+//                        this.loginEmailError = false;
+//                    }
+//                    else {
+//                        this.loginEmailError = true
+//                        return;
+//                    }
 
-                    UserManager.usertLogin({'username': this.userEmail, 'password': this.userPwd})
+                    UserManager.usertLogin({'username': this.loginEmail, 'password': this.loginPwd})
                         .then(response => {
                             console.log(response.data)
                         }).catch(err => {
@@ -343,6 +159,10 @@
 
                 }
             }
+        },
+        components: {
+            LoginModule,
+            RegisteredModule
         }
     };
 </script>
@@ -381,7 +201,6 @@
     }
 
     /*头部*/
-    ww
     .login_content_header {
         padding-top: 30px;
         .header_h1 {
@@ -462,8 +281,8 @@
             line-height: 24px;
             height: 48px;
         }
-        .login_no_pwd{
-            margin :0;
+        .login_no_pwd {
+            margin: 0;
         }
         .account_pwd_input {
             flex: 1;
