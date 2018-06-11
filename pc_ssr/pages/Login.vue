@@ -19,7 +19,15 @@
                 >
                 </login-module>
                 <!--注册输入框-->
-                <registered-module v-show="switchModule"></registered-module>
+                <registered-module :registeredEmailError="registeredEmailError"
+                                   :registeredEmailCodeError="registeredEmailCodeError"
+                                   @registeredEmail="_registeredEmail"
+                                   @registeredEmailCode="_registeredEmailCode"
+                                   @registeredPwd="_registeredPwd"
+                                   @registeredAgainPwd="_registeredAgainPwd"
+                                   @registeredEmailCodeFocus="_registeredEmailCodeFocus"
+                                   v-show="switchModule"
+                ></registered-module>
                 <!--确定按钮-->
                 <v-btn flat color="white" class="login_btn" @click="clickEndBtn(switchModule)">
                     {{switchModule ? '注册' : '登录'}}
@@ -80,7 +88,7 @@
                  * */
                 switchModule: false,
                 /*
-                 * 点击按钮错误提示
+                 * 登录邮箱错误提示
                  * @type {Boolean}
                  * */
                 loginEmailError: false,
@@ -90,6 +98,16 @@
                  * */
                 loginPwdError: false,
                 /*
+                 * 注册邮箱错误提示
+                 * @type {Boolean}
+                 * */
+                registeredEmailError: false,
+                /*
+                 * 注册邮箱验证码错误提示
+                 * @type {Boolean}
+                 * */
+                registeredEmailCodeError: false,
+                /*
                  * 登录邮箱
                  * @type {String}
                  * */
@@ -98,7 +116,27 @@
                  * 登录密码
                  * @type {String}
                  * */
-                loginPwd: ''
+                loginPwd: '',
+                /*
+                 * 注册邮箱
+                 * @type {String}
+                 * */
+                registeredEmail: '',
+                /*
+                 * 注册邮箱验证码
+                 * @type {String}
+                 * */
+                registeredEmailCode: '',
+                /*
+                 * 注册输入密码
+                 * @type {String}
+                 * */
+                registeredPwd: '',
+                /*
+                 * 注册再次输入密码
+                 * @type {String}
+                 * */
+                registeredAgainPwd: ''
             }
         },
         methods: {
@@ -115,13 +153,33 @@
 //                    this.$refs.tips.innerHTML = 'tips：已登录';
 //                }
 //            },
-            // 接收登录邮箱输入数据
+            // 接收登录邮箱输入
             _loginEmail (data) {
                 this.loginEmail = data;
             },
-            // 接收登录密码输入数据
+            // 接收登录密码输入
             _loginPwd (data) {
                 this.loginPwd = data;
+            },
+            // 接收注册邮箱输入
+            _registeredEmail (data) {
+                this.registeredEmail = data;
+            },
+            //  接收注册邮箱验证码输入
+            _registeredEmailCode (data) {
+                this.registeredEmailCode = data;
+            },
+            //  接收注册输入密码
+            _registeredPwd (data) {
+                this.registeredPwd = data;
+            },
+            //  接收注册再次输入密码
+            _registeredAgainPwd (data) {
+                this.registeredAgainPwd = data;
+            },
+            // 接收注册邮箱验证码输入焦点获取
+            _registeredEmailCodeFocus (data) {
+                this.registeredEmailCodeError = !data;
             },
             // 切换模块
             _switchModule () {
@@ -156,6 +214,24 @@
                 }
                 // 注册
                 else {
+                    // 如果登录邮箱和密码都没有输入不执行 ajax
+                    if (this.registeredEmail.length === 0 ||
+                        this.registeredEmailCode.length === 0 ||
+                        this.registeredPwd.length === 0 ||
+                        this.registeredAgainPwd.length === 0) {
+                    }
+
+                    // 判断邮箱
+                    if (checkEmailRegExp.test(this.registeredEmail)) {
+                        this.registeredEmailError = false;
+                    }
+                    else {
+                        this.registeredEmailError = true;
+                    }
+
+                    if (this.registeredEmailCode.length > 6) {
+                        this.registeredEmailCodeError = true
+                    }
 
                 }
             }
