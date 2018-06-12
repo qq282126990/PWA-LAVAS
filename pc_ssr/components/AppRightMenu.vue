@@ -37,7 +37,6 @@
         mounted () {
             // 监听浏览器滚动
             window.addEventListener('scroll', this.scroll);
-
         },
         destroyed () {
             // 销毁监听滚动
@@ -47,7 +46,6 @@
             scroll () {
                 let scrollTop;
                 let documentElement = document.documentElement
-
                 // 获取滚动条
                 if (documentElement && documentElement.scrollTop) {
                     scrollTop = documentElement.scrollTop;
@@ -55,7 +53,6 @@
                 else if (document.body) {
                     scrollTop = document.body.scrollTop;
                 }
-
                 // 是否滚动到底部
                 if ((documentElement.scrollHeight - scrollTop) < documentElement.clientHeight + 230) {
                     this.setMenuClass = true
@@ -63,7 +60,6 @@
                 else {
                     this.setMenuClass = false
                 }
-
                 if (scrollTop > 100) {
                     this.showMenu = true;
                 }
@@ -77,15 +73,12 @@
 
 <style lang="stylus" scoped>
     @require '~@/assets/stylus/variable'
-
     .fade-enter-active, .fade-leave-active {
         transition: opacity .5s;
     }
-
     .fade-enter, .fade-leave-to {
         opacity: 0;
     }
-
     .app_right_menu {
         position: fixed;
         right: 0;
@@ -96,18 +89,16 @@
         padding: 0 2.5%;
         width: 10%;
         transition: all .5s;
+        z-index :100;
     }
-
     .app_right_menu_hidden {
         bottom: 245px;
         z-index :100;
     }
-
     .app_right_menu_list {
         margin-top: 5px;
         max-width: 60px;
     }
-
     .app_right_menu_list__icon {
         padding: 13px 10px;
         border-radius: 5px;
@@ -121,7 +112,6 @@
             background: #dddddd;
         }
     }
-
     @media screen and (max-width: 800px) {
         .app_right_menu {
             display: none;

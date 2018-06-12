@@ -27,7 +27,7 @@
         <!--邮箱验证码-->
         <div class="account_pwd_input_wrapper">
             <input class="account_pwd_input"
-                   type="number"
+                   type="text"
                    spellcheck="false"
                    :placeholder="noRegisteredEmailCode ? '' : '请输入邮箱验证码'"
                    @blur="blurInput($event,'registeredEmailCode')"

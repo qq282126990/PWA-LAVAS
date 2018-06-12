@@ -46,6 +46,9 @@
         <!--<router-link to="/"><h2>LAVAS</h2></router-link>-->
         <!--<button @click="login()">点击登录</button>-->
         <!--<div class="tips" ref="tips"></div>-->
+            <v-alert class="login_alter" :value="loginAlter.show" :icon="loginAlter.icon" :color="loginAlter.color"  transition="fade">
+                {{loginAlter.msg}}
+            </v-alert>
     </div>
 </template>
 
@@ -136,7 +139,16 @@
                  * 注册再次输入密码
                  * @type {String}
                  * */
-                registeredAgainPwd: ''
+                registeredAgainPwd: '',
+                /*
+                 * 弹出框提示
+                 * @type {String}
+                 * */
+                loginAlter: {
+                    'msg': '',
+                    'color': '',
+                    'show': false
+                }
             }
         },
         methods: {
@@ -207,7 +219,30 @@
 
                     UserManager.usertLogin({'username': this.loginEmail, 'password': this.loginPwd})
                         .then(response => {
-                            console.log(response.data)
+                            if(response.data.msg === '登录成功') {
+                                this.loginAlter = {
+                                    'msg': response.data.msg,
+                                    'show': true,
+                                    'color': 'green',
+                                    'icon': 'check_circle'
+                                }
+                            }
+                            else {
+                                this.loginAlter = {
+                                    'msg': response.data.msg,
+                                    'show': true,
+                                    'color': 'red',
+                                    'icon': 'warning'
+                                }
+                            }
+
+                            // 隐藏弹出框
+                            setTimeout(() => {
+                                this.loginAlter.show = false;
+
+                                this.$router.go(-1)
+                            }, 1000)
+                            console.log(response.data.msg)
                         }).catch(err => {
                         console.log(err.data)
                     })
@@ -423,4 +458,20 @@
             color: $login-color;
         }
     }
+
+    /*弹出框*/
+    .login_alter {
+        position: fixed;
+        top: 100px;
+        left: 0;
+        right: 0;
+        padding: 10px;
+        margin: 0 auto;
+        border: none;
+        border-radius: 5px;
+        width: 200px;
+        height: 20px;
+        background: rgba(0, 0, 0, .5);
+    }
+
 </style>

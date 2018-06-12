@@ -24,12 +24,12 @@
 
 <script>
     import {mapActions} from 'vuex';
-    import UserMessage from 'components/UserMessage'
-    import UserAttention from 'components/UserAttention'
+    import UserMessage from 'components/User/UserMessage'
+    import UserAttention from 'components/User/UserAttention'
     import Search from 'components/Search'
-    import ArticleBlock from 'components/ArticleBlock'
+    import ArticleBlock from 'components/Article/ArticleBlock'
+    import ArticleNav from 'components/Article/ArticleNav'
     import AppRightMenu from 'components/AppRightMenu'
-    import ArticleNav from 'components/ArticleNav'
 
     let state = {
         appHeaderState: {
@@ -42,6 +42,8 @@
     function setState(store) {
         store.dispatch('appShell/appHeader/setAppHeader', state.appHeaderState);
         store.dispatch('appShell/appFooter/setAppFooter', state.appFooterState);
+
+        store.dispatch('appStore/asyncAjax/getArticleList', {name: '标题1', page:'1'});
     }
 
     export default {
