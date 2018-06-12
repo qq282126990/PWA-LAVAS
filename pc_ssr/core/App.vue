@@ -210,4 +210,6 @@ $page-transition-duration = 0.35s
 
             &.fade-leave-active
                 opacity 0
+    .alert__icon
+        margin :0
 </style>

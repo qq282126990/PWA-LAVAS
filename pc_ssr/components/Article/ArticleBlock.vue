@@ -91,7 +91,7 @@
     .article_block_header__title {
         margin: 0;
         line-height: 15px;
-        font-size: 20px;
+        font-size: 17px;
     }
 
     /*更多按钮*/
@@ -157,19 +157,17 @@
         .content_list_text__title {
             margin: 0;
             padding-bottom: 5px;
-            font-size: 18px;
+            font-size: 16px;
         }
         /*文章内容*/
         .content_list_text__content {
             margin: 0;
-            font-size: 14px;
+            line-height: 20px;
+            font-size: 13px;
             overflow: hidden;
             p {
                 margin: 0;
                 cursor: pointer;
-            }
-            &:hover {
-                text-decoration: underline;
             }
         }
         /*查看全部按钮*/

@@ -19,6 +19,10 @@
                     请输入注册邮箱
                 </p>
             </transition>
+            <!--点击注册按钮显示邮箱错误提示-->
+            <transition name="fade">
+                <p class="account_input_error" v-show="registeredEmailError">请输入正确的注册邮箱</p>
+            </transition>
         </div>
         <!--邮箱验证码-->
         <div class="account_pwd_input_wrapper">
@@ -27,6 +31,7 @@
                    spellcheck="false"
                    :placeholder="noRegisteredEmailCode ? '' : '请输入邮箱验证码'"
                    @blur="blurInput($event,'registeredEmailCode')"
+                   @focus="focusInput($event,'registeredEmailCode')"
                    v-model="registeredEmailCode"
                    ref="registeredEmailCode"
             />
@@ -38,6 +43,10 @@
                 >
                     请输入邮箱验证码
                 </p>
+            </transition>
+            <!--点击注册按钮显示邮箱验证码错误提示-->
+            <transition name="fade">
+                <p class="account_email_code_error" v-show="registeredEmailCodeError">请输入正确的验证码</p>
             </transition>
             <!--获取邮箱验证码-->
             <p class="account_get_email_code" @click="getRegisteredEmailCode">获取邮箱验证码</p>
@@ -73,15 +82,26 @@
             <div class="account_pwd_input_wrapper">
                 <input class="account_pwd_input"
                        spellcheck="false"
-                       placeholder="请再次输入密码"
+                       :placeholder="noRegisteredAgainPwd ? '' : '请再次输入密码'"
                        :class="{'account_pwd_show' : !showRegisteredAgainPwd && (registeredAgainPwd.length > 0)}"
                        :type="showRegisteredAgainPwd ? 'text' : 'password'"
+                       @blur="blurInput($event,'registeredAgainPwd')"
                        v-model="registeredAgainPwd"
+                       ref="registeredAgainPwd"
                 />
                 <!--密码隐藏显示-->
                 <v-icon class="account_pwd_show" @click="clickShowPwd('registeredAgainPwd')">
                     {{showRegisteredAgainPwd ? 'visibility' : 'visibility_off' }}
                 </v-icon>
+                <!--再次没有输入密码时的提示-->
+                <transition name="fade">
+                    <p class="account_pwd_title"
+                       @click="blurInput($event,'registeredAgainPwdClick')"
+                       v-show="noRegisteredAgainPwd"
+                    >
+                        请再次输入密码
+                    </p>
+                </transition>
             </div>
         </div>
     </div>
@@ -89,6 +109,24 @@
 
 <script>
     export default {
+        props: {
+            /*
+             * 注册邮箱错误提示
+             * @type {Boolean}
+             * */
+            registeredEmailError: {
+                type: Boolean,
+                default: false
+            },
+            /*
+             * 注册邮箱验证码错误提示
+             * @type {Boolean}
+             * */
+            registeredEmailCodeError: {
+                type: Boolean,
+                default: false
+            }
+        },
         data () {
             return {
                 /*
@@ -106,6 +144,11 @@
                  * @type {Boolean}
                  * */
                 noRegisteredPwd: false,
+                /*
+                 * 注册没有再次输入密码邮箱
+                 * @type {Boolean}
+                 * */
+                noRegisteredAgainPwd: false,
                 /*
                  * 点击获取邮箱验证码显示注册输入密码
                  * @type {Boolean}
@@ -172,6 +215,21 @@
                     this.$refs.registeredPwd.focus();
                     this.noRegisteredPwd = false;
                 }
+
+                // 注册密码再次输入判断
+                if (this.registeredAgainPwd.length === 0 && data === 'registeredAgainPwd') {
+                    this.noRegisteredAgainPwd = true;
+                }
+                else if (data === 'registeredAgainPwdClick') {
+                    this.$refs.registeredAgainPwd.focus();
+                    this.noRegisteredAgainPwd = false;
+                }
+            },
+            // 输入框获取焦点
+            focusInput (event, data) {
+                if (data === 'registeredEmailCode') {
+                    this.$emit('registeredEmailCodeFocus', true)
+                }
             },
             // 获取注册邮箱验证码
             getRegisteredEmailCode () {
@@ -197,11 +255,11 @@
                 this.$emit('registeredEmailCode', data)
             },
             // 发送注册密码输入事件
-            registeredPwd () {
+            registeredPwd (data) {
                 this.$emit('registeredPwd', data)
             },
             // 发送注册密码再次输入事件
-            registeredAgainPwd () {
+            registeredAgainPwd (data) {
                 this.$emit('registeredAgainPwd', data)
             }
         }
@@ -256,7 +314,7 @@
             color: $account-input-title-cl;
         }
         /*请输入正确的邮箱号*/
-        .account_input_error, .account_pwd_error {
+        .account_input_error, .account_pwd_error,.account_email_code_error {
             position: absolute;
             top: 0;
             right: 0;
@@ -292,6 +350,10 @@
             overflow: hidden;
             outline: none;
             cursor: auto !important;
+        }
+        .account_email_code_error{
+            margin-top :0;
+            z-index: 1;
         }
         .account_pwd_title {
             position: absolute;

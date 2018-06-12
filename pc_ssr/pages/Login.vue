@@ -19,7 +19,15 @@
                 >
                 </login-module>
                 <!--注册输入框-->
-                <registered-module v-show="switchModule"></registered-module>
+                <registered-module :registeredEmailError="registeredEmailError"
+                                   :registeredEmailCodeError="registeredEmailCodeError"
+                                   @registeredEmail="_registeredEmail"
+                                   @registeredEmailCode="_registeredEmailCode"
+                                   @registeredPwd="_registeredPwd"
+                                   @registeredAgainPwd="_registeredAgainPwd"
+                                   @registeredEmailCodeFocus="_registeredEmailCodeFocus"
+                                   v-show="switchModule"
+                ></registered-module>
                 <!--确定按钮-->
                 <v-btn flat color="white" class="login_btn" @click="clickEndBtn(switchModule)">
                     {{switchModule ? '注册' : '登录'}}
@@ -38,6 +46,9 @@
         <!--<router-link to="/"><h2>LAVAS</h2></router-link>-->
         <!--<button @click="login()">点击登录</button>-->
         <!--<div class="tips" ref="tips"></div>-->
+            <v-alert class="login_alter" :value="loginAlter.show" :icon="loginAlter.icon" :color="loginAlter.color"  transition="fade">
+                {{loginAlter.msg}}
+            </v-alert>
     </div>
 </template>
 
@@ -80,7 +91,7 @@
                  * */
                 switchModule: false,
                 /*
-                 * 点击按钮错误提示
+                 * 登录邮箱错误提示
                  * @type {Boolean}
                  * */
                 loginEmailError: false,
@@ -90,6 +101,16 @@
                  * */
                 loginPwdError: false,
                 /*
+                 * 注册邮箱错误提示
+                 * @type {Boolean}
+                 * */
+                registeredEmailError: false,
+                /*
+                 * 注册邮箱验证码错误提示
+                 * @type {Boolean}
+                 * */
+                registeredEmailCodeError: false,
+                /*
                  * 登录邮箱
                  * @type {String}
                  * */
@@ -98,7 +119,36 @@
                  * 登录密码
                  * @type {String}
                  * */
-                loginPwd: ''
+                loginPwd: '',
+                /*
+                 * 注册邮箱
+                 * @type {String}
+                 * */
+                registeredEmail: '',
+                /*
+                 * 注册邮箱验证码
+                 * @type {String}
+                 * */
+                registeredEmailCode: '',
+                /*
+                 * 注册输入密码
+                 * @type {String}
+                 * */
+                registeredPwd: '',
+                /*
+                 * 注册再次输入密码
+                 * @type {String}
+                 * */
+                registeredAgainPwd: '',
+                /*
+                 * 弹出框提示
+                 * @type {String}
+                 * */
+                loginAlter: {
+                    'msg': '',
+                    'color': '',
+                    'show': false
+                }
             }
         },
         methods: {
@@ -115,13 +165,33 @@
 //                    this.$refs.tips.innerHTML = 'tips：已登录';
 //                }
 //            },
-            // 接收登录邮箱输入数据
+            // 接收登录邮箱输入
             _loginEmail (data) {
                 this.loginEmail = data;
             },
-            // 接收登录密码输入数据
+            // 接收登录密码输入
             _loginPwd (data) {
                 this.loginPwd = data;
+            },
+            // 接收注册邮箱输入
+            _registeredEmail (data) {
+                this.registeredEmail = data;
+            },
+            //  接收注册邮箱验证码输入
+            _registeredEmailCode (data) {
+                this.registeredEmailCode = data;
+            },
+            //  接收注册输入密码
+            _registeredPwd (data) {
+                this.registeredPwd = data;
+            },
+            //  接收注册再次输入密码
+            _registeredAgainPwd (data) {
+                this.registeredAgainPwd = data;
+            },
+            // 接收注册邮箱验证码输入焦点获取
+            _registeredEmailCodeFocus (data) {
+                this.registeredEmailCodeError = !data;
             },
             // 切换模块
             _switchModule () {
@@ -149,13 +219,54 @@
 
                     UserManager.usertLogin({'username': this.loginEmail, 'password': this.loginPwd})
                         .then(response => {
-                            console.log(response.data)
+                            if(response.data.msg === '登录成功') {
+                                this.loginAlter = {
+                                    'msg': response.data.msg,
+                                    'show': true,
+                                    'color': 'green',
+                                    'icon': 'check_circle'
+                                }
+                            }
+                            else {
+                                this.loginAlter = {
+                                    'msg': response.data.msg,
+                                    'show': true,
+                                    'color': 'red',
+                                    'icon': 'warning'
+                                }
+                            }
+
+                            // 隐藏弹出框
+                            setTimeout(() => {
+                                this.loginAlter.show = false;
+
+                                this.$router.go(-1)
+                            }, 1000)
+                            console.log(response.data.msg)
                         }).catch(err => {
                         console.log(err.data)
                     })
                 }
                 // 注册
                 else {
+                    // 如果登录邮箱和密码都没有输入不执行 ajax
+                    if (this.registeredEmail.length === 0 ||
+                        this.registeredEmailCode.length === 0 ||
+                        this.registeredPwd.length === 0 ||
+                        this.registeredAgainPwd.length === 0) {
+                    }
+
+                    // 判断邮箱
+                    if (checkEmailRegExp.test(this.registeredEmail)) {
+                        this.registeredEmailError = false;
+                    }
+                    else {
+                        this.registeredEmailError = true;
+                    }
+
+                    if (this.registeredEmailCode.length > 6) {
+                        this.registeredEmailCodeError = true
+                    }
 
                 }
             }
@@ -347,4 +458,20 @@
             color: $login-color;
         }
     }
+
+    /*弹出框*/
+    .login_alter {
+        position: fixed;
+        top: 100px;
+        left: 0;
+        right: 0;
+        padding: 10px;
+        margin: 0 auto;
+        border: none;
+        border-radius: 5px;
+        width: 200px;
+        height: 20px;
+        background: rgba(0, 0, 0, .5);
+    }
+
 </style>
