@@ -10,6 +10,10 @@ const _public = {
      * @desc 可以拿到req.session 一级req.sessionId
      * */
     login: async (req, res, next) => {
+        if(!req.body.username||!req.body.password){
+            await  _dbError(res,'用户名或密码不能为空');
+            return false
+        }
         logger.warn(
             '\n-------检测到用户【'+req.body.username+'】在登录-----' +
             '\n-------当前登录ip为【'+req.ip+'】------' +
