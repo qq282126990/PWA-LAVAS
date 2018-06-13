@@ -22,7 +22,7 @@ const options = {
     user: 'admin',
     pass: 'lavas'//数据库账号
 }
-mongoose.connect('mongodb://121.42.203.142:27017/lavas', options);//链接
+mongoose.connect('mongodb://127.0.0.1:27017/lavas', options);//链接
 const connect = async function () {
     let db = mongoose.connection;
     if (db) {
