@@ -16,8 +16,6 @@
                 <!--文章模块-->
                 <article-block :articleBlockData="articleNavTitle"></article-block>
             </div>
-            <!--右边内容-->
-            <app-right-menu></app-right-menu>
         </div>
     </div>
 </template>
@@ -29,7 +27,6 @@
     import Search from 'components/Search'
     import ArticleBlock from 'components/Article/ArticleBlock'
     import ArticleNav from 'components/Article/ArticleNav'
-    import AppRightMenu from 'components/AppRightMenu'
 
     let state = {
         appHeaderState: {
@@ -37,11 +34,15 @@
         },
         appFooterState: {
             show: true
+        },
+        appRightMenu: {
+            show: false
         }
     };
     function setState(store) {
         store.dispatch('appShell/appHeader/setAppHeader', state.appHeaderState);
         store.dispatch('appShell/appFooter/setAppFooter', state.appFooterState);
+        store.dispatch('appShell/appRightMenu/setAppRightMenu', state.appRightMenu);
 
         store.dispatch('appStore/asyncAjax/getArticleList', {name: '标题1', page:'1'});
     }
@@ -83,7 +84,6 @@
             UserAttention,
             Search,
             ArticleBlock,
-            AppRightMenu,
             ArticleNav
         }
     };
