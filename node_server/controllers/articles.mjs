@@ -21,7 +21,7 @@ const _article = {
         let data = {}; //获得有值的key数组
         for (let item in req.query) {
             if (req.query[item] && legalParams.includes(item)) {
-                data[item] = Number(req.query[item]) ? Number(req.query[item]) : new RegExp(req.query[item])//正则构造函数
+                data[item] = Number(req.query[item])>-1 ? Number(req.query[item]) : new RegExp(req.query[item])//正则构造函数
             }
         }
         let page = req.query.page ? req.query.page : 1;
