@@ -8,3 +8,4 @@ yarn-error.log*
 .lavas/
 .nyc_output
 /node_server/.idea/
+.idea/

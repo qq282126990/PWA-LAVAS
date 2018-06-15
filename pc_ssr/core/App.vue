@@ -20,6 +20,8 @@
                 </keep-alive>
             </transition>
             <app-footer></app-footer>
+            <!--右边内容-->
+            <app-right-menu></app-right-menu>
             <update-toast></update-toast>
         </v-app>
     </div>
@@ -30,6 +32,7 @@ import Vue from 'vue';
 import {mapState, mapActions} from 'vuex';
 import AppHeader from 'components/AppHeader';
 import AppFooter from 'components/AppFooter';
+import AppRightMenu from 'components/AppRightMenu'
 import UpdateToast from 'commonComponents/UpdateToast';
 import {keepAlivePages} from '@/.lavas/router';
 
@@ -40,7 +43,8 @@ export default {
     components: {
         UpdateToast,
         AppHeader,
-        AppFooter
+        AppFooter,
+        AppRightMenu
     },
     computed: {
         ...mapState('pageTransition', {

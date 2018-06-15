@@ -24,7 +24,7 @@
                  * 文章导航按钮
                  * @type {Array}
                  * */
-                articleNav: ['精选文章', '所有文章']
+                articleNav: ['所有文章', '精选文章']
             }
         },
         methods: {

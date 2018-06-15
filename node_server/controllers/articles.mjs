@@ -4,21 +4,26 @@
  * @date 2018/6/3
  * @desc articles
  ***********************/
-import { ArticleModel } from '../models/model'
+import {ArticleModel} from '../models/model'
 import {_flipPage, _isAuth, _dbError, _dbSuccess} from '../functions/function'
 import tracer from 'tracer'
 import mongoose from 'mongoose' // mongoose 库
 const logger = tracer.console(); // console追踪库
-const _article={
+const _article = {
     /**
      * @desc 拉取文章列表函数
      * @desc page 与 skip的关系 1->0、2->10、3->20 page*10-10
      * @TODO 增加模糊查询
      * */
-    getArticleList:async (req,res,next)=>{
-        const session = (req.session && req.session.isAuth) ? req.session.isAuth : false;
-        await _isAuth(res, session);
-        let data = req.query.name ? ({name: req.query.title}) : {};
+    getArticleList: async (req, res, next) => {
+        let legalParams = ['post_author', 'post_title', 'type'];//可以用来查询的字段，否则将抛弃其他取消参数
+        // todo 后续做判断是否必填的选项函数
+        let data = {}; //获得有值的key数组
+        for (let item in req.query) {
+            if (req.query[item] && legalParams.includes(item)) {
+                data[item] = Number(req.query[item])>-1 ? Number(req.query[item]) : new RegExp(req.query[item])//正则构造函数
+            }
+        }
         let page = req.query.page ? req.query.page : 1;
         let finArticleAll = await ArticleModel.find(data).count();// 总长度 sort() -1，倒叙,1默认升序
         let articleArr = await ArticleModel.find(data).limit(10).skip(page * 10 - 10).sort({_id: -1}).exec();
@@ -28,7 +33,6 @@ const _article={
             let ob = JSON.parse(JSON.stringify(item));
             findArticle.push(ob)
         }
-
         if (findArticle.length === 0) {
             _dbError(res, '查询为空数据', 4004)
         } else {
@@ -41,9 +45,10 @@ const _article={
      * */
     publishArticle: async (req, res, next) => {
         //判断是否授权，如果授权未被通过，则打断
-        const isAuth= await _isAuth(res, req);
-        if(!isAuth){
-            logger.warn('----【非法访问】并想发表/编辑文章----\n')
+        //todo 是不是真的成功写入到数据
+        const isAuth = await _isAuth(res, req);
+        if (!isAuth) {
+            logger.warn('----【非法访问】并想发表/编辑文章----\n');
             return false
         }
         let data = req.body;
@@ -62,12 +67,17 @@ const _article={
                 }
             })
         } else {
+            // 必填字段
+            if (!data.post_content || !data.post_title) {
+                await _dbError(res, '内容必填或标题必填');
+                return false
+            }
             // 首次新增的文章,补充新字段
             data.comments_status = 'open'; // 评论开放 * 后期
             data.post_modified = ''; // 修改时间 * 后期
             data.post_author = req.session.userInfo.id;
             data.editor_number = 0;
-
+            data.type = data.type ? data.type : 0; // type 0 普通，1 精选
             // 摘要处理
             if (!data.post_abstract) {
                 data.post_abstract = (data.post_content || '').slice(0, 50) || ''
@@ -96,11 +106,11 @@ const _article={
      * */
     getArticle: async (req, res, next) => {
         //判断是否授权，如果授权未被通过，则打断
-        const isAuth= await _isAuth(res, req);
-        if(!isAuth){
-            logger.warn('----【非法访问】拉取单篇文章----\n')
-            return false
-        }
+        // const isAuth= await _isAuth(res, req);
+        // if(!isAuth){
+        //     logger.warn('----【非法访问】拉取单篇文章----\n')
+        //     return false
+        // }
         let id = req.query.id;
         if (!id) {
             _dbError(res);
@@ -121,9 +131,9 @@ const _article={
      * */
     deleteArticle: async (req, res, next) => {
         //判断是否授权，如果授权未被通过，则打断
-        const isAuth= await _isAuth(res, req);
-        if(!isAuth){
-            logger.warn('----【非法访问】并想删除单篇文章----\n')
+        const isAuth = await _isAuth(res, req);
+        if (!isAuth) {
+            logger.warn('----【非法访问】并想删除单篇文章----\n');
             return false
         }
         let data = req.bdoy;
@@ -131,4 +141,4 @@ const _article={
     }
 };
 
-export default  _article
+export default _article

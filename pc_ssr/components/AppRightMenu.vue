@@ -1,6 +1,6 @@
 <template>
     <transition name="fade">
-        <div class="app_right_menu" :class="{'app_right_menu_hidden':setMenuClass }" v-show="showMenu">
+        <div class="app_right_menu" :class="{'app_right_menu_hidden':setMenuClass }" v-show="show || showMenu">
             <!--回到最上-->
             <div class="app_right_menu_list">
                 <v-icon class="app_right_menu_list__icon">publish</v-icon>
@@ -18,6 +18,8 @@
 </template>
 
 <script type="text/ecmascript-6">
+    import {mapState, mapActions} from 'vuex';
+
     export default {
         name: 'appRightMenu',
         data () {
@@ -35,12 +37,25 @@
             }
         },
         mounted () {
-            // 监听浏览器滚动
-            window.addEventListener('scroll', this.scroll);
+            if (!this.show) {
+                // 监听浏览器滚动
+                window.addEventListener('scroll', this.scroll);
+            }
+            else {
+                this.setMenuClass = false
+            }
+
         },
         destroyed () {
-            // 销毁监听滚动
-            window.removeEventListener('scroll', this.scroll);
+            if (!this.show) {
+                // 销毁监听滚动
+                window.removeEventListener('scroll', this.scroll);
+            }
+        },
+        computed: {
+            ...mapState('appShell/appRightMenu', [
+                'show'
+            ])
         },
         methods: {
             scroll () {
@@ -54,7 +69,7 @@
                     scrollTop = document.body.scrollTop;
                 }
                 // 是否滚动到底部
-                if ((documentElement.scrollHeight - scrollTop) < documentElement.clientHeight + 230) {
+                if ((documentElement.scrollHeight - scrollTop) < documentElement.clientHeight + 150) {
                     this.setMenuClass = true
                 }
                 else {

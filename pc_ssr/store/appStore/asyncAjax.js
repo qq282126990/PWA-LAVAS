@@ -29,8 +29,9 @@ export const actions = {
      */
     async getArticleList ({commit}, param) {
         let res = await ArticleManager.getArticleList(param);
-        if (res.code === ERR_OK) {
-            console.log(res)
+
+        if (res.data.errorCode === ERR_OK) {
+            commit(SET_ARTICLE_LIST, res.data.data);
         }
         else {
             /* 错误处理 */

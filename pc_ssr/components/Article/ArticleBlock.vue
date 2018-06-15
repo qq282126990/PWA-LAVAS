@@ -1,8 +1,9 @@
 <template>
     <div class="article">
+        {{articleBlockData}}
         <!--头部标题-->
         <div class="article_block_header">
-            <h1 class="article_block_header__title">{{articleBlockData}}</h1>
+            <h1 class="article_block_header__title">{{articleNavTitle}}</h1>
             <!--更多按钮-->
             <div class="article_block_header__more__wrapper">
                 <p class="article_block_header__more">更多</p>
@@ -42,18 +43,22 @@
             </div>
         </div>
         <!--more按钮-->
-        <div class="article_block_more_btn" v-show="articleBlockData === '普通文章'">
-            <v-btn flat color="secondary" class="more_btn">更多</v-btn>
-        </div>
+        <!--<div class="article_block_more_btn" v-show="articleBlockData === '普通文章'">-->
+            <!--<v-btn flat color="secondary" class="more_btn">更多</v-btn>-->
+        <!--</div>-->
     </div>
 </template>
 
 <script type="text/ecmascript-6">
     export default {
         props: {
-            articleBlockData: {
+            articleNavTitle: {
                 type: String,
                 default: ''
+            },
+            articleBlockData: {
+                type: Object,
+                default: {}
             }
         }
     }

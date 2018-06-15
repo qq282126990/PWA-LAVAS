@@ -14,22 +14,23 @@
                 <!--文章模块导航-->
                 <article-nav @selectArticle="selectArticle"></article-nav>
                 <!--文章模块-->
-                <article-block :articleBlockData="articleNavTitle"></article-block>
+                <article-block :articleNavTitle="articleNavTitle"
+                               :articleBlockData="item"
+                               :key="item._id"
+                               v-for="item in getArticleList"
+                ></article-block>
             </div>
-            <!--右边内容-->
-            <app-right-menu></app-right-menu>
         </div>
     </div>
 </template>
 
 <script>
-    import {mapActions} from 'vuex';
+    import {mapActions, mapState} from 'vuex';
     import UserMessage from 'components/User/UserMessage'
     import UserAttention from 'components/User/UserAttention'
     import Search from 'components/Search'
     import ArticleBlock from 'components/Article/ArticleBlock'
     import ArticleNav from 'components/Article/ArticleNav'
-    import AppRightMenu from 'components/AppRightMenu'
 
     let state = {
         appHeaderState: {
@@ -37,13 +38,16 @@
         },
         appFooterState: {
             show: true
+        },
+        appRightMenu: {
+            show: false
         }
     };
     function setState(store) {
         store.dispatch('appShell/appHeader/setAppHeader', state.appHeaderState);
         store.dispatch('appShell/appFooter/setAppFooter', state.appFooterState);
-
-        store.dispatch('appStore/asyncAjax/getArticleList', {name: '标题1', page:'1'});
+        store.dispatch('appShell/appRightMenu/setAppRightMenu', state.appRightMenu);
+        store.dispatch('appStore/asyncAjax/getArticleList', {});
     }
 
     export default {
@@ -65,7 +69,7 @@
               * 文章激活导航标题
               * @type {Array}
               * */
-              articleNavTitle: '精选文章',
+              articleNavTitle: '所有文章',
               /*
               * 左边内容标题
               * @type {Array}
@@ -73,9 +77,24 @@
               contentLeftTitle: ['我关注的人', '推荐订阅']
           }
         },
+        computed: {
+            ...mapState('appStore/asyncAjax',{
+                getArticleList: 'articleList'
+            })
+        },
+        mounted () {
+         setTimeout(() => {
+             console.log(this.getArticleList)
+         }, 1000)
+        },
         methods: {
             selectArticle (articleNavTitle) {
                 this.articleNavTitle = articleNavTitle
+            }
+        },
+        watch: {
+            getArticleList (data) {
+                console.log(data)
             }
         },
         components: {
@@ -83,7 +102,6 @@
             UserAttention,
             Search,
             ArticleBlock,
-            AppRightMenu,
             ArticleNav
         }
     };
