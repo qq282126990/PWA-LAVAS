@@ -12,7 +12,13 @@ export const state = () => {
          *
          * @type {boolean}
          */
-        show: true
+        show: true,
+        /**
+         * 状态
+         *
+         * @type {String}
+         */
+        status: ''
     };
 };
 

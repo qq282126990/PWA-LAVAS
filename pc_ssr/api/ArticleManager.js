@@ -14,6 +14,15 @@ class ArticleManager extends BaseModule  {
 
         return this.get(`${baseUrl}/getArticleList`,param);
     }
+
+    // 查询单篇文章
+    getArticle(param) {
+        if (!param) {
+            return Promise.reject(new Error(`getArticle：请输入param`));
+        }
+
+        return this.get(`${baseUrl}/getArticle`,param);
+    }
 }
 
 export default new ArticleManager();

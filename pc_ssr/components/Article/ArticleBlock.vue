@@ -1,6 +1,5 @@
 <template>
     <div class="article">
-        {{articleBlockData}}
         <!--头部标题-->
         <div class="article_block_header">
             <h1 class="article_block_header__title">{{articleNavTitle}}</h1>
@@ -13,18 +12,18 @@
         <!--内容-->
         <div class="article_block_content">
             <!--内容列表-->
-            <div class="article_block_content_list_wrapper">
+            <div class="article_block_content_list_wrapper" v-for="item in articleBlockData" :key="item._id">
                 <div class="article_block_content_list">
                     <!--图片-->
-                    <img class="content_list_img" src="https://cn.vuejs.org/images/logo.png"/>
+                    <img class="content_list_img"
+                         src="https://puui.qpic.cn/vcover_vt_pic/0/vvso3ob61erhxwa1525917878/260"/>
                     <!--文字-->
-                    <div class="content_list_text">
+                    <div class="content_list_text" @click="readAll(item._id)">
                         <!--标题-->
-                        <h1 class="content_list_text__title">使用cnpmjs.org搭建私有npm源</h1>
+                        <h1 class="content_list_text__title">{{item.post_title}}</h1>
                         <!--文章内容-->
                         <div class="content_list_text__content">
-                            <p>
-                                前言 淘宝NPM 让很多技术同学过上了爽快的日子，因为访问npmjs.com有时候真的很慢很慢，真的感叹阿里的财大气粗。而且cnpm还开源了，网址为cnpm/cnpmjs.org 。很多公司使用cnpm…</p>
+                            <p>{{item.post_abstract}}…</p>
                             <!--查看全部按钮-->
                             <span class="content_look_all">阅读全文</span>
                         </div>
@@ -34,22 +33,24 @@
                         <!--icon-->
                         <v-icon class="send_content_time_icon">schedule</v-icon>
                         <!--text-->
-                        <p class="send_content_time_txt">1小时前</p>
+                        <p class="send_content_time_txt">{{_initData(item.post_date)}}</p>
                     </div>
                 </div>
-                <div class="content_list_text__img">
-                    <img src="https://puui.qpic.cn/vcover_vt_pic/0/vvso3ob61erhxwa1525917878/260"/>
-                </div>
+                <!--<div class="content_list_text__img">-->
+                <!--<img src="https://puui.qpic.cn/vcover_vt_pic/0/vvso3ob61erhxwa1525917878/260"/>-->
+                <!--</div>-->
             </div>
         </div>
         <!--more按钮-->
         <!--<div class="article_block_more_btn" v-show="articleBlockData === '普通文章'">-->
-            <!--<v-btn flat color="secondary" class="more_btn">更多</v-btn>-->
+        <!--<v-btn flat color="secondary" class="more_btn">更多</v-btn>-->
         <!--</div>-->
     </div>
 </template>
 
 <script type="text/ecmascript-6">
+    import {formatDate, diffTime} from 'common/date';
+
     export default {
         props: {
             articleNavTitle: {
@@ -57,8 +58,52 @@
                 default: ''
             },
             articleBlockData: {
-                type: Object,
-                default: {}
+                type: Array,
+                default: []
+            }
+        },
+        methods: {
+            // 获取时间
+            _initData(time) {
+                let _date = new Date(parseInt(time));
+                let _formatDate = formatDate(_date, 'yyyy-MM-dd hh:mm');
+                let _diffTime = diffTime(_formatDate);
+
+                // 年
+                if (0 < _diffTime.yearDiff) {
+                    return `${_diffTime.yearDiff}年前`;
+                }
+                // 月
+                else if (_diffTime.yearDiff === 0 && 0 < _diffTime.monthDiff && _diffTime.monthDiff <= 12) {
+                    return `${_diffTime.monthDiff}个月前`;
+                }
+                // 日
+                else if (_diffTime.monthDiff === 0 && 0 < _diffTime.dayDiff <= 7) {
+                    return `${_diffTime.dayDiff}天前`;
+                }
+                // 时
+                else if (_diffTime.dayDiff === 0 && _diffTime.hoursDiff > 0) {
+                    return `${_diffTime.hoursDiff}小时前`;
+                }
+                // 分
+                else if (_diffTime.dayDiff === 0 && _diffTime.hoursDiff === 0 && _diffTime.minutesDiff > 0) {
+                    return `${_diffTime.minutesDiff}分前`;
+                }
+                else {
+                    return `${_diffTime.secondsDiff}秒前`;
+                }
+            },
+            // 跳转到当前文章
+            readAll (id) {
+                let {href} = this.$router.resolve({
+                    path: `/article/${id}`
+                })
+
+                window.open(href)
+
+//                this.$router.push({
+//                    path: `/article/${id}`
+//                })
             }
         }
     }
@@ -143,10 +188,9 @@
         }
         /*图片*/
         .content_list_img {
-            flex: 0 0 60px;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
+            flex: 0 0 150px;
+            border-radius: 5px;
+            height: 100px;
             background: $content-list-img-bg;
         }
         /*文字*/

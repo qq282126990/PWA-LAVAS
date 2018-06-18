@@ -8,11 +8,23 @@ export const SET_APP_RIGHT_MENU = 'SET_APP_RIGHT_MENU';
 export const state = () => {
     return {
         /**
-         * 是否展示顶部导航栏
+         * 是否展示侧边栏
          *
          * @type {boolean}
          */
-        show: false
+        show: false,
+        /**
+         * 侧边栏样式
+         *
+         * @type {boolean}
+         */
+        menuClass: '',
+        /**
+         * 设置侧边栏监听滚动
+         *
+         * @type {boolean}
+         */
+        scroll: false
     };
 };
 
