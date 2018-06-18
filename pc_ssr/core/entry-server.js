@@ -87,6 +87,7 @@ export default function (context) {
 
                 // mount the latest snapshot of store on context
                 context.state = store.state;
+                console.log(context.state)
                 context.isProd = process.env.NODE_ENV === 'production';
                 resolve(app);
             }

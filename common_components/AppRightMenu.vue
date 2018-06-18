@@ -1,8 +1,8 @@
 <template>
     <transition name="fade">
-        <div class="app_right_menu" :class="{'app_right_menu_hidden':setMenuClass }" v-show="show || showMenu">
+        <div class="app_right_menu" :class="menuClass" v-show="show">
             <!--回到最上-->
-            <div class="app_right_menu_list">
+            <div class="app_right_menu_list" @click="scrollTop(400)">
                 <v-icon class="app_right_menu_list__icon">publish</v-icon>
             </div>
             <!--帮助-->
@@ -37,28 +37,34 @@
             }
         },
         mounted () {
-            if (!this.show) {
-                // 监听浏览器滚动
-                window.addEventListener('scroll', this.scroll);
-            }
-            else {
-                this.setMenuClass = false
-            }
+            this._initData()
 
+            if (this.scroll) {
+                // 监听浏览器滚动
+                window.addEventListener('scroll', this._scroll);
+            }
         },
         destroyed () {
-            if (!this.show) {
+            if (this.scroll) {
                 // 销毁监听滚动
-                window.removeEventListener('scroll', this.scroll);
+                window.removeEventListener('scroll', this._scroll);
             }
         },
         computed: {
             ...mapState('appShell/appRightMenu', [
-                'show'
+                'show',
+                'scroll',
+                'menuClass'
             ])
         },
         methods: {
-            scroll () {
+            _initData() {
+                this.scrollTop(400);
+
+                // 初始化样式
+                this.setAppRightMenu({menuClass: ''});
+            },
+            _scroll () {
                 let scrollTop;
                 let documentElement = document.documentElement
                 // 获取滚动条
@@ -70,16 +76,46 @@
                 }
                 // 是否滚动到底部
                 if ((documentElement.scrollHeight - scrollTop) < documentElement.clientHeight + 150) {
-                    this.setMenuClass = true
+                    this.setAppRightMenu({menuClass: 'app_right_menu_hidden'});
                 }
                 else {
-                    this.setMenuClass = false
+                    this.setAppRightMenu({menuClass: ''});
                 }
                 if (scrollTop > 100) {
-                    this.showMenu = true;
+                    this.setAppRightMenu({show: true});
                 }
                 else {
-                    this.showMenu = false;
+                    this.setAppRightMenu({show: false, menuClass: ''});
+                }
+            },
+            // 滚动到顶部
+            scrollTop (scrollDuration) {
+                let scrollStep = -window.scrollY / (scrollDuration / 15);
+
+                let scrollInterval = setInterval(() => {
+                    if (window.scrollY != 0) {
+                        window.scrollBy(0, scrollStep);
+                    }
+                    else {
+                        clearInterval(scrollInterval);
+                    }
+                }, 15);
+            },
+            ...mapActions('appShell/appRightMenu', {
+                setAppRightMenu: 'setAppRightMenu'
+            })
+        },
+        watch: {
+            scroll (data) {
+                this._initData();
+
+                if (!data) {
+                    // 销毁监听滚动
+                    window.removeEventListener('scroll', this._scroll);
+                }
+                else {
+                    // 监听浏览器滚动
+                    window.addEventListener('scroll', this._scroll);
                 }
             }
         }
@@ -91,9 +127,11 @@
     .fade-enter-active, .fade-leave-active {
         transition: opacity .5s;
     }
+
     .fade-enter, .fade-leave-to {
         opacity: 0;
     }
+
     .app_right_menu {
         position: fixed;
         right: 0;
@@ -104,16 +142,19 @@
         padding: 0 2.5%;
         width: 10%;
         transition: all .5s;
-        z-index :100;
+        z-index: 100;
     }
+
     .app_right_menu_hidden {
         bottom: 245px;
-        z-index :100;
+        z-index: 100;
     }
+
     .app_right_menu_list {
         margin-top: 5px;
         max-width: 60px;
     }
+
     .app_right_menu_list__icon {
         padding: 13px 10px;
         border-radius: 5px;
@@ -127,6 +168,7 @@
             background: #dddddd;
         }
     }
+
     @media screen and (max-width: 800px) {
         .app_right_menu {
             display: none;

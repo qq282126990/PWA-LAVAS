@@ -3,7 +3,6 @@ import {ERR_OK} from 'api/config';
 // 获取对应文章类型接口
 import ArticleManager from 'api/ArticleManager';
 
-
 export const SET_ARTICLE_LIST = 'SET_ARTICLE_LIST';
 
 export const state = () => {

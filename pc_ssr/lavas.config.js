@@ -64,7 +64,7 @@ module.exports = {
         // swPath: '/custom_path/', // specify custom serveice worker file's path, default is publicPath
         globDirectory: BUILD_PATH,
         globPatterns: [
-            '**/*.{html,js,css,eot,svg,ttf,woff}'
+            '**/*.{html,js,png,jpg,jpegcss,eot,svg,ttf,woff}'
         ],
         globIgnores: [
             'sw-register.js',

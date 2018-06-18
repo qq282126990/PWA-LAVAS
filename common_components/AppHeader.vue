@@ -1,17 +1,30 @@
 <template>
     <transition
         name="slide-down">
-        <header class="header_wrapper" v-show="show">
+        <header class="header_wrapper" :class="{'markdown_header': status === 'markdown'}" v-show="show">
             <div class="header_middle" v-cloak>
                 <!--logo-->
-                <img class="header_middle_img" src="/static/img/icons/apple-touch-icon-152x152.png"/>
+                <img class="header_middle_img" src="/static/img/icons/apple-touch-icon-152x152.png" @click="goHome"/>
                 <!--icon-->
-                <v-icon class="header_middle_icon">dehaze</v-icon>
+                <v-icon class="header_middle_icon" v-show="!status">dehaze</v-icon>
+                <!--txt-->
+                <p class="header_middle_title" v-show="status === 'markdown'">写文章</p>
                 <!--文本-->
-                <div class="header_middle_txt">
+                <div class="header_middle_txt" v-show="!status">
                     <p class="txt" @click="login">{{loginTxt}}</p>
                     <p class="txt">注册</p>
                 </div>
+                <!--按钮-->
+                <v-btn class="header_middle_btn"
+                       outline
+                       color="primary"
+                       :disabled="true"
+                       style="background-color: transparent !important;"
+                       v-show="status === 'markdown'"
+                       @click="_sendInput()">
+                    发布文章
+                    <v-icon>keyboard_arrow_down</v-icon>
+                </v-btn>
             </div>
         </header>
     </transition>
@@ -32,20 +45,21 @@
             }
         },
         mounted () {
-            if (!/\/login/.test(this.$route.path)) {
+            if (!this.status) {
                 // 监听浏览器滚动
                 window.addEventListener('scroll', this.scroll);
             }
         },
         destroyed () {
-            if (!/\/login/.test(this.$route.path)) {
+            if (!this.status) {
                 // 销毁监听滚动
                 window.removeEventListener('scroll', this.scroll);
             }
         },
         computed: {
             ...mapState('appShell/appHeader', [
-                'show'
+                'show',
+                'status'
             ]),
             ...mapState('appShell/common', [
                 'isPageSwitching'
@@ -112,6 +126,15 @@
                     path: '/login'
                 })
             },
+            /*
+             * 回到主页
+             * */
+            goHome() {
+                this.$router.replace
+                ({
+                    path: '/'
+                })
+            },
             ...mapActions('appShell/appHeader', {
                 setAppHeader: 'setAppHeader'
             })
@@ -131,7 +154,7 @@
         color: $header-wrapper-cl;
         padding: 0;
         user-select: none;
-        box-shadow: 0 2px 4px -1px rgba(0, 0, 0, .2), 0 4px 5px rgba(0, 0, 0, .14), 0 1px 10px rgba(0, 0, 0, .12);
+        box-shadow: 0 2px 4px -1px rgba(153, 153, 153, .2), 0 4px 5px rgba(153, 153, 153, .14), 0 1px 10px rgba(153, 153, 153, .12);
         transition: transform 0.3s ease-out;
         &.slide-down-enter,
         &.slide-down-leave-to {
@@ -146,19 +169,35 @@
             flex: 1;
             font-size: 1.2em;
         }
+        /*图标*/
         .header_middle_icon {
             margin: 0 auto;
             cursor: n-resize;
             color: $header-wrapper-cl
         }
+        /*标题*/
+        .header_middle_title {
+            margin: 0;
+            padding: 0 4%;
+            width: 100%
+            text-align: left;
+            color: $header-wrapper-cl
+        }
+        /*图片*/
         .header_middle_img {
             width: 30px;
             height: 30px;
+            cursor: pointer;
+            &:hover {
+                animation: Img 2s infinite;
+            }
         }
+        /*文字*/
         .header_middle_txt {
             position: relative;
             display: flex;
             text-align: right;
+
             .txt {
                 position: relative;
                 margin: 0 20px 0 0;
@@ -190,5 +229,33 @@
                 background: $header-middle-txt;
             }
         }
+        /*按钮*/
+        .header_middle_btn {
+            position: relative;
+            display: flex;
+            align-items: center;
+            text-align: right;
+            margin: 0;
+            border-radius: 5px;
+            height: 30px;
+            line-height: 0;
+        }
     }
+
+        .markdown_header{
+            box-shadow: none;
+            border-bottom: 1px solid #ddd;
+        }
+
+    @keyframes Img {
+        from {
+            opacity: 1;
+            transform: scale(1, 1);
+        }
+        to {
+            transform: scale(1.5, 1.5);
+            opacity: 0;
+        }
+    }
+
 </style>
