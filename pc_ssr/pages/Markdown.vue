@@ -83,7 +83,7 @@
         methods: {
             // 输入markdown语法
             _inputMarkdown (event) {
-                this.compiledMarkdown = marked(event.target.innerText, {sanitize: true});
+                this.compiledMarkdown = marked(event.target.innerText);
             }
         }
     };
@@ -142,17 +142,17 @@
         }
         p {
             font-size: 16px;
-            line-height: 1.7em;
+            line-height:28px;
             display: block;
         }
         ul, ol {
-            padding-left: 2em;
+            padding-left: 16px;
         }
         h4 {
             font-size: 16px;
         }
         blockquote {
-            margin: 1em 0;
+            margin: 16px 0;
             border-left: 4px solid #ddd;
             font-size: 0px;
             padding: 0 16px;
@@ -160,13 +160,30 @@
         }
         code {
             font-family: Menlo, Monaco, Consolas, Courier New, monospace;
-            font-size: .8em;
-            padding: .2em .4em;
+            font-size: 12px;
+            padding: 3px 5px;
             word-break: break-word;
             color: #000;
             background-color: #f8f8f8;
             border-radius: 2px;
             box-shadow: none;
+        }
+        table{
+            font-size: 12px;
+            max-width: 100%;
+            overflow: auto;
+            border: 1px solid #f6f6f6;
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+        thead{
+            background: #f6f6f6;
+            color: #000;
+            text-align: left;
+        }
+        th{
+            padding:10px 6px;
+            line-height :20px;
         }
     }
 
