@@ -8,7 +8,7 @@
                 <!--icon-->
                 <v-icon class="header_middle_icon" v-show="!status">dehaze</v-icon>
                 <!--txt-->
-                <p class="header_middle_title" v-show="status === 'markdown'">写文章</p>
+                <p class="header_middle_title" v-show="status.name === 'markdown'">{{status.title}}</p>
                 <!--文本-->
                 <div class="header_middle_txt" v-show="!status">
                     <p class="txt" @click="login">{{loginTxt}}</p>
@@ -20,7 +20,7 @@
                        color="primary"
                        :disabled="true"
                        style="background-color: transparent !important;"
-                       v-show="status === 'markdown'"
+                       v-show="status.name === 'markdown'"
                        @click="_sendInput()">
                     发布文章
                     <v-icon>keyboard_arrow_down</v-icon>
@@ -59,7 +59,8 @@
         computed: {
             ...mapState('appShell/appHeader', [
                 'show',
-                'status'
+                'status',
+                'title'
             ]),
             ...mapState('appShell/common', [
                 'isPageSwitching'
