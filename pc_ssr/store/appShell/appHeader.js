@@ -14,11 +14,14 @@ export const state = () => {
          */
         show: true,
         /**
-         * 状态
+         * 状态标题
          *
-         * @type {String}
+         * @type {Object}
          */
-        status: ''
+        status: {
+            name: '',
+            title: ''
+        }
     };
 };
 

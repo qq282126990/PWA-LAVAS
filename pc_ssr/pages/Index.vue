@@ -34,7 +34,10 @@
     let state = {
         appHeaderState: {
             show: true,
-            status: ''
+            status: {
+                name: '',
+                title: ''
+            }
         },
         appFooterState: {
             show: true
