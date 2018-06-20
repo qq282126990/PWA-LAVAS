@@ -121,7 +121,8 @@
     };
 </script>
 
-<style lang="stylus" >
+<style lang="scss">
+    @import '../assets/sass/variable';
 
     html{
         overflow-y: scroll ;
@@ -161,7 +162,7 @@
     /*左边内容*/
     .index_content_left {
         width: 250px;
-        height: 100%
+        height: 100%;
         z-index: 1
     }
 

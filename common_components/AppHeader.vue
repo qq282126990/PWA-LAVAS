@@ -6,12 +6,12 @@
                 <!--logo-->
                 <img class="header_middle_img" src="/static/img/icons/apple-touch-icon-152x152.png" @click="goHome"/>
                 <!--icon-->
-                <v-icon class="header_middle_icon" v-show="!status">dehaze</v-icon>
+                <v-icon class="header_middle_icon" v-show="!status.name">dehaze</v-icon>
                 <!--txt-->
                 <p class="header_middle_title" v-show="status.name === 'markdown'">{{status.title}}</p>
                 <!--文本-->
-                <div class="header_middle_txt" v-show="!status">
-                    <p class="txt" @click="login">{{loginTxt}}</p>
+                <div class="header_middle_txt" v-show="!status.name">
+                    <p class="txt" @click="login">登录</p>
                     <p class="txt">注册</p>
                 </div>
                 <!--按钮-->
@@ -33,17 +33,8 @@
 <script>
     import {mapState, mapActions} from 'vuex';
     import EventBus from '@/core/event-bus';
-
     export default {
         name: 'appHeader',
-        data () {
-            return {
-                /*
-                 * 头部登录显示文字
-                 * */
-                loginTxt: '登录'
-            }
-        },
         mounted () {
             if (!this.status) {
                 // 监听浏览器滚动
@@ -74,24 +65,19 @@
              * @param {Object} data 随点击事件附带的数据对象
              */
             handleClick(source, {actionIdx, route} = {}) {
-
                 // 页面正在切换中，不允许操作，防止滑动效果进行中切换
                 if (this.isPageSwitching) {
                     return;
                 }
                 let eventData = {};
-
                 // 点击右侧动作按钮，事件对象中附加序号
                 if (source === 'action') {
                     eventData.actionIdx = actionIdx;
                 }
-
                 // 发送给父组件，内部处理
                 this.$emit(`click-${source}`, eventData);
-
                 // 发送全局事件，便于非父子关系的路由组件监听
                 EventBus.$emit(`app-header:click-${source}`, eventData);
-
                 // 如果传递了路由对象，进入路由
                 if (route) {
                     this.$router.push(route);
@@ -103,7 +89,6 @@
             scroll () {
                 let scrollTop;
                 let documentElement = document.documentElement
-
                 // 获取滚动条
                 if (documentElement && documentElement.scrollTop) {
                     scrollTop = documentElement.scrollTop;
@@ -111,7 +96,6 @@
                 else if (document.body) {
                     scrollTop = document.body.scrollTop;
                 }
-
                 if (scrollTop > 52) {
                     this.setAppHeader({show: false});
                 }
@@ -131,8 +115,7 @@
              * 回到主页
              * */
             goHome() {
-                this.$router.replace
-                ({
+                this.$router.replace({
                     path: '/'
                 })
             },

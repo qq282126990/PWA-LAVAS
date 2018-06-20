@@ -26,7 +26,7 @@
                 <div class="article_img">
                 </div>
                 <!--渲染markdown语法-->
-                <div class="input_content" v-html="compiledMarkdown"></div>
+                <div class="rendering_content" v-html="compiledMarkdown"></div>
             </div>
         </div>
     </div>
@@ -34,6 +34,8 @@
 
 <script>
     import marked  from 'marked';
+    import hljs from 'highlight.js'
+    import 'highlight.js/styles/atom-one-light.css';
 
     let state = {
         appHeaderState: {
@@ -71,26 +73,31 @@
         },
         mounted () {
             marked.setOptions({
+                highlight (code) {
+                    return hljs ? hljs.highlightAuto(code).value : code;
+                },
+                pedantic: false,
                 gfm: true,
                 tables: true,
-                breaks: false,
-                pedantic: false,
+                breaks: true,
                 sanitize: false,
                 smartLists: true,
-                smartypants: false
-            })
+                smartypants: false,
+                xhtml: false
+            });
         },
         methods: {
             // 输入markdown语法
             _inputMarkdown (event) {
+
                 this.compiledMarkdown = marked(event.target.innerText);
             }
         }
     };
 </script>
 
-<style lang="stylus">
-    @require '~@/assets/stylus/variable'
+<style lang="scss">
+    @import '../assets/sass/variable';
 
     html {
         overflow-y: hidden;
@@ -125,9 +132,6 @@
         }
         .content_right {
             background: #fff;
-            .input_content {
-                background: #fff;
-            }
         }
         .input_content {
             padding: 20px 30px;
@@ -137,12 +141,16 @@
             -webkit-user-modify: read-write-plaintext-only;
             background: $article-wrapper;
         }
-        h1, p {
-            margin: 0;
+        .rendering_content{
+            padding: 20px 30px;
+            outline: none;
+            text-align: left;
+            min-height: 100%;
         }
         p {
+            margin: 16px 0;
             font-size: 16px;
-            line-height:28px;
+            line-height: 28px;
             display: block;
         }
         ul, ol {
@@ -168,7 +176,7 @@
             border-radius: 2px;
             box-shadow: none;
         }
-        table{
+        table {
             font-size: 12px;
             max-width: 100%;
             overflow: auto;
@@ -176,14 +184,19 @@
             border-collapse: collapse;
             border-spacing: 0;
         }
-        thead{
+        thead {
             background: #f6f6f6;
             color: #000;
             text-align: left;
         }
-        th{
-            padding:10px 6px;
-            line-height :20px;
+        th {
+            padding: 10px 6px;
+            line-height: 20px;
+        }
+        td {
+            min-width: 100px;
+            padding: 10px 6px;
+            line-height: 20px;
         }
     }
 

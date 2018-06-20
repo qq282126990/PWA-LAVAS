@@ -139,10 +139,10 @@
     };
 </script>
 
-<style lang="stylus">
-    @import '~@/assets/stylus/variable'
+<style lang="scss">
+    @import '../assets/sass/variable';
 
-    $page-transition-duration = 0.35 s；
+    $page-transition-duration : 0.35 s;
 
     #app {
         font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, PingFang SC, Microsoft YaHei, Source Han Sans SC, Noto Sans CJK SC, WenQuanYi Micro Hei, sans-serif;
@@ -169,8 +169,8 @@
             top: 0;
             right: 0;
             left: 0;
-            -webkit-overflow-scrolling touch
-            background #fff
+            -webkit-overflow-scrolling :touch;
+            background: #fff;
             box-sizing: content-box;
             &::-webkit-scrollbar {
                 width: 0;

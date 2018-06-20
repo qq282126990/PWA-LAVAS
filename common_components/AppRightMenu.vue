@@ -124,6 +124,7 @@
 
 <style lang="stylus" scoped>
     @require '~@/assets/stylus/variable'
+
     .fade-enter-active, .fade-leave-active {
         transition: opacity .5s;
     }

@@ -205,17 +205,18 @@
                 if (!btn) {
                     // 如果登录邮箱和密码都没有输入不执行 ajax
                     if (this.loginEmail.length === 0 || this.loginPwd.length === 0) {
+                        this.loginEmailError = true
                         return;
                     }
 
                     // 判断邮箱是否正确再进行下一步
-//                    if (checkEmailRegExp.test(this.loginEmail)) {
-//                        this.loginEmailError = false;
-//                    }
-//                    else {
-//                        this.loginEmailError = true
-//                        return;
-//                    }
+                    if (checkEmailRegExp.test(this.loginEmail)) {
+                        this.loginEmailError = false;
+                    }
+                    else {
+                        this.loginEmailError = true
+                        return;
+                    }
 
                     UserManager.usertLogin({'username': this.loginEmail, 'password': this.loginPwd})
                         .then(response => {
@@ -278,8 +279,8 @@
     };
 </script>
 
-<style lang="stylus" scoped>
-    @require '~@/assets/stylus/variable'
+<style lang="scss" scoped>
+    @import '../assets/sass/variable';
 
     .fade-enter-active {
         transition: opacity .5s;
@@ -329,97 +330,6 @@
         }
     }
 
-    /*输入框*/
-    .login_content_input {
-        font-size: 14px;
-        input:
-        :-webkit-outer-spin-button, input::-webkit-inner-spin-button {
-            -webkit-appearance: none !important;
-            margin: 0;
-        }
-        /*账号输入*/
-        .account_input_wrapper {
-            position: relative;
-            width: 100%;
-        }
-        .account_input {
-            margin-top: 16px;
-            border-bottom: 1px solid $account-input-br;
-            color: $account-input;
-            line-height: 24px;
-            font-size: 14px;
-            width: 100%;
-            height: 48px;
-            outline: none;
-        }
-        /*输入框提示*/
-        .account_input_title, .login_no_pwd {
-            position: absolute;
-            top: 0;
-            display: flex;
-            align-items: center;
-            margin: 0;
-            margin-top: 16px;
-            font-size: inherit;
-            width: 100%;
-            height: 48px;
-            color: $account-input-title-cl;
-        }
-        /*请输入正确的邮箱号*/
-        .account_input_error, .account_pwd_error {
-            position: absolute;
-            top: 0;
-            right: 0;
-            display: flex;
-            align-items: center;
-            margin: 0;
-            padding-left: 20px;
-            margin-top: 16px;
-            text-align: center;
-            font-size: inherit;
-            box-sizing: content-box;
-            height: 48px;
-            color: $account-input-title-cl;
-            background: $account-input-title-bg
-        }
-        /*账号密码输入*/
-        .account_pwd_input_wrapper {
-            position: relative;
-            display: flex;
-            align-items: center;
-            margin-top: 12px;
-            border-bottom: 1px solid $account-input-br;
-            line-height: 24px;
-            height: 48px;
-        }
-        .login_no_pwd {
-            margin: 0;
-        }
-        .account_pwd_input {
-            flex: 1;
-            padding: 0 20px 0 0;
-            font-size: 14px;
-            overflow: hidden;
-            outline: none;
-        }
-
-        /*密码隐藏显示*/
-        .account_pwd_show {
-            cursor: pointer;
-            font-size: 24px;
-            letter-spacing: 1.8px;
-            user-select: none;
-        }
-        .account_pwd_error {
-            margin: 0 30px 0 0;
-        }
-        /*获取短信验证码*/
-        .account_get_email_code {
-            margin: 0;
-            cursor: pointer;
-        }
-    }
-
     /*登录按钮*/
     .login_btn {
         margin: 30px 0 0 0;
@@ -432,7 +342,6 @@
         text-align: center;
         margin: 16px 0 0 0;
         font-size: 14px;
-        color: $login-protocol;
     }
 
     .forget_password {
@@ -448,8 +357,6 @@
         width: 100%;
         height: 58px;
         font-size: 16px;
-        border-top: 1px solid $account-input-br;
-        background: $login-transfer;
         .txt {
             margin: 0
         }

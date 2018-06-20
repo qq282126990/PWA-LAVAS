@@ -27,7 +27,9 @@
     "postcss": "^6.0.21",
     "postcss-loader": "^2.1.4",
     "postcss-aspect-ratio-mini": "^0.0.2",
-    "postcss-px-to-viewport": "^0.0.3"
+    "postcss-px-to-viewport": "^0.0.3",
+    "sass-loader": "^7.0.3",
+    "node-sass":"^4.9.0"
   },
   "devDependencies": {
     "express": "^4.16.2",

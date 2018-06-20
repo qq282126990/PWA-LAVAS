@@ -34,7 +34,10 @@
     "vuetify": "^0.17.5",
     "good-storage": "^1.0.1",
     "query-string":"^6.1.0",
-    "marked": "^0.4.0"
+    "marked": "^0.4.0",
+    "highlight.js": "^9.10.0",
+    "sass-loader": "^7.0.3",
+    "node-sass":"^4.9.0"
   },
   "devDependencies": {
     "express": "^4.16.2",

@@ -254,8 +254,8 @@
     };
 </script>
 
-<style lang="stylus" scoped>
-    @require '~@/assets/stylus/variable'
+<style lang="scss" scoped>
+    @import '../../assets/sass/variable';
 
     .article_wrapper {
         padding: 77px 15% 0;
@@ -381,7 +381,7 @@
         .article_footer_btn_icon {
             margin-right: 10px;
             font-size: 20px;
-            width 20px;
+            width: 20px;
         }
         .security {
             float: right;
