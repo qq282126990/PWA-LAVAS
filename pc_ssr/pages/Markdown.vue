@@ -1,15 +1,31 @@
 <template>
     <div class="markdown">
-        <div class="markdown_content">
+        <!--markdowm快捷按钮-->
+        <div class="markdown-header-wrapper">
+            <!--按钮-->
+            <div class="markdown-header">
+                <div class="markdown-header-btn-group" v-for="(item,index) in markdownHeaderBtnGroup" :key="index">
+                    <v-btn class="white" large v-for="icon in item" :key="icon.name">
+                        <v-icon>{{icon.name}}</v-icon>
+                    </v-btn>
+                </div>
+            </div>
+            <!--展开按钮-->
+            <v-btn class="markdown-header-btn" fab dark small color="primary">
+                <v-icon dark>chevron_left</v-icon>
+            </v-btn>
+        </div>
+        <!--内容-->
+        <div class="markdown-content">
             <!--markdowm语法-->
-            <div class="content_left">
+            <div class="content-left">
                 <!--文章标题图片-->
-                <div class="article_img hover">
-                    <input type="file" class="file_img" accept=".jpeg, .jpg, .png">
-                    <v-icon class="article_img_icon">camera_alt</v-icon>
+                <div class="article-img hover">
+                    <input type="file" class="file-img" accept=".jpeg, .jpg, .png">
+                    <v-icon class="article-img-icon">camera-alt</v-icon>
                 </div>
                 <!--markdown输入-->
-                <div class="input_content"
+                <div class="input-content"
                      contenteditable="plaintext-only"
                      spellcheck="false"
                      ref="inputMarkdown"
@@ -21,20 +37,20 @@
                 </div>
             </div>
             <!--渲染后-->
-            <div class="content_right">
+            <div class="content-right">
                 <!--文章标题图片-->
-                <div class="article_img">
+                <div class="article-img">
                 </div>
                 <!--渲染markdown语法-->
-                <div class="rendering_content" v-html="compiledMarkdown"></div>
+                <div class="rendering-content" v-html="compiledMarkdown"></div>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-    import marked  from 'marked';
-    import hljs from 'highlight.js'
+    import marked from 'marked';
+    import hljs from 'highlight.js';
     import 'highlight.js/styles/atom-one-light.css';
 
     let state = {
@@ -46,13 +62,14 @@
             }
         }
     };
-    function setState(store) {
-        store.dispatch('appShell/appHeader/setAppHeader', state.appHeaderState);
+
+    function setState (store) {
+        store.dispatch ('appShell/appHeader/setAppHeader', state.appHeaderState);
     }
 
     export default {
-        async asyncData({store, route}) {
-            setState(store);
+        async asyncData ({store, route}) {
+            setState (store);
         },
         metaInfo: {
             title: 'markdown编辑器',
@@ -68,13 +85,41 @@
                  * 编译markdown
                  * @tyep {String}
                  * */
-                compiledMarkdown: ''
+                compiledMarkdown: '',
+                /*
+                * 头部按钮组
+                * @type {Array}
+                * */
+                markdownHeaderBtnGroup: [
+                    [
+                        {name: 'format_bold'},
+                        {name: 'format_italic'},
+                        {name: 'title'},
+                        {name: 'strikethrough_s'}
+                    ],
+                    [
+                        {name: 'format_list_bulleted'},
+                        {name: 'format_list_numbered'},
+                        {name: 'border_all'},
+                    ],
+                    [
+                        {name: 'insert_link'},
+                        {name: 'insert_photo'},
+                    ],
+                    [
+                        {name: 'code'},
+                        {name: 'format_quote'},
+                    ],
+                    [
+                        {name: 'visibility_off'},
+                    ]
+                ]
             }
         },
         mounted () {
-            marked.setOptions({
+            marked.setOptions ({
                 highlight (code) {
-                    return hljs ? hljs.highlightAuto(code).value : code;
+                    return hljs ? hljs.highlightAuto (code).value : code;
                 },
                 pedantic: false,
                 gfm: true,
@@ -90,7 +135,7 @@
             // 输入markdown语法
             _inputMarkdown (event) {
 
-                this.compiledMarkdown = marked(event.target.innerText);
+                this.compiledMarkdown = marked (event.target.innerText);
             }
         }
     };
@@ -112,12 +157,61 @@
         background: $article-wrapper;
     }
 
-    .markdown_content {
+    /*头部*/
+    .markdown-header-wrapper{
+        position: fixed;
+        top: 55px;
+        left: 0;
+        right: 0;
+        padding: 5px 10px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        z-index: 200;
+        .markdown-header-btn{
+            float: right;
+            margin: 0 10px 0 0;
+            .btn__content {
+                padding: 0;
+                margin-bottom: 5px;
+            }
+        }
+        .markdown-header {
+            display: flex;
+            padding: 5px;
+            margin-right: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: $markdown-header-bg;
+            .markdown-header-btn-group {
+                position: relative;
+                margin-right: 10px;
+                border-radius: 2.5px;
+                border: 1px solid #ccc;
+                overflow: hidden;
+                display: flex;
+                height: 34px;
+                &:last-child{
+                    margin-right: 0;
+                }
+            }
+            .btn {
+                margin: 0;
+                min-width: 40px;
+                width: 40px;
+                height: 100%;
+            }
+
+        }
+    }
+
+    /*内容*/
+    .markdown-content {
         display: flex;
         width: 100%;
         height: 100vh;
         background: #fff;
-        .content_left, .content_right {
+        .content-left, .content-right {
             flex: 1;
             border-left: .5px solid #ddd;
             overflow-y: scroll;
@@ -130,10 +224,10 @@
                 background-color: #ccc;
             }
         }
-        .content_right {
+        .content-right {
             background: #fff;
         }
-        .input_content {
+        .input-content {
             padding: 20px 30px;
             outline: none;
             text-align: left;
@@ -141,7 +235,7 @@
             -webkit-user-modify: read-write-plaintext-only;
             background: $article-wrapper;
         }
-        .rendering_content{
+        .rendering-content {
             padding: 20px 30px;
             outline: none;
             text-align: left;
@@ -170,7 +264,6 @@
             font-family: Menlo, Monaco, Consolas, Courier New, monospace;
             font-size: 12px;
             padding: 3px 5px;
-            word-break: break-word;
             color: #000;
             background-color: #f8f8f8;
             border-radius: 2px;
@@ -201,7 +294,7 @@
     }
 
     /*文章标题图片*/
-    .article_img {
+    .article-img {
         position: relative;
         display: flex;
         justify-content: center;
@@ -209,7 +302,7 @@
         height: 240px;
         user-select: none;
         background: #f7f8f9;
-        .file_img {
+        .file-img {
             position: absolute;
             display: block;
             top: 0;
@@ -220,7 +313,7 @@
             cursor: pointer;
             z-index: 2;
         }
-        .article_img_icon {
+        .article-img-icon {
             font-size: 30px;
             display: flex;
             color: #999
