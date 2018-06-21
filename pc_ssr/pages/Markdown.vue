@@ -1,19 +1,37 @@
 <template>
     <div class="markdown">
         <!--markdowm快捷按钮-->
-        <div class="markdown-header-wrapper">
-            <!--按钮-->
-            <div class="markdown-header">
-                <div class="markdown-header-btn-group" v-for="(item,index) in markdownHeaderBtnGroup" :key="index">
-                    <v-btn class="white" large v-for="icon in item" :key="icon.name">
-                        <v-icon>{{icon.name}}</v-icon>
-                    </v-btn>
-                </div>
-            </div>
+        <div class="markdown-header-wrapper" @click.stop.prevent>
             <!--展开按钮-->
-            <v-btn class="markdown-header-btn" fab dark small color="primary">
-                <v-icon dark>chevron_left</v-icon>
+            <v-btn fab
+                   dark
+                   small
+                   color="primary"
+                   class="show-btn"
+                   :class="{'show-btn-active': showHeaderBtn}"
+                   @click="_showHeaderBtn">
+                <v-icon dark>keyboard_arrow_left</v-icon>
             </v-btn>
+            <!--按钮-->
+            <transition name="btn-group-wrapper">
+                <div class="btn-group-wrapper"
+                     v-show="showHeaderBtn"
+                >
+                    <div class="btn-group-scroll">
+                        <div class="btn-group"
+                             v-for="(item,index) in markdownHeaderBtnGroup"
+                             :key="index"
+                        >
+                            <v-btn large
+                                   class="white"
+                                   v-for="icon in item"
+                                   :key="icon.name">
+                                <v-icon>{{icon.name}}</v-icon>
+                            </v-btn>
+                        </div>
+                    </div>
+                </div>
+            </transition>
         </div>
         <!--内容-->
         <div class="markdown-content">
@@ -63,13 +81,13 @@
         }
     };
 
-    function setState (store) {
-        store.dispatch ('appShell/appHeader/setAppHeader', state.appHeaderState);
+    function setState(store) {
+        store.dispatch('appShell/appHeader/setAppHeader', state.appHeaderState);
     }
 
     export default {
         async asyncData ({store, route}) {
-            setState (store);
+            setState(store);
         },
         metaInfo: {
             title: 'markdown编辑器',
@@ -83,13 +101,15 @@
             return {
                 /*
                  * 编译markdown
+                 *
                  * @tyep {String}
                  * */
                 compiledMarkdown: '',
                 /*
-                * 头部按钮组
-                * @type {Array}
-                * */
+                 * 头部按钮组
+                 *
+                 * @type {Array}
+                 * */
                 markdownHeaderBtnGroup: [
                     [
                         {name: 'format_bold'},
@@ -113,29 +133,44 @@
                     [
                         {name: 'visibility_off'},
                     ]
-                ]
+                ],
+                /*
+                 * 是否显示头部按钮
+                 *
+                 * @type {Boolean}
+                 * */
+                showHeaderBtn: false
             }
         },
         mounted () {
-            marked.setOptions ({
-                highlight (code) {
-                    return hljs ? hljs.highlightAuto (code).value : code;
-                },
-                pedantic: false,
-                gfm: true,
-                tables: true,
-                breaks: true,
-                sanitize: false,
-                smartLists: true,
-                smartypants: false,
-                xhtml: false
-            });
+            // 初始化数据
+            this._initData();
         },
         methods: {
+            // 初始化数据
+            _initData() {
+                marked.setOptions({
+                    highlight (code) {
+                        return hljs ? hljs.highlightAuto(code).value : code;
+                    },
+                    pedantic: false,
+                    gfm: true,
+                    tables: true,
+                    breaks: true,
+                    sanitize: false,
+                    smartLists: true,
+                    smartypants: false,
+                    xhtml: false
+                });
+            },
             // 输入markdown语法
             _inputMarkdown (event) {
 
-                this.compiledMarkdown = marked (event.target.innerText);
+                this.compiledMarkdown = marked(event.target.innerText);
+            },
+            // 显示头部按钮
+            _showHeaderBtn () {
+                this.showHeaderBtn = !this.showHeaderBtn
             }
         }
     };
@@ -143,6 +178,15 @@
 
 <style lang="scss">
     @import '../assets/sass/variable';
+
+    .btn-group-wrapper-enter-active, .btn-group-wrapper-leave-active {
+        transition: all .5s;
+    }
+
+    .btn-group-wrapper-enter, .btn-group-wrapper-leave-to {
+        transform: translate3d(50%, 0, 0);
+        opacity: 0;
+    }
 
     html {
         overflow-y: hidden;
@@ -158,41 +202,66 @@
     }
 
     /*头部*/
-    .markdown-header-wrapper{
+    .markdown-header-wrapper {
         position: fixed;
-        top: 55px;
-        left: 0;
+        top: 65px;
         right: 0;
-        padding: 5px 10px;
+        bottom: 65px;
+        padding: 0 15px;
         display: flex;
-        align-items: center;
-        justify-content: flex-end;
+        flex-direction: column;
+        width: 54px;
         z-index: 200;
-        .markdown-header-btn{
-            float: right;
-            margin: 0 10px 0 0;
-            .btn__content {
-                padding: 0;
-                margin-bottom: 5px;
-            }
+        .btn__content {
+            padding: 0;
+            margin-bottom: 5px;
         }
-        .markdown-header {
+        /*显示按钮组按钮*/
+        .show-btn {
+            float: right;
+            margin: 5px;
+            min-height: 40px;
+            transition: all .3s;
+        }
+        /*显示按钮组按钮激活*/
+        .show-btn-active {
+            transform: rotate(-90deg);
+        }
+        /*按钮组*/
+        .btn-group-wrapper {
             display: flex;
+            flex-direction: column;
+            margin-top: 10px;
             padding: 5px;
-            margin-right: 20px;
+            box-sizing: border-box;
             border: 1px solid #ddd;
             border-radius: 5px;
             background: $markdown-header-bg;
-            .markdown-header-btn-group {
-                position: relative;
-                margin-right: 10px;
+            width: 100%;
+            .btn-group-scroll{
+                overflow-y: scroll;
+                &::-webkit-scrollbar {
+                    display: none;
+                }
+            }
+            .btn-group {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                overflow: hidden;
+                margin-bottom: 10px;
                 border-radius: 2.5px;
                 border: 1px solid #ccc;
-                overflow: hidden;
-                display: flex;
-                height: 34px;
-                &:last-child{
-                    margin-right: 0;
+                height: 100%;
+                &:last-child {
+                    margin: 0;
+                }
+                .btn__content {
+                    margin: 0;
+                }
+                .white {
+                    height: 40px;
+                    min-height: 40px;
                 }
             }
             .btn {
