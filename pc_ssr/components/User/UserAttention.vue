@@ -52,8 +52,9 @@
     };
 </script>
 
-<style lang="stylus" scoped>
-    @require '~@/assets/stylus/variable'
+<style lang="scss" scoped>
+    @import '../../assets/sass/variable';
+
     .user_attention {
         position: relative;
         margin-top: 15px;

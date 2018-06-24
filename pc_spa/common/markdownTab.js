@@ -1,4 +1,4 @@
-export const markdownFastBtn = {
+export const markdownTab = {
     tabText: '    ',
     strongText: '加粗文本',
     italicText: '强调文本',

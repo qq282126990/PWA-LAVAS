@@ -1,12 +1,13 @@
 <template>
     <div>
+        <div class="index_content_bg_one"></div>
+        <div class="index_content_bg_two"></div>
         <div class="index_content">
-            <div class="index_content_bg_one"></div>
-            <div class="index_content_bg_two"></div>
             <!--左边内容-->
             <div class="index_content_left">
                 <user-message></user-message>
-                <user-attention v-for="(item, index) in contentLeftTitle" :userAttentionHeaderTxt="item" :key="index"></user-attention>
+                <user-attention v-for="(item, index) in contentLeftTitle" :userAttentionHeaderTxt="item"
+                                :key="index"></user-attention>
             </div>
             <!--中间内容-->
             <div class="index_content_middle">
@@ -66,33 +67,33 @@
         async asyncData({store, route}) {
             setState(store);
             // 获取文章列表接口
-           await store.dispatch('appStore/asyncAjax/getArticleList', {});
+            await store.dispatch('appStore/asyncAjax/getArticleList', {});
         },
         data () {
-          return {
-              /*
-              * 文章激活导航标题
-              * @type {Array}
-              * */
-              articleNavTitle: '所有文章',
-              /*
-              * 左边内容标题
-              * @type {Array}
-              * */
-              contentLeftTitle: ['我关注的人', '推荐订阅'],
-              /*
-               * 文章列表数据
-               * @type {Array}
-               * */
-              articleListData: []
-          }
+            return {
+                /*
+                 * 文章激活导航标题
+                 * @type {Array}
+                 * */
+                articleNavTitle: '所有文章',
+                /*
+                 * 左边内容标题
+                 * @type {Array}
+                 * */
+                contentLeftTitle: ['我关注的人', '推荐订阅'],
+                /*
+                 * 文章列表数据
+                 * @type {Array}
+                 * */
+                articleListData: []
+            }
         },
         computed: {
-            ...mapState('appStore/asyncAjax',{
+            ...mapState('appStore/asyncAjax', {
                 /*
-                * 文章列表数据
-                * @type {Array}
-                * */
+                 * 文章列表数据
+                 * @type {Array}
+                 * */
                 articleList: 'articleList'
             })
         },
@@ -124,15 +125,17 @@
 <style lang="scss">
     @import '../assets/sass/variable';
 
-    html{
-        overflow-y: scroll ;
+    html {
+        overflow-y: scroll;
     }
 
     .index_content {
-        padding: 77px 10% ;
+        position: relative;
+        padding: 77px 10%;
         display: flex;
         flex-wrap: wrap;
         box-sizing: border-box;
+        z-index: 100;
     }
 
     .index_content_bg_one {
@@ -144,20 +147,20 @@
         height: 352px;
         background: url('/static/img/content_bg_one.jpg') no-repeat;
         background-size: cover;
-        z-index: 0;
+        z-index: 10;
     }
 
-        .index_content_bg_two{
-            position: absolute;
-            top: 352px;
-            left: 0;
-            right: 0;
-            width: 100%;
-            height: 100vh;
-            background: url('/static/img/content_bg_two.jpg');
-            background-size: contain;
-            z-index: 0;
-        }
+    .index_content_bg_two {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        background: url('/static/img/content_bg_two.jpg');
+        background-size: contain;
+        z-index: 0;
+    }
 
     /*左边内容*/
     .index_content_left {

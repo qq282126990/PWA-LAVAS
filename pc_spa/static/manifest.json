@@ -1,7 +1,7 @@
 {
     "start_url": "/?utm_source=homescreen",
-    "name": "pwa",
-    "short_name": "pwa",
+    "name": "pc_ssr",
+    "short_name": "pc_ssr",
     "icons": [
         {
             "src": "img/icons/android-chrome-512x512.png",

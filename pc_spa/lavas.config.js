@@ -14,7 +14,7 @@ module.exports = {
     build: {
         ssr: false,
         path: BUILD_PATH,
-        publicPath: '/spa/',
+        publicPath: '/p/',
         ssrCopy: isDev ? [] : [
             {
                 src: 'server.prod.js'
@@ -26,13 +26,16 @@ module.exports = {
         alias: {
             base: {
                 'commonComponents': path.resolve(__dirname, '../common_components'),
-                'common': '@/common'
+                'components': '@/components',
+                'base': '@/base',
+                'common': '@/common',
+                'api': '@/api'
             }
         }
     },
     router: {
         mode: 'history',
-        base: '/spa/',
+        base: '/p/',
         pageTransition: {
             type: 'fade',
             transitionClass: 'fade'

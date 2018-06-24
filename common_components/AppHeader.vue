@@ -1,10 +1,10 @@
 <template>
     <transition
         name="slide-down">
-        <header class="header_wrapper" :class="{'markdown_header': status === 'markdown'}" v-show="show">
+        <header class="header_wrapper" :class="{'markdown_header': status.name === 'markdown'}" v-show="show">
             <div class="header_middle" v-cloak>
                 <!--logo-->
-                <img class="header_middle_img" src="/static/img/icons/apple-touch-icon-152x152.png" @click="goHome"/>
+                <img class="header_middle_img" :src="imgSrc" @click="goHome"/>
                 <!--icon-->
                 <v-icon class="header_middle_icon" v-show="!status.name">dehaze</v-icon>
                 <!--txt-->
@@ -51,7 +51,8 @@
             ...mapState('appShell/appHeader', [
                 'show',
                 'status',
-                'title'
+                'title',
+                'imgSrc'
             ]),
             ...mapState('appShell/common', [
                 'isPageSwitching'
@@ -108,7 +109,7 @@
              * */
             login () {
                 this.$router.push({
-                    path: '/login'
+                    path: '/p/login'
                 })
             },
             /*
