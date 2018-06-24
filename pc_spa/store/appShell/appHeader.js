@@ -27,7 +27,7 @@ export const state = () => {
          *
          * @type {String}
          */
-        imgSrc: '/static/img/icons/apple-touch-icon-152x152.png'
+        imgSrc: '/p/static/img/icons/apple-touch-icon-152x152.png'
     };
 };
 

@@ -266,8 +266,8 @@
     };
 </script>
 
-<style lang="stylus" scoped>
-    @require '~@/assets/stylus/variable'
+<style lang="scss" scoped>
+    @import '../../../pc_ssr/assets/sass/variable';
 
     .fade-enter-active {
         transition: opacity .5s;
@@ -280,8 +280,7 @@
     /*输入框*/
     .registered_content_input {
         font-size: 14px;
-        input:
-        :-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+        input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
             -webkit-appearance: none !important;
             margin: 0;
         }

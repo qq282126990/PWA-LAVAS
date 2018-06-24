@@ -43,12 +43,13 @@
                 <p class="txt transfer" @click="_switchModule">{{switchModule ? '登录' : '注册'}}</p>
             </div>
         </div>
-        <!--<router-link to="/"><h2>LAVAS</h2></router-link>-->
-        <!--<button @click="login()">点击登录</button>-->
-        <!--<div class="tips" ref="tips"></div>-->
-            <v-alert class="login_alter" :value="loginAlter.show" :icon="loginAlter.icon" :color="loginAlter.color"  transition="fade">
-                {{loginAlter.msg}}
-            </v-alert>
+        <v-alert class="login_alter"
+                 :value="loginAlter.show"
+                 :icon="loginAlter.icon"
+                 :color="loginAlter.color"
+                 transition="fade">
+            {{loginAlter.msg}}
+        </v-alert>
     </div>
 </template>
 
@@ -60,14 +61,10 @@
     let state = {
         appHeaderState: {
             show: false
-        },
-        appFooterState: {
-            show: false
         }
     };
     function setState(store) {
         store.dispatch('appShell/appHeader/setAppHeader', state.appHeaderState);
-        store.dispatch('appShell/appFooter/setAppFooter', state.appFooterState);
     }
 
     export default {
@@ -220,7 +217,7 @@
 
                     UserManager.usertLogin({'username': this.loginEmail, 'password': this.loginPwd})
                         .then(response => {
-                            if(response.data.msg === '登录成功') {
+                            if (response.data.msg === '登录成功') {
                                 this.loginAlter = {
                                     'msg': response.data.msg,
                                     'show': true,
@@ -294,7 +291,7 @@
         display: flex;
         align-items: center;
         background-color: #edeff1 !important;
-        background-image: url("/static/img/login-bg.png") !important;
+        background-image: url("/p/static/img/login-bg.png") !important;
         background-size: cover !important;
         background-repeat: no-repeat !important;
         width: 100%;

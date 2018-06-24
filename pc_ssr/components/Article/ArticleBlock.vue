@@ -109,8 +109,8 @@
     }
 </script>
 
-<style lang="stylus" scoped>
-    @require '~@/assets/stylus/variable'
+<style lang="scss" scoped>
+    @import '../../assets/sass/variable';
 
     .article {
         margin: 15px 0;
@@ -252,7 +252,7 @@
 
     /*more按钮*/
     .article_block_more_btn {
-        padding: 15px 0
+        padding: 15px 0;
         display: flex;
         justify-content: center;
         align-items: center;

@@ -78,8 +78,9 @@
     }
 </script>
 
-<style lang="stylus" scoped>
-    @require '~@/assets/stylus/variable'
+<style lang="scss" scoped>
+    @import '../../assets/sass/variable';
+
     .user_message_wrapper {
         position: relative;
         padding: 15px 15px 20px 15px;
@@ -196,7 +197,7 @@
         flex-wrap: wrap;
         width: 100%;
         background: $user-name-level;
-        z-index: 100
+        z-index: 100;
         .badge_img {
             position: relative;
             padding: 10px 5px;

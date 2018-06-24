@@ -154,8 +154,8 @@
     };
 </script>
 
-<style lang="stylus" scoped>
-    @require '~@/assets/stylus/variable'
+<style lang="scss" scoped>
+    @import '../../../pc_ssr/assets/sass/variable';
 
     .fade-enter-active {
         transition: opacity .5s;
@@ -168,8 +168,7 @@
     /*输入框*/
     .login_content_input {
         font-size: 14px;
-        input:
-        :-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+        input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
             -webkit-appearance: none !important;
             margin: 0;
         }
@@ -216,7 +215,7 @@
             box-sizing: content-box;
             height: 48px;
             color: $account-input-title-cl;
-            background: $account-input-title-bg
+            background: $account-input-title-bg;
         }
         /*账号密码输入*/
         .account_pwd_input_wrapper {

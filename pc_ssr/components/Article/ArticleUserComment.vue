@@ -101,8 +101,8 @@
     };
 </script>
 
-<style lang="stylus" scoped>
-    @require '~@/assets/stylus/variable'
+<style lang="scss" scoped>
+    @import '../../assets/sass/variable';
 
     .article_user_comment {
         display: flex;
@@ -121,7 +121,7 @@
         flex: 1;
         display: flex;
         align-items: center;
-        overflow: hidden
+        overflow: hidden;
         /*用户头像*/
         .user_img {
             margin-right: 15px;
@@ -132,7 +132,7 @@
         }
         /*用户名称*/
         .user_name {
-            flex: 1
+            flex: 1;
             margin: 0;
             text-align: left;
             font-size: 16px;

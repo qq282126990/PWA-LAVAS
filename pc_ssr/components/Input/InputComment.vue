@@ -112,8 +112,8 @@
     };
 </script>
 
-<style lang="stylus" scoped>
-    @require '~@/assets/stylus/variable'
+<style lang="scss" scoped>
+    @import '../../assets/sass/variable';
 
     .input-comment-enter-active, .input-comment-leave-active {
         transition: all .5s;
@@ -128,7 +128,7 @@
         display: flex;
         align-items: flex-start;
         width: 100%;
-        height: 100%
+        height: 100%;
         .btn {
             margin: 2.5px 0 2.5px 15px;
             border-radius: 5px;
@@ -158,6 +158,7 @@
             max-height: 500px;
             border: 1px solid #8590a6;
             border-radius: 5px;
+            word-break: break-word;
             outline: none;
             color: #000;
             -webkit-user-modify: read-write-plaintext-only;

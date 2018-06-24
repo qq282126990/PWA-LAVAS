@@ -46,8 +46,8 @@
     }
 </script>
 
-<style lang="stylus" scoped>
-    @require '~@/assets/stylus/variable'
+<style lang="scss" scoped>
+    @import '../assets/sass/variable';
 
     .search_wrapper {
         position: relative;

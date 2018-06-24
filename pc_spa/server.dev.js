@@ -29,7 +29,7 @@ var proxyTable = {
     // }
 };
 
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 3001;
 var core = new LavasCore(__dirname);
 var app;
 var server;
